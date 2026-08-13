@@ -1,0 +1,201 @@
+import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpen,
+  ChevronDown,
+  GraduationCap,
+  LayoutDashboard,
+  Menu,
+} from "lucide-react";
+
+import { navLinks } from "@/lib/vortex-data";
+import { AIHelpAgent } from "./ai-help-agent";
+import { VortexLogo } from "./logo";
+
+const portalLinks = [
+  ["Dashboard", "/signin?next=/dashboard"],
+];
+
+export function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-vortex-border bg-white/86 backdrop-blur-xl">
+      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
+        <VortexLogo />
+        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="rounded-full px-4 py-2 text-sm font-medium text-vortex-slate transition hover:bg-vortex-soft hover:text-vortex-navy"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+        <div className="hidden items-center gap-3 lg:flex">
+          <details className="relative">
+            <summary className="inline-flex h-10 cursor-pointer list-none items-center gap-2 rounded-full border border-vortex-border bg-white px-4 text-sm font-semibold text-vortex-navy shadow-sm transition hover:border-vortex-cyan/50 hover:shadow-md">
+              <LayoutDashboard className="size-4 text-vortex-blue" />
+              Sign in
+              <ChevronDown className="size-4 text-vortex-blue" />
+            </summary>
+            <div className="absolute right-0 mt-3 w-56 rounded-2xl border border-vortex-border bg-white p-2 shadow-[0_24px_80px_rgba(9,29,83,0.18)]">
+              {portalLinks.map(([label, href]) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-vortex-navy transition hover:bg-vortex-soft"
+                >
+                  {label}
+                  <ArrowRight className="size-4 text-vortex-cyan" />
+                </Link>
+              ))}
+            </div>
+          </details>
+          <Link
+            href="/courses"
+            className="inline-flex h-10 items-center gap-2 rounded-full border border-vortex-border bg-white px-4 text-sm font-semibold text-vortex-navy shadow-sm transition hover:border-vortex-cyan/50 hover:shadow-md"
+          >
+            <BookOpen className="size-4" />
+            Explore
+          </Link>
+          <Link
+            href="/support"
+            className="inline-flex h-10 items-center gap-2 rounded-full bg-vortex-navy px-4 text-sm font-semibold text-white shadow-[0_16px_45px_rgba(9,29,83,0.24)] transition hover:bg-vortex-blue"
+          >
+            Book consultation
+            <ArrowRight className="size-4" />
+          </Link>
+        </div>
+        <details className="group relative lg:hidden">
+          <summary className="flex size-11 cursor-pointer list-none items-center justify-center rounded-full border border-vortex-border bg-white text-vortex-navy shadow-sm">
+            <Menu className="size-5" />
+            <span className="sr-only">Open navigation</span>
+          </summary>
+          <div className="absolute right-0 mt-3 w-[min(88vw,340px)] rounded-2xl border border-vortex-border bg-white p-3 shadow-[0_24px_80px_rgba(9,29,83,0.18)]">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-vortex-navy hover:bg-vortex-soft"
+              >
+                {link.label}
+                <ArrowRight className="size-4 text-vortex-cyan" />
+              </Link>
+            ))}
+            <div className="my-2 h-px bg-vortex-border" />
+            {portalLinks.map(([label, href]) => (
+              <Link
+                key={href}
+                href={href}
+                className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-vortex-navy hover:bg-vortex-soft"
+              >
+                {label}
+                <LayoutDashboard className="size-4 text-vortex-cyan" />
+              </Link>
+            ))}
+          </div>
+        </details>
+      </div>
+    </header>
+  );
+}
+
+export function SiteFooter() {
+  const footerLinks = [
+    {
+      title: "Explore",
+      links: [
+        ["Courses", "/courses"],
+        ["Instructors", "/instructors"],
+        ["Subjects", "/courses"],
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        ["Team", "/team"],
+        ["Blog", "/blog"],
+        ["Become an instructor", "/instructors#apply"],
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        ["Help center", "/support"],
+        ["Book consultation", "/support#consultation"],
+        ["Contact", "/support"],
+      ],
+    },
+  ];
+
+  return (
+    <footer className="border-t border-vortex-border bg-white">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_1.2fr]">
+        <div className="max-w-xl">
+          <VortexLogo />
+          <p className="mt-5 text-sm leading-7 text-vortex-muted">
+            A premium education operating system for serious students, families,
+            teachers, and academic organizations.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <Link href="/courses" className="btn-primary h-11 px-4">
+              <BookOpen className="size-4" />
+              Explore Courses
+            </Link>
+            <Link href="/support#consultation" className="btn-secondary h-11 px-4">
+              <GraduationCap className="size-4" />
+              Book Consultation
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-2 text-sm text-vortex-muted">
+            <a href="mailto:support@vortexelearning.com" className="font-semibold text-vortex-blue">
+              support@vortexelearning.com
+            </a>
+            <a href="tel:+923244270697" className="font-semibold text-vortex-blue">
+              +92 324 4270697
+            </a>
+          </div>
+        </div>
+        <div className="grid gap-8 sm:grid-cols-3">
+          {footerLinks.map((group) => (
+            <div key={group.title}>
+              <h2 className="text-sm font-semibold text-vortex-navy">{group.title}</h2>
+              <div className="mt-4 grid gap-3">
+                {group.links.map(([label, href]) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="text-sm text-vortex-muted transition hover:text-vortex-blue"
+                  >
+                    {label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="border-t border-vortex-border px-5 py-5">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-vortex-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>(c) 2026 Vortex Learning. Serious learning, organized beautifully.</p>
+          <div className="flex gap-4">
+            <Link href="/support" className="hover:text-vortex-blue">Privacy</Link>
+            <Link href="/support" className="hover:text-vortex-blue">Terms</Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export function SiteShell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen bg-vortex-paper text-vortex-navy">
+      <SiteHeader />
+      <main>{children}</main>
+      <SiteFooter />
+      <AIHelpAgent />
+    </div>
+  );
+}
