@@ -17,6 +17,10 @@
 /.next/
 /out/
 
+# generated/import inputs
+/tmp/
+/public/courses.zip
+
 # production
 /build
 

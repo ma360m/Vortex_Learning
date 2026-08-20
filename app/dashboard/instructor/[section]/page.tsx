@@ -1,7 +1,8 @@
-import { notFound } from "next/navigation";
-import { BookOpen, Calendar, ClipboardCheck, FileText, HelpCircle, Home, MessageSquare, Send, Users, Video } from "lucide-react";
+import { redirect } from "next/navigation";
+import { BookOpen, Calendar, ClipboardCheck, FileText, HelpCircle, Home, KeyRound, MessageSquare, Send, Users, Video } from "lucide-react";
 
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
+import { PasswordSettingsPanel } from "@/components/vortex/password-settings-panel";
 
 const navItems: PortalNavItem[] = [
   { label: "Overview", href: "/dashboard/instructor", icon: Home },
@@ -37,6 +38,12 @@ const content = {
     icon: HelpCircle,
     items: ["Ayaan: Momentum worksheet question", "Noor: Book live doubt session", "Hamza: Past paper marking request"],
   },
+  password: {
+    active: "Password",
+    title: "Password settings.",
+    icon: KeyRound,
+    items: [],
+  },
 };
 
 export function generateStaticParams() {
@@ -46,11 +53,14 @@ export function generateStaticParams() {
 export default async function InstructorSectionPage({ params }: { params: Promise<{ section: keyof typeof content }> }) {
   const { section } = await params;
   const page = content[section];
-  if (!page) notFound();
+  if (!page) redirect(`/coming-soon?feature=instructor-${String(section)}`);
   const Icon = page.icon;
 
   return (
     <PortalShell role="Instructor LMS" title={page.title} description="Instructor-only workspace for teaching operations and student support." active={page.active} user="Dr. Ayesha" navItems={navItems}>
+      {section === "password" ? (
+        <PasswordSettingsPanel action="/api/vortex/instructor-actions" returnTo="/dashboard/instructor/password" />
+      ) : (
       <section className="rounded-[1.5rem] border border-vortex-border bg-white p-5 shadow-[0_14px_50px_rgba(9,29,83,0.06)]">
         <div className="flex items-center justify-between">
           <h2 className="font-heading text-3xl font-semibold text-vortex-navy">{page.active}</h2>
@@ -71,6 +81,7 @@ export default async function InstructorSectionPage({ params }: { params: Promis
           </button>
         </form>
       </section>
+      )}
     </PortalShell>
   );
 }

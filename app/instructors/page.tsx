@@ -35,7 +35,7 @@ export default function InstructorsPage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Instructors</p>
-            <h1 className="mt-4 max-w-4xl font-heading text-6xl font-semibold leading-tight">
+            <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
               Teach with credibility, structure, and visibility.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">

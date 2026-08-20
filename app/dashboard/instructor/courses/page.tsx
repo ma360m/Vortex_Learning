@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen, ClipboardCheck, Home, MessageSquare, Plus, Users, Video } from "lucide-react";
+import { BookOpen, ClipboardCheck, FileQuestion, Home, KeyRound, MessageSquare, Plus, Upload, Users, Video } from "lucide-react";
 
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 
@@ -28,6 +28,9 @@ export default function InstructorCoursesPage() {
           <div>
             <p className="text-xs font-semibold uppercase text-vortex-blue">Instructor catalog</p>
             <h2 className="mt-2 font-heading text-3xl font-semibold text-vortex-navy">Courses you can build</h2>
+            <p className="mt-2 text-sm leading-7 text-vortex-muted">
+              Build course pages, modules, lessons, resources, flipbooks, quizzes, assignments, live help, pricing, and certificate rules before admin approval.
+            </p>
           </div>
           <Link href="/dashboard/instructor/courses/new" className="btn-primary h-11 px-5">
             <Plus className="size-4" />
@@ -40,6 +43,20 @@ export default function InstructorCoursesPage() {
               <span className="font-semibold text-vortex-navy">{title}</span>
               <span className="text-sm text-vortex-muted">{students}</span>
               <span className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-vortex-blue">{status}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+          {[
+            [BookOpen, "Course pages"],
+            [Upload, "Resources"],
+            [FileQuestion, "Quizzes"],
+            [ClipboardCheck, "Assignments"],
+            [KeyRound, "Access rules"],
+          ].map(([Icon, label]) => (
+            <div key={label as string} className="rounded-2xl border border-vortex-border bg-white p-4">
+              <Icon className="size-5 text-vortex-blue" />
+              <p className="mt-3 text-sm font-semibold text-vortex-navy">{label as string}</p>
             </div>
           ))}
         </div>

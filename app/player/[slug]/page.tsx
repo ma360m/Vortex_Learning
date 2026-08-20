@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import {
   Award,
   Bell,
@@ -38,7 +38,7 @@ export default async function CoursePlayerPage({ params }: { params: Promise<{ s
   const course = getCourseBySlug(slug);
 
   if (!course) {
-    notFound();
+    redirect(`/coming-soon?feature=${slug}-player`);
   }
 
   const freeModuleCount = course.freeModuleCount ?? 3;

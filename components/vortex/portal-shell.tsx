@@ -3,6 +3,7 @@ import Link from "next/link";
 import {
   Bell,
   ChevronDown,
+  KeyRound,
   Menu,
   Search,
   ShieldCheck,
@@ -29,6 +30,13 @@ type PortalShellProps = {
   children: React.ReactNode;
 };
 
+function passwordHrefForRole(role: string) {
+  if (role.includes("Parent")) return "/dashboard/parent/password";
+  if (role.includes("Instructor")) return "/dashboard/instructor/password";
+  if (role.includes("Admin")) return "/dashboard/admin/password";
+  return "/dashboard/student/password";
+}
+
 export function PortalShell({
   role,
   title,
@@ -38,6 +46,8 @@ export function PortalShell({
   navItems,
   children,
 }: PortalShellProps) {
+  const passwordHref = passwordHrefForRole(role);
+
   return (
     <div className="min-h-screen bg-[#eef6ff] text-vortex-navy">
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-[292px] border-r border-white/12 bg-[#071847] p-4 text-white xl:block">
@@ -82,6 +92,13 @@ export function PortalShell({
                 <p className="text-xs text-cyan-100">Signed-in profile</p>
               </div>
             </div>
+            <Link
+              href={passwordHref}
+              className="mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-full border border-white/15 text-xs font-semibold text-cyan-50 transition hover:bg-white/10"
+            >
+              <KeyRound className="size-4" />
+              Password
+            </Link>
             <SignOutButton />
           </div>
         </div>
@@ -89,7 +106,7 @@ export function PortalShell({
 
       <div className="xl:pl-[292px]">
         <header className="sticky top-0 z-30 border-b border-vortex-border bg-white/88 backdrop-blur-xl">
-          <div className="flex min-h-20 items-center justify-between gap-4 px-5 sm:px-8">
+          <div className="flex min-h-16 items-center justify-between gap-3 px-4 sm:min-h-20 sm:px-8">
             <div className="hidden min-w-0 xl:block">
               <p className="text-xs font-semibold uppercase text-vortex-blue">{role}</p>
               <h1 className="truncate font-heading text-3xl font-semibold text-vortex-navy">
@@ -118,6 +135,14 @@ export function PortalShell({
                     </Link>
                   );
                 })}
+                <div className="my-2 h-px bg-vortex-border" />
+                <Link
+                  href={passwordHref}
+                  className="grid grid-cols-[auto_1fr] items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-vortex-navy hover:bg-vortex-soft"
+                >
+                  <KeyRound className="size-4 text-vortex-blue" />
+                  Password
+                </Link>
               </div>
             </details>
 
@@ -127,6 +152,13 @@ export function PortalShell({
             </div>
 
             <div className="flex items-center gap-2">
+              <Link
+                href={passwordHref}
+                className="grid size-11 place-items-center rounded-full border border-vortex-border bg-white text-vortex-navy transition hover:border-vortex-cyan"
+                aria-label="Change password"
+              >
+                <KeyRound className="size-4" />
+              </Link>
               <button
                 type="button"
                 className="grid size-11 place-items-center rounded-full border border-vortex-border bg-white text-vortex-navy transition hover:border-vortex-cyan"
@@ -144,18 +176,18 @@ export function PortalShell({
           </div>
         </header>
 
-        <main className="px-5 py-6 sm:px-8">
+        <main className="px-4 py-5 sm:px-8 sm:py-6">
           <Suspense fallback={null}>
             <ActionBanner />
           </Suspense>
-          <section className="mb-6 overflow-hidden rounded-[1.7rem] bg-vortex-gradient p-6 text-white shadow-[0_22px_80px_rgba(9,29,83,0.18)]">
+          <section className="mb-5 overflow-hidden rounded-[1.7rem] bg-vortex-gradient p-5 text-white shadow-[0_22px_80px_rgba(9,29,83,0.18)] sm:mb-6 sm:p-6">
             <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
               <div>
                 <p className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
                   <ShieldCheck className="size-4" />
                   Signed in
                 </p>
-                <h2 className="mt-3 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-5xl">
+                <h2 className="mt-3 max-w-4xl font-heading text-3xl font-semibold leading-tight sm:text-5xl">
                   {title}
                 </h2>
                 <p className="mt-4 max-w-3xl text-sm leading-7 text-cyan-50">{description}</p>

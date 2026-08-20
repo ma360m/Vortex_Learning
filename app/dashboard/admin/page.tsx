@@ -31,14 +31,14 @@ const navItems: PortalNavItem[] = [
   { label: "Courses", href: "/dashboard/admin/courses", icon: GraduationCap },
   { label: "Users", href: "/dashboard/admin/users", icon: Users },
   { label: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
-  { label: "AI agents", href: "/dashboard/admin", icon: Bot },
-  { label: "Support", href: "/dashboard/admin", icon: Ticket },
-  { label: "Settings", href: "/dashboard/admin", icon: Settings },
+  { label: "AI agents", href: "/dashboard/admin/ai-agents", icon: Bot },
+  { label: "Support", href: "/dashboard/admin/support", icon: Ticket },
+  { label: "Settings", href: "/dashboard/admin/settings", icon: Settings },
 ];
 
 const adminModules: Array<[LucideIcon, string, string]> = [
-  [GraduationCap, "Courses", "Catalog, modules, resources, approvals, live cohorts, and certificates."],
-  [Users, "People", "Students, parents, teachers, developers, support agents, and role permissions."],
+  [GraduationCap, "Courses", "Catalog, modules, resources, quizzes, approvals, live cohorts, and certificates."],
+  [Users, "Accounts", "Students, parents, instructors, developers, support agents, and role permissions."],
   [CreditCard, "Payments", "Orders, invoices, refunds, receipts, coupons, and purchase events."],
   [ClipboardCheck, "Assignments", "Homework, submissions, grading queues, rubrics, and teacher feedback."],
   [FileText, "Content", "Blogs, guides, resources, FAQs, SEO metadata, and course landing copy."],
@@ -133,7 +133,7 @@ export default function AdminDashboardPage() {
           <div className="mt-4 rounded-2xl border border-vortex-border bg-vortex-soft p-4">
             <p className="text-sm font-semibold text-vortex-navy">Builder modules</p>
             <div className="mt-3 grid gap-2">
-              {["Overview", "Curriculum", "Instructor help", "Live sessions", "Assignments", "Certificate"].map((item) => (
+              {["Overview", "Curriculum", "Resources", "Quizzes", "Assignments", "Instructor help", "Live sessions", "Certificate"].map((item) => (
                 <div key={item} className="flex items-center justify-between rounded-xl bg-white px-3 py-2 text-xs font-semibold text-vortex-slate">
                   {item}
                   <Eye className="size-3.5 text-vortex-blue" />

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import {
   ArrowRight,
   Award,
@@ -67,7 +67,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
   const course = getCourseBySlug(slug);
 
   if (!course) {
-    notFound();
+    redirect(`/coming-soon?feature=${slug}-course`);
   }
 
   const instructor = instructors.find((item) => item.name === course.instructor) ?? instructors[0];
@@ -81,7 +81,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_420px] lg:items-end">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">{course.eyebrow}</p>
-            <h1 className="mt-4 max-w-5xl font-heading text-6xl font-semibold leading-tight">
+            <h1 className="mt-4 max-w-5xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
               {course.title}
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50">{course.description}</p>

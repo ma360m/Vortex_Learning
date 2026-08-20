@@ -6,6 +6,7 @@ import {
   GraduationCap,
   LayoutDashboard,
   Menu,
+  ShieldCheck,
 } from "lucide-react";
 
 import { navLinks } from "@/lib/vortex-data";
@@ -18,15 +19,18 @@ const portalLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-vortex-border bg-white/86 backdrop-blur-xl">
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
-        <VortexLogo />
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary navigation">
+    <header className="sticky top-0 z-50 border-b border-vortex-border bg-white/92 shadow-[0_12px_40px_rgba(9,29,83,0.05)] backdrop-blur-xl">
+      <div className="mx-auto flex h-[4.65rem] w-full max-w-7xl items-center justify-between gap-4 px-4 sm:h-20 sm:px-8">
+        <VortexLogo compact />
+        <nav
+          className="hidden items-center gap-1 rounded-full border border-vortex-border bg-white/78 p-1 shadow-sm lg:flex"
+          aria-label="Primary navigation"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-vortex-slate transition hover:bg-vortex-soft hover:text-vortex-navy"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-vortex-slate transition hover:bg-vortex-soft hover:text-vortex-navy"
             >
               {link.label}
             </Link>
@@ -36,10 +40,10 @@ export function SiteHeader() {
           <details className="relative">
             <summary className="inline-flex h-10 cursor-pointer list-none items-center gap-2 rounded-full border border-vortex-border bg-white px-4 text-sm font-semibold text-vortex-navy shadow-sm transition hover:border-vortex-cyan/50 hover:shadow-md">
               <LayoutDashboard className="size-4 text-vortex-blue" />
-              Sign in
+              Portal
               <ChevronDown className="size-4 text-vortex-blue" />
             </summary>
-            <div className="absolute right-0 mt-3 w-56 rounded-2xl border border-vortex-border bg-white p-2 shadow-[0_24px_80px_rgba(9,29,83,0.18)]">
+            <div className="absolute right-0 mt-3 w-64 rounded-2xl border border-vortex-border bg-white p-2 shadow-[0_24px_80px_rgba(9,29,83,0.18)]">
               {portalLinks.map(([label, href]) => (
                 <Link
                   key={href}
@@ -50,15 +54,12 @@ export function SiteHeader() {
                   <ArrowRight className="size-4 text-vortex-cyan" />
                 </Link>
               ))}
+              <div className="mx-3 mb-2 mt-1 flex items-start gap-2 rounded-xl bg-vortex-soft p-3 text-xs leading-5 text-vortex-muted">
+                <ShieldCheck className="mt-0.5 size-4 shrink-0 text-vortex-blue" />
+                Portals open according to approved account access.
+              </div>
             </div>
           </details>
-          <Link
-            href="/courses"
-            className="inline-flex h-10 items-center gap-2 rounded-full border border-vortex-border bg-white px-4 text-sm font-semibold text-vortex-navy shadow-sm transition hover:border-vortex-cyan/50 hover:shadow-md"
-          >
-            <BookOpen className="size-4" />
-            Explore
-          </Link>
           <Link
             href="/support"
             className="inline-flex h-10 items-center gap-2 rounded-full bg-vortex-navy px-4 text-sm font-semibold text-white shadow-[0_16px_45px_rgba(9,29,83,0.24)] transition hover:bg-vortex-blue"
@@ -72,7 +73,7 @@ export function SiteHeader() {
             <Menu className="size-5" />
             <span className="sr-only">Open navigation</span>
           </summary>
-          <div className="absolute right-0 mt-3 w-[min(88vw,340px)] rounded-2xl border border-vortex-border bg-white p-3 shadow-[0_24px_80px_rgba(9,29,83,0.18)]">
+          <div className="absolute right-0 mt-3 w-[min(92vw,340px)] rounded-2xl border border-vortex-border bg-white p-3 shadow-[0_24px_80px_rgba(9,29,83,0.18)]">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -94,6 +95,13 @@ export function SiteHeader() {
                 <LayoutDashboard className="size-4 text-vortex-cyan" />
               </Link>
             ))}
+            <Link
+              href="/support"
+              className="mt-2 flex items-center justify-between rounded-xl bg-vortex-navy px-4 py-3 text-sm font-semibold text-white"
+            >
+              Book consultation
+              <ArrowRight className="size-4 text-cyan-100" />
+            </Link>
           </div>
         </details>
       </div>
@@ -108,7 +116,7 @@ export function SiteFooter() {
       links: [
         ["Courses", "/courses"],
         ["Instructors", "/instructors"],
-        ["Subjects", "/courses"],
+        ["Subjects", "/courses#subjects"],
       ],
     },
     {
@@ -131,7 +139,7 @@ export function SiteFooter() {
 
   return (
     <footer className="border-t border-vortex-border bg-white">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_1.2fr]">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_1.2fr]">
         <div className="max-w-xl">
           <VortexLogo />
           <p className="mt-5 text-sm leading-7 text-vortex-muted">
@@ -180,8 +188,8 @@ export function SiteFooter() {
         <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-vortex-muted sm:flex-row sm:items-center sm:justify-between">
           <p>(c) 2026 Vortex Learning. Serious learning, organized beautifully.</p>
           <div className="flex gap-4">
-            <Link href="/support" className="hover:text-vortex-blue">Privacy</Link>
-            <Link href="/support" className="hover:text-vortex-blue">Terms</Link>
+            <Link href="/support#privacy" className="hover:text-vortex-blue">Privacy</Link>
+            <Link href="/support#terms" className="hover:text-vortex-blue">Terms</Link>
           </div>
         </div>
       </div>

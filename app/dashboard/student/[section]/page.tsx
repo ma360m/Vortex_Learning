@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { Award, Bookmark, Calendar, HelpCircle, Home, KeyRound, Library, MessageSquare, Send } from "lucide-react";
 
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
+import { PasswordSettingsPanel } from "@/components/vortex/password-settings-panel";
 
 const navItems: PortalNavItem[] = [
   { label: "Overview", href: "/dashboard/student", icon: Home },
@@ -44,6 +45,12 @@ const content = {
     icon: Award,
     items: ["Physics Topic Mastery - ready", "IELTS Writing Sprint - in progress", "SAT Diagnostic - issued"],
   },
+  password: {
+    active: "Password",
+    title: "Password settings.",
+    icon: KeyRound,
+    items: [],
+  },
 };
 
 export function generateStaticParams() {
@@ -53,11 +60,14 @@ export function generateStaticParams() {
 export default async function StudentSectionPage({ params }: { params: Promise<{ section: keyof typeof content }> }) {
   const { section } = await params;
   const page = content[section];
-  if (!page) notFound();
+  if (!page) redirect(`/coming-soon?feature=student-${String(section)}`);
   const Icon = page.icon;
 
   return (
     <PortalShell role="Student LMS" title={page.title} description="Student-only workspace for learning, access, support, and progress." active={page.active} user="Ayaan" navItems={navItems}>
+      {section === "password" ? (
+        <PasswordSettingsPanel action="/api/vortex/student-actions" returnTo="/dashboard/student/password" />
+      ) : (
       <section className="rounded-[1.5rem] border border-vortex-border bg-white p-5 shadow-[0_14px_50px_rgba(9,29,83,0.06)]">
         <div className="flex items-center justify-between">
           <h2 className="font-heading text-3xl font-semibold text-vortex-navy">{page.active}</h2>
@@ -99,6 +109,7 @@ export default async function StudentSectionPage({ params }: { params: Promise<{
           </form>
         ) : null}
       </section>
+      )}
     </PortalShell>
   );
 }

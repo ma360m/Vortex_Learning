@@ -20,7 +20,7 @@ export function VortexLogo({ compact = false, className = "" }: LogoProps) {
           width={659}
           height={340}
           priority
-          className={compact ? "h-10 w-auto object-contain" : "h-14 w-auto object-contain"}
+          className={compact ? "h-10 w-auto object-contain" : "h-11 w-auto object-contain sm:h-14"}
         />
       </span>
     </Link>

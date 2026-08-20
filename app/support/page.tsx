@@ -39,7 +39,7 @@ export default function SupportPage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Support</p>
-            <h1 className="mt-4 max-w-4xl font-heading text-6xl font-semibold leading-tight">
+            <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
               Human help, AI guidance, and clear escalation.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
@@ -154,6 +154,25 @@ export default function SupportPage() {
               Create Support Request
               <ArrowRight className="size-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-24">
+        <div className="mx-auto grid max-w-7xl gap-6 px-5 sm:px-8 lg:grid-cols-2">
+          <div id="privacy" className="scroll-mt-28 rounded-[2rem] border border-vortex-border bg-vortex-soft p-6">
+            <p className="text-sm font-semibold text-vortex-blue">Privacy</p>
+            <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">Data handled by Vortex Learning</h2>
+            <p className="mt-4 text-sm leading-7 text-vortex-muted">
+              Vortex Learning stores account, learning progress, payment verification, licence-key, support, and certificate records needed to operate courses and dashboards. Final legal copy should be reviewed before the original domain goes live.
+            </p>
+          </div>
+          <div id="terms" className="scroll-mt-28 rounded-[2rem] border border-vortex-border bg-vortex-soft p-6">
+            <p className="text-sm font-semibold text-vortex-blue">Terms</p>
+            <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">Course access terms</h2>
+            <p className="mt-4 text-sm leading-7 text-vortex-muted">
+              Course access is unlocked after approved payment and licence-key redemption. The first three modules can be previewed, paid resources are locked, and downloading is disabled unless admin enables it for a course or resource.
+            </p>
           </div>
         </div>
       </section>

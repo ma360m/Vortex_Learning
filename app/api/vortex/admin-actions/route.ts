@@ -1,24 +1,32 @@
-import { NextResponse } from "next/server";
+import { redirectWithIntent } from "@/lib/vortex-form-actions";
 
 const validIntents = new Set([
   "course-draft",
   "course-submit",
   "course-publish",
+  "assign-student",
   "promote-instructor",
   "assign-parent",
+  "assign-developer",
+  "suspend-account",
   "verify-payment",
   "email-key",
   "support-ticket",
+  "password-change",
+  "resource-save",
+  "quiz-save",
+  "assignment-save",
+  "support-save",
 ]);
 
 function redirectBack(request: Request, formData: FormData) {
-  const intent = String(formData.get("intent") ?? "course-draft");
-  const returnTo = String(formData.get("returnTo") ?? "/dashboard/admin");
-  const safeReturnTo = returnTo.startsWith("/") ? returnTo : "/dashboard/admin";
-  const done = validIntents.has(intent) ? intent : "support-ticket";
-  const url = new URL(safeReturnTo, request.url);
-  url.searchParams.set("done", done);
-  return NextResponse.redirect(url, 303);
+  return redirectWithIntent({
+    request,
+    formData,
+    validIntents,
+    defaultReturnTo: "/dashboard/admin",
+    fallbackDone: "support-ticket",
+  });
 }
 
 export async function POST(request: Request) {

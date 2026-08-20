@@ -8,9 +8,9 @@ const navItems: PortalNavItem[] = [
   { label: "Courses", href: "/dashboard/admin/courses", icon: GraduationCap },
   { label: "Users", href: "/dashboard/admin/users", icon: Users },
   { label: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
-  { label: "AI agents", href: "/dashboard/admin", icon: Bot },
-  { label: "Support", href: "/dashboard/admin", icon: Ticket },
-  { label: "Settings", href: "/dashboard/admin", icon: Settings },
+  { label: "AI agents", href: "/dashboard/admin/ai-agents", icon: Bot },
+  { label: "Support", href: "/dashboard/admin/support", icon: Ticket },
+  { label: "Settings", href: "/dashboard/admin/settings", icon: Settings },
 ];
 
 export const metadata = { title: "Admin Course Builder" };

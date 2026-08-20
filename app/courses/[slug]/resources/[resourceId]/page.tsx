@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { ArrowLeft, Banknote, FileText, KeyRound, Lock, ShieldCheck } from "lucide-react";
 
 import { SiteShell } from "@/components/vortex/site-shell";
@@ -39,7 +39,7 @@ export default async function CourseResourcePage({
   const resource = course?.resourceFiles?.find((item) => item.id === resourceId);
 
   if (!course || !resource) {
-    notFound();
+    redirect(`/coming-soon?feature=${slug}-${resourceId}-resource`);
   }
 
   return (
@@ -53,7 +53,7 @@ export default async function CourseResourcePage({
           <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_420px] lg:items-end">
             <div>
               <p className="text-sm font-semibold uppercase text-[#47C8F2]">Protected flipbook</p>
-              <h1 className="mt-4 max-w-4xl font-heading text-6xl font-semibold leading-tight">
+              <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
                 {resource.title}
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-cyan-50">

@@ -1,22 +1,17 @@
 import Link from "next/link";
-import { Bot, CreditCard, GraduationCap, Home, Plus, Settings, Ticket, Users } from "lucide-react";
+import { Bot, CreditCard, Eye, GraduationCap, Home, PlayCircle, Plus, Settings, Ticket, Users } from "lucide-react";
 
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
+import { courses } from "@/lib/vortex-data";
 
 const navItems: PortalNavItem[] = [
   { label: "Overview", href: "/dashboard/admin", icon: Home },
   { label: "Courses", href: "/dashboard/admin/courses", icon: GraduationCap },
   { label: "Users", href: "/dashboard/admin/users", icon: Users },
   { label: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
-  { label: "AI agents", href: "/dashboard/admin", icon: Bot },
-  { label: "Support", href: "/dashboard/admin", icon: Ticket },
-  { label: "Settings", href: "/dashboard/admin", icon: Settings },
-];
-
-const courses = [
-  ["O Level Physics Mastery", "Hybrid", "Dr. Ayesha Rahman", "Published"],
-  ["Accelerated Exam Rescue", "Accelerated", "Dr. Ayesha Rahman", "Draft"],
-  ["IELTS Academic Band 7+", "Self paced", "Sara Malik", "Review"],
+  { label: "AI agents", href: "/dashboard/admin/ai-agents", icon: Bot },
+  { label: "Support", href: "/dashboard/admin/support", icon: Ticket },
+  { label: "Settings", href: "/dashboard/admin/settings", icon: Settings },
 ];
 
 export const metadata = { title: "Admin Courses" };
@@ -29,27 +24,48 @@ export default function AdminCoursesPage() {
           <div>
             <p className="text-xs font-semibold uppercase text-vortex-blue">Courses</p>
             <h2 className="mt-2 font-heading text-3xl font-semibold text-vortex-navy">Course catalog and approvals</h2>
+            <p className="mt-2 text-sm text-vortex-muted">
+              Admin can open every published course page and player preview from here.
+            </p>
           </div>
-          <Link href="/dashboard/admin/courses/new" className="btn-primary h-11 px-5">
-            <Plus className="size-4" />
-            New Course
-          </Link>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="rounded-full border border-vortex-border bg-vortex-soft px-4 py-2 text-xs font-semibold text-vortex-blue">
+              {courses.length} courses
+            </span>
+            <Link href="/dashboard/admin/courses/new" className="btn-primary h-11 px-5">
+              <Plus className="size-4" />
+              New Course
+            </Link>
+          </div>
         </div>
-        <div className="mt-6 grid gap-3">
-          {courses.map(([title, type, instructor, status]) => (
-            <div key={title} className="grid gap-3 rounded-2xl bg-vortex-soft p-4 lg:grid-cols-[1fr_0.6fr_0.8fr_auto] lg:items-center">
-              <span className="font-semibold text-vortex-navy">{title}</span>
-              <span className="text-sm text-vortex-muted">{type}</span>
-              <span className="text-sm text-vortex-muted">{instructor}</span>
-              <form action="/api/vortex/admin-actions" method="post" className="flex gap-2">
-                <input type="hidden" name="returnTo" value="/dashboard/admin/courses" />
-                <button name="intent" value="course-submit" className="h-9 rounded-full bg-vortex-navy px-3 text-xs font-semibold text-white">
-                  Review
-                </button>
-                <button name="intent" value="course-publish" className="h-9 rounded-full border border-vortex-border bg-white px-3 text-xs font-semibold text-vortex-navy">
-                  {status}
-                </button>
-              </form>
+        <div className="mt-6 grid max-h-[72rem] gap-3 overflow-auto pr-1">
+          {courses.map((course) => (
+            <div key={course.slug} className="grid gap-3 rounded-2xl bg-vortex-soft p-4 lg:grid-cols-[minmax(0,1fr)_0.55fr_0.8fr_minmax(300px,auto)] lg:items-center">
+              <span className="min-w-0">
+                <span className="block truncate font-semibold text-vortex-navy">{course.title}</span>
+                <span className="mt-1 block text-xs text-vortex-muted">{course.category} - {course.board}</span>
+              </span>
+              <span className="text-sm text-vortex-muted">{course.mode}</span>
+              <span className="text-sm text-vortex-muted">{course.instructor}</span>
+              <div className="flex flex-wrap gap-2">
+                <Link href={`/courses/${course.slug}`} className="inline-flex h-9 items-center gap-1.5 rounded-full bg-vortex-navy px-3 text-xs font-semibold text-white">
+                  <Eye className="size-3.5" />
+                  View page
+                </Link>
+                <Link href={`/player/${course.slug}`} className="inline-flex h-9 items-center gap-1.5 rounded-full border border-vortex-border bg-white px-3 text-xs font-semibold text-vortex-navy">
+                  <PlayCircle className="size-3.5 text-vortex-blue" />
+                  Player
+                </Link>
+                <form action="/api/vortex/admin-actions" method="post" className="flex gap-2">
+                  <input type="hidden" name="returnTo" value="/dashboard/admin/courses" />
+                  <button name="intent" value="course-submit" className="h-9 rounded-full border border-vortex-border bg-white px-3 text-xs font-semibold text-vortex-navy">
+                    Review
+                  </button>
+                  <button name="intent" value="course-publish" className="h-9 rounded-full border border-vortex-border bg-white px-3 text-xs font-semibold text-vortex-navy">
+                    Publish
+                  </button>
+                </form>
+              </div>
             </div>
           ))}
         </div>

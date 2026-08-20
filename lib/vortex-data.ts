@@ -47,9 +47,7 @@ export type Course = {
 
 export const navLinks = [
   { label: "Courses", href: "/courses" },
-  { label: "Player", href: "/player" },
   { label: "Instructors", href: "/instructors" },
-  { label: "Team", href: "/team" },
   { label: "Blog", href: "/blog" },
   { label: "Support", href: "/support" },
 ];
@@ -152,7 +150,7 @@ export const platformRoles = [
     points: ["Attendance", "Payments", "Homework", "Teacher feedback", "Messages"],
   },
   {
-    role: "Teacher",
+    role: "Instructor",
     title: "Teaching tools that keep learning organized.",
     href: "/signin?next=/dashboard/instructor",
     points: ["Live sessions", "Teacher notes", "Homework", "Course approvals", "Discussions"],
@@ -162,12 +160,6 @@ export const platformRoles = [
     title: "Operations for a scaled education business.",
     href: "/signin?next=/dashboard/admin",
     points: ["Courses", "Users", "Payments", "Coupons", "Analytics", "Support tickets"],
-  },
-  {
-    role: "Developer",
-    title: "A separate workspace for shipping the platform.",
-    href: "/signin?next=/developer",
-    points: ["CMS", "Themes", "Deployments", "Feature flags", "Environment settings", "Logs"],
   },
 ];
 

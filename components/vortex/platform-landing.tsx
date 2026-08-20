@@ -6,34 +6,19 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  Award,
-  BarChart3,
-  Bell,
   BookOpen,
   Bot,
   Calendar,
   CheckCircle2,
   ChevronRight,
-  ClipboardCheck,
-  Clock,
-  FileText,
   GraduationCap,
-  Headphones,
   Library,
   LineChart,
   MessageSquare,
-  PlayCircle,
-  Search,
-  ShieldCheck,
-  Sparkles,
   Target,
-  Users,
-  Video,
-  type LucideIcon,
 } from "lucide-react";
 
 import {
-  blogPosts,
   courses,
   instructors,
   learningPaths,
@@ -49,11 +34,7 @@ const discoveryTabs = [
   "Trending Courses",
   "Popular Subjects",
   "Accelerated",
-  "Recently Added",
-  "Recommended",
-  "New Releases",
   "Crash Courses",
-  "Revision Courses",
   "Self Paced",
   "Live Classes",
 ];
@@ -62,11 +43,7 @@ const tabCourseMap: Record<string, string[]> = {
   "Trending Courses": ["physics", "chemistry", "biology"],
   "Popular Subjects": ["maths", "computer-science", "english"],
   Accelerated: ["mdcat", "ecat", "law-admission-test-lat"],
-  "Recently Added": ["urdu", "pak-studies", "isl"],
-  Recommended: ["physics", "mdcat", "maths"],
-  "New Releases": ["computer-science", "olevels", "english"],
   "Crash Courses": ["mdcat", "ecat", "law-admission-test-lat"],
-  "Revision Courses": ["physics", "chemistry", "maths"],
   "Self Paced": ["biology", "english", "urdu"],
   "Live Classes": ["physics", "maths", "olevels"],
 };
@@ -75,60 +52,9 @@ const stats = [
   ["320+", "sample courses"],
   ["24k", "sample learners"],
   ["96%", "sample completion"],
-  ["18", "sample countries"],
-];
-
-const timeline = [
-  {
-    title: "Find the path",
-    text: "Curriculum, subject, tutor, exam goal, or career skill.",
-    icon: Search,
-  },
-  {
-    title: "Learn with structure",
-    text: "Recorded lessons, live classes, notes, transcripts, and downloads.",
-    icon: PlayCircle,
-  },
-  {
-    title: "Practice with feedback",
-    text: "Assignments, quizzes, discussion, homework, and teacher notes.",
-    icon: ClipboardCheck,
-  },
-  {
-    title: "Review with intelligence",
-    text: "AI planning, revision maps, reminders, and learning recommendations.",
-    icon: Bot,
-  },
-  {
-    title: "Prove progress",
-    text: "Progress reports, certificates, attendance, and parent visibility.",
-    icon: Award,
-  },
-];
-
-const ecosystemModules: Array<[LucideIcon, string]> = [
-  [BookOpen, "Unlimited courses"],
-  [Video, "Live learning"],
-  [Clock, "Self paced"],
-  [Bot, "AI assistant"],
-  [MessageSquare, "Community"],
-  [Award, "Certificates"],
-  [Calendar, "Calendar sync"],
-  [BarChart3, "Analytics"],
-  [ShieldCheck, "Admin controls"],
-  [Headphones, "Support tickets"],
-  [FileText, "Blogs and guides"],
-  [Bell, "Reminders"],
 ];
 
 const pathIcons = [Library, BookOpen, Target];
-
-const communityModules: Array<[LucideIcon, string, string]> = [
-  [Bot, "AI study assistant", "Homework help, quiz guidance, revision planning, search support, and FAQ answers."],
-  [Users, "Community learning", "Forums, study groups, peer discussion, leaderboards, and achievements."],
-  [Headphones, "Support operations", "Live chat, WhatsApp, contact forms, tickets, and escalation paths."],
-  [Sparkles, "Recommendations", "Course, tutor, resource, and study-plan suggestions based on learning goals."],
-];
 
 function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
@@ -162,7 +88,7 @@ export function PlatformLanding() {
 
   return (
     <>
-      <section className="relative isolate min-h-[82svh] overflow-hidden bg-vortex-navy text-white">
+      <section className="relative isolate overflow-hidden bg-vortex-navy text-white md:min-h-[78svh]">
         <Image
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2200&q=75"
           alt="Students studying together in a modern learning environment"
@@ -172,26 +98,25 @@ export function PlatformLanding() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.90)_0%,rgba(9,29,83,0.72)_45%,rgba(20,58,132,0.28)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.92)_0%,rgba(9,29,83,0.76)_48%,rgba(20,58,132,0.34)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#f7fbff_0%,rgba(247,251,255,0)_100%)]" />
 
-        <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-5 pb-24 pt-14 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,0.85fr)] lg:items-center lg:pt-20">
-          <div className="max-w-[760px]">
-            <div className="mb-7 inline-flex max-w-full items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-cyan-50 backdrop-blur">
-              <span className="size-2.5 shrink-0 rounded-full bg-[#47C8F2]" />
-              <span className="truncate">Serious learning, organized beautifully</span>
+        <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-4 pb-16 pt-10 sm:px-8 sm:pb-24 sm:pt-14 lg:grid-cols-[minmax(0,0.92fr)_minmax(390px,0.78fr)] lg:items-center lg:pt-20">
+          <div className="max-w-[720px]">
+            <div className="mb-5 inline-flex max-w-full items-center gap-3 border-l border-[#47C8F2] bg-white/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-50 backdrop-blur sm:mb-7">
+              <span className="truncate">Vortex Learning</span>
             </div>
-            <h1 className="font-heading text-5xl font-semibold leading-[1.02] sm:text-7xl lg:text-[5.65rem]">
-              One platform.
+            <h1 className="font-heading text-4xl font-semibold leading-[1.04] sm:text-6xl lg:text-[4.9rem]">
+              Learn without limits.
               <span className="block text-cyan-100">Every subject.</span>
               <span className="block text-white">Every goal.</span>
             </h1>
-            <p className="mt-7 max-w-[660px] text-lg leading-8 text-blue-50 sm:text-xl">
+            <p className="mt-5 max-w-[640px] text-base leading-7 text-blue-50 sm:mt-7 sm:text-lg sm:leading-8">
               Vortex Learning brings courses, live classes, tutors, past papers,
               AI study support, parent visibility, and academic operations into
               one premium education ecosystem.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/courses" className="btn-primary h-[3.25rem] px-6 text-base">
                 <BookOpen className="size-5" />
                 Explore Courses
@@ -200,16 +125,16 @@ export function PlatformLanding() {
                 <Calendar className="size-5" />
                 Book Consultation
               </Link>
-              <Link href="/instructors#apply" className="btn-glass h-[3.25rem] px-6 text-base">
+              <Link href="/instructors#apply" className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full px-2 text-sm font-semibold text-cyan-50 transition hover:text-white sm:px-4">
                 <GraduationCap className="size-5" />
                 Become Instructor
               </Link>
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[560px] lg:mx-0">
-            <div className="rounded-[2rem] border border-white/24 bg-white/14 p-3 shadow-[0_35px_120px_rgba(0,0,0,0.28)] backdrop-blur-xl">
-              <div className="overflow-hidden rounded-[1.55rem] bg-[#071847]/94">
+          <div className="relative mx-auto hidden w-full max-w-[520px] md:block lg:mx-0">
+            <div className="rounded-[1.75rem] border border-white/20 bg-white/12 p-3 shadow-[0_35px_100px_rgba(0,0,0,0.24)] backdrop-blur-xl">
+              <div className="overflow-hidden rounded-[1.35rem] bg-[#071847]/94">
                 <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
                   <div className="flex items-center gap-2">
                     <span className="size-2.5 rounded-full bg-[#47C8F2]" />
@@ -229,7 +154,7 @@ export function PlatformLanding() {
                     </div>
                     <div className="mt-20">
                       <p className="text-sm text-cyan-100">Topic</p>
-                      <h2 className="mt-2 font-heading text-4xl font-semibold leading-tight text-white">
+                      <h2 className="mt-2 font-heading text-3xl font-semibold leading-tight text-white xl:text-4xl">
                         Electricity, circuits, and exam reasoning
                       </h2>
                     </div>
@@ -260,7 +185,7 @@ export function PlatformLanding() {
                 </div>
               </div>
             </div>
-            <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
               {stats.map(([value, label]) => (
                 <div key={label} className="rounded-2xl border border-white/20 bg-white/12 p-4 backdrop-blur">
                   <p className="font-heading text-3xl font-semibold">{value}</p>
@@ -272,13 +197,13 @@ export function PlatformLanding() {
         </div>
       </section>
 
-      <Reveal className="relative z-10 -mt-16 px-5 sm:px-8">
+      <Reveal className="relative z-10 -mt-10 px-4 sm:-mt-16 sm:px-8">
         <div className="mx-auto max-w-5xl">
           <SearchConsole />
         </div>
       </Reveal>
 
-      <Reveal className="section-wrap pt-24">
+      <Reveal className="section-wrap pt-16 sm:pt-24">
         <SectionHeading
           eyebrow="Find your path"
           title="Start by curriculum, subject, or learning goal."
@@ -304,7 +229,7 @@ export function PlatformLanding() {
               </h3>
               <p className="mt-3 text-sm leading-7 text-vortex-muted">{path.description}</p>
               <div className="mt-6 flex flex-wrap gap-2">
-                {path.items.map((item) => (
+                {path.items.slice(0, 5).map((item) => (
                   <Link
                     key={item}
                     href="/courses"
@@ -377,8 +302,8 @@ export function PlatformLanding() {
         </div>
       </Reveal>
 
-      <Reveal className="bg-white py-24">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+      <Reveal className="bg-white py-14 sm:py-24">
+        <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
             <SectionHeading
               eyebrow="Subject explorer"
@@ -404,7 +329,7 @@ export function PlatformLanding() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {subjects.map((item) => (
+            {subjects.slice(0, 10).map((item) => (
               <button
                 key={item.title}
                 type="button"
@@ -442,7 +367,7 @@ export function PlatformLanding() {
 
       <Reveal className="section-wrap">
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div className="relative min-h-[520px] overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_24px_90px_rgba(9,29,83,0.1)]">
+          <div className="relative min-h-[340px] overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_24px_90px_rgba(9,29,83,0.1)] sm:min-h-[520px]">
             <Image
               src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=75"
               alt="Educators and students collaborating around laptops"
@@ -451,7 +376,7 @@ export function PlatformLanding() {
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(0deg,rgba(9,29,83,0.92),rgba(9,29,83,0)_100%)] p-8 text-white">
+            <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(0deg,rgba(9,29,83,0.92),rgba(9,29,83,0)_100%)] p-5 text-white sm:p-8">
               <p className="text-sm font-semibold text-cyan-100">Meet the instructors</p>
               <h2 className="mt-3 max-w-2xl font-heading text-4xl font-semibold leading-tight">
                 Expert teachers, visible credentials, consultable schedules.
@@ -463,7 +388,7 @@ export function PlatformLanding() {
               <Link
                 key={instructor.name}
                 href="/instructors"
-                className="group grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-3xl border border-vortex-border bg-white p-4 transition hover:-translate-y-1 hover:border-vortex-cyan/60 hover:shadow-[0_18px_70px_rgba(9,29,83,0.1)]"
+                className="group grid grid-cols-[auto_1fr] items-center gap-4 rounded-3xl border border-vortex-border bg-white p-4 transition hover:-translate-y-1 hover:border-vortex-cyan/60 hover:shadow-[0_18px_70px_rgba(9,29,83,0.1)] sm:grid-cols-[auto_1fr_auto]"
               >
                 <Image
                   src={instructor.photo}
@@ -484,15 +409,15 @@ export function PlatformLanding() {
                     ))}
                   </span>
                 </span>
-                <ArrowRight className="size-5 text-vortex-cyan transition group-hover:translate-x-1" />
+                <ArrowRight className="hidden size-5 text-vortex-cyan transition group-hover:translate-x-1 sm:block" />
               </Link>
             ))}
           </div>
         </div>
       </Reveal>
 
-      <Reveal className="bg-vortex-navy py-24 text-white">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+      <Reveal className="bg-vortex-navy py-14 text-white sm:py-24">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <SectionHeading
               eyebrow="See the platform"
@@ -518,7 +443,7 @@ export function PlatformLanding() {
             </div>
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="rounded-[2rem] border border-white/15 bg-white/8 p-8">
+            <div className="rounded-[2rem] border border-white/15 bg-white/8 p-5 sm:p-8">
               <p className="text-sm font-semibold text-[#47C8F2]">{role.role} workspace</p>
               <h3 className="mt-3 font-heading text-5xl font-semibold leading-tight text-white">
                 {role.title}
@@ -598,111 +523,8 @@ export function PlatformLanding() {
         </div>
       </Reveal>
 
-      <Reveal className="section-wrap">
-        <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr]">
-          <SectionHeading
-            eyebrow="Community and support"
-            title="Learning support that extends beyond a lesson video."
-            description="Study groups, discussions, AI support, tutor recommendations, WhatsApp support, contact forms, tickets, and admin escalation belong to the same experience."
-          />
-          <div className="grid gap-4 sm:grid-cols-2">
-            {communityModules.map(([Icon, title, text]) => (
-              <div key={title} className="rounded-3xl border border-vortex-border bg-white p-6 shadow-[0_18px_60px_rgba(9,29,83,0.07)]">
-                <span className="grid size-12 place-items-center rounded-2xl bg-vortex-blue/10 text-vortex-blue">
-                  <Icon className="size-5" />
-                </span>
-                <h3 className="mt-5 text-lg font-semibold text-vortex-navy">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-vortex-muted">{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[2rem] border border-vortex-border bg-white p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
-            <div className="flex items-center justify-between">
-              <h3 className="font-heading text-3xl font-semibold text-vortex-navy">
-                Learning journey
-              </h3>
-              <span className="rounded-full bg-vortex-soft px-3 py-2 text-xs font-semibold text-vortex-blue">
-                timeline
-              </span>
-            </div>
-            <div className="mt-8 grid gap-4">
-              {timeline.map((step, index) => {
-                const Icon = step.icon;
-
-                return (
-                  <div key={step.title} className="grid grid-cols-[auto_1fr] gap-4">
-                    <div className="flex flex-col items-center">
-                      <span className="grid size-11 place-items-center rounded-2xl bg-vortex-gradient text-white shadow-[0_12px_30px_rgba(30,138,203,0.24)]">
-                        <Icon className="size-5" />
-                      </span>
-                      {index < timeline.length - 1 && <span className="mt-2 h-10 w-px bg-vortex-border" />}
-                    </div>
-                    <div className="pb-5">
-                      <h4 className="font-semibold text-vortex-navy">{step.title}</h4>
-                      <p className="mt-2 text-sm leading-7 text-vortex-muted">{step.text}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="rounded-[2rem] border border-vortex-border bg-vortex-soft p-6">
-            <h3 className="font-heading text-3xl font-semibold text-vortex-navy">
-              Platform modules
-            </h3>
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              {ecosystemModules.map(([Icon, label]) => (
-                <div key={label as string} className="flex min-h-20 items-center gap-3 rounded-2xl bg-white p-4">
-                  <span className="grid size-10 place-items-center rounded-xl bg-vortex-blue/10 text-vortex-blue">
-                    <Icon className="size-4" />
-                  </span>
-                  <span className="text-sm font-semibold text-vortex-navy">{label as string}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Reveal>
-
-      <Reveal className="bg-white py-24">
-        <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <SectionHeading
-              eyebrow="Blog and guidance"
-              title="Professional learning advice, exam strategy, and career direction."
-              description="Articles, tips, tricks, exam guides, university guides, and career advice give Vortex a serious editorial layer."
-            />
-            <Link href="/blog" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-vortex-blue">
-              Read the blog
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
-          <div className="grid gap-4">
-            {blogPosts.slice(0, 3).map((post) => (
-              <Link
-                key={post.title}
-                href="/blog"
-                className="group rounded-3xl border border-vortex-border bg-white p-6 shadow-[0_18px_60px_rgba(9,29,83,0.06)] transition hover:-translate-y-1 hover:border-vortex-cyan/60"
-              >
-                <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-vortex-blue">
-                  <span className="rounded-full bg-vortex-soft px-3 py-1">{post.category}</span>
-                  <span>{post.date}</span>
-                </div>
-                <h3 className="mt-4 font-heading text-3xl font-semibold leading-tight text-vortex-navy">
-                  {post.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-vortex-muted">{post.excerpt}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-
-      <section className="px-5 pb-24 sm:px-8">
-        <div className="mx-auto overflow-hidden rounded-[2rem] bg-vortex-gradient p-8 text-white shadow-[0_30px_100px_rgba(9,29,83,0.25)] lg:p-12">
+      <section className="px-4 pb-16 sm:px-8 sm:pb-24">
+        <div className="mx-auto overflow-hidden rounded-[2rem] bg-vortex-gradient p-5 text-white shadow-[0_30px_100px_rgba(9,29,83,0.25)] sm:p-8 lg:p-12">
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-sm font-semibold text-cyan-100">Learn Without Limits.</p>

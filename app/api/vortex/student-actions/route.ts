@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { redirectWithIntent } from "@/lib/vortex-form-actions";
 
 const validIntents = new Set([
   "student-unlock",
@@ -6,14 +6,16 @@ const validIntents = new Set([
   "support-ticket",
   "course-payment-register",
   "payment-slip-upload",
+  "password-change",
 ]);
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const intent = String(formData.get("intent") ?? "student-help");
-  const returnTo = String(formData.get("returnTo") ?? "/dashboard/student");
-  const safeReturnTo = returnTo.startsWith("/") ? returnTo : "/dashboard/student";
-  const url = new URL(safeReturnTo, request.url);
-  url.searchParams.set("done", validIntents.has(intent) ? intent : "student-help");
-  return NextResponse.redirect(url, 303);
+  return redirectWithIntent({
+    request,
+    formData,
+    validIntents,
+    defaultReturnTo: "/dashboard/student",
+    fallbackDone: "student-help",
+  });
 }

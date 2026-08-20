@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, ShieldCheck, Users } from "lucide-react";
 
 import { SectionHeading } from "@/components/vortex/section-heading";
 import { SiteShell } from "@/components/vortex/site-shell";
@@ -27,7 +27,7 @@ export default function TeamPage() {
       <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold uppercase text-[#47C8F2]">Team</p>
-          <h1 className="mt-4 max-w-4xl font-heading text-6xl font-semibold leading-tight">
+          <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
             The people behind the learning operating system.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
@@ -42,60 +42,44 @@ export default function TeamPage() {
           title="Clear roles, visible experience, and trusted accountability."
           description="Profiles are structured for qualifications, responsibilities, social links, and the operating team behind the platform."
         />
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {team.map((person, index) => (
-            <article key={person.name} className="overflow-hidden rounded-3xl border border-vortex-border bg-white shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
-              <div className="relative h-72">
+            <article
+              key={person.name}
+              className="rounded-[1.75rem] border border-vortex-border bg-white p-6 text-center shadow-[0_18px_70px_rgba(9,29,83,0.07)] transition hover:-translate-y-1 hover:border-vortex-cyan/50"
+            >
+              <div className="relative mx-auto size-28 overflow-hidden rounded-full border-4 border-white bg-vortex-soft shadow-[0_16px_45px_rgba(9,29,83,0.16)] ring-1 ring-vortex-border">
                 <Image
                   src={teamPhotos[index]}
                   alt={person.name}
                   fill
                   unoptimized
-                  sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  sizes="112px"
                   className="object-cover"
                 />
               </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <span className="rounded-full bg-vortex-soft px-3 py-1 text-xs font-semibold text-vortex-blue">
-                    {person.group}
-                  </span>
-                  <ExternalLink className="size-4 text-vortex-cyan" />
-                </div>
-                <h2 className="mt-5 font-heading text-3xl font-semibold text-vortex-navy">
-                  {person.name}
-                </h2>
-                <p className="mt-2 text-sm font-semibold text-vortex-slate">{person.role}</p>
-                <p className="mt-4 text-sm leading-7 text-vortex-muted">{person.experience}</p>
-                <p className="mt-2 text-sm font-semibold text-vortex-navy">{person.qualification}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-vortex-border px-3 py-2 text-xs font-semibold text-vortex-slate">
-                    <ShieldCheck className="size-3.5 text-vortex-blue" />
-                    Verified
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-vortex-border px-3 py-2 text-xs font-semibold text-vortex-slate">
-                    <Users className="size-3.5 text-vortex-blue" />
-                    Vortex team
-                  </span>
-                </div>
-                <div className="mt-5 flex gap-3">
-                  <a
-                    href="https://www.linkedin.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex h-10 items-center gap-2 rounded-full border border-vortex-border px-4 text-xs font-semibold text-vortex-navy transition hover:border-vortex-cyan hover:text-vortex-blue"
-                  >
-                    LinkedIn
-                    <ExternalLink className="size-3.5" />
-                  </a>
-                  <a
-                    href="mailto:support@vortexelearning.com"
-                    className="inline-flex h-10 items-center gap-2 rounded-full border border-vortex-border px-4 text-xs font-semibold text-vortex-navy transition hover:border-vortex-cyan hover:text-vortex-blue"
-                  >
-                    Email
-                    <ExternalLink className="size-3.5" />
-                  </a>
-                </div>
+              <span className="mx-auto mt-5 inline-flex rounded-full bg-vortex-soft px-3 py-1 text-xs font-semibold text-vortex-blue">
+                {person.group}
+              </span>
+              <h2 className="mt-4 font-heading text-3xl font-semibold text-vortex-navy">
+                {person.name}
+              </h2>
+              <p className="mt-2 text-sm font-semibold text-vortex-slate">{person.role}</p>
+              <p className="mx-auto mt-4 max-w-sm text-sm leading-7 text-vortex-muted">
+                {person.experience}
+              </p>
+              <p className="mt-2 text-sm font-semibold text-vortex-navy">
+                {person.qualification}
+              </p>
+              <div className="mt-5 flex flex-wrap justify-center gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full border border-vortex-border px-3 py-2 text-xs font-semibold text-vortex-slate">
+                  <ShieldCheck className="size-3.5 text-vortex-blue" />
+                  Verified
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-vortex-border px-3 py-2 text-xs font-semibold text-vortex-slate">
+                  <Users className="size-3.5 text-vortex-blue" />
+                  Vortex team
+                </span>
               </div>
             </article>
           ))}

@@ -1,4 +1,4 @@
-import { LearningPlayer } from "@/components/vortex/learning-player";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Course Player",
@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function PlayerPage() {
-  return <LearningPlayer />;
+  redirect("/player/physics");
 }

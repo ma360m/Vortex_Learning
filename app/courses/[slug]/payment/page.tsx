@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import { ArrowLeft, Banknote, CheckCircle2, KeyRound, Mail, Phone, ShieldCheck, Upload } from "lucide-react";
 
 import { SiteShell } from "@/components/vortex/site-shell";
@@ -31,7 +31,7 @@ export default async function CoursePaymentPage({
   const course = getCourseBySlug(slug);
 
   if (!course) {
-    notFound();
+    redirect(`/coming-soon?feature=${slug}-payment`);
   }
 
   return (
@@ -45,7 +45,7 @@ export default async function CoursePaymentPage({
           <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_420px] lg:items-end">
             <div>
               <p className="text-sm font-semibold uppercase text-[#47C8F2]">Bank transfer access</p>
-              <h1 className="mt-4 max-w-4xl font-heading text-6xl font-semibold leading-tight">
+              <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
                 Register, upload payment slip, unlock with licence key.
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-cyan-50">
