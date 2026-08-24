@@ -86,7 +86,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50">{course.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href={`/player/${course.slug}`} className="btn-white h-12 px-5">
+              <Link href={`/preview/${course.slug}`} className="btn-white h-12 px-5">
                 <Video className="size-5" />
                 Start Free Preview
               </Link>
@@ -353,10 +353,10 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
             <div>
               <p className="text-sm font-semibold text-vortex-blue">Begin learning</p>
               <h2 className="mt-3 font-heading text-5xl font-semibold text-vortex-navy">
-                Open the course player preview.
+                Open the course preview.
               </h2>
             </div>
-            <Link href={`/player/${course.slug}`} className="btn-primary h-12 px-5">
+            <Link href={`/preview/${course.slug}`} className="btn-primary h-12 px-5">
               Launch Free Preview
               <ArrowRight className="size-4" />
             </Link>

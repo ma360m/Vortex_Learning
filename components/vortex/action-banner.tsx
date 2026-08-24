@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 
 const messages: Record<string, string> = {
-  "course-draft": "Course draft saved. Connect the SQL backend to persist this record.",
+  "course-draft": "Course draft saved.",
   "course-submit": "Course submitted for approval.",
   "course-publish": "Course publish request sent.",
   "assign-student": "User access update sent to the student role workflow.",
@@ -20,6 +20,13 @@ const messages: Record<string, string> = {
   "instructor-live": "Live session request saved.",
   "parent-message": "Parent message sent.",
   "support-ticket": "Support ticket submitted.",
+  "content-save": "Homepage content update received.",
+  "feedback-save": "Student feedback update received.",
+  "project-save": "Phonics Club project section update received.",
+  "policy-save": "Policy and social link update received.",
+  "social-save": "Social link update received.",
+  "ai-agent-save": "AI agent settings update received.",
+  "settings-save": "Platform settings update received.",
   "password-change": "Password update request validated.",
   "resource-save": "Course resources saved for the draft.",
   "quiz-save": "Quiz settings saved for the course.",

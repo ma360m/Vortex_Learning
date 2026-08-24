@@ -1,30 +1,21 @@
+import Link from "next/link";
 import {
-  Banknote,
+  ArrowRight,
   BookOpen,
   Calendar,
   GraduationCap,
-  HelpCircle,
   KeyRound,
-  Phone,
+  Library,
   type LucideIcon,
 } from "lucide-react";
 
 import { CourseCatalog } from "@/components/vortex/course-catalog";
 import { SectionHeading } from "@/components/vortex/section-heading";
 import { SiteShell } from "@/components/vortex/site-shell";
-import { courses, subjects } from "@/lib/vortex-data";
-
-const courseSystems: Array<[string, string, LucideIcon]> = [
-  ["Live learning", "Zoom, Google Meet, calendar sync, reminders, attendance, teacher notes, and homework.", Calendar],
-  ["Self-paced learning", "Resume learning, daily goals, weekly goals, bookmarks, notifications, and progress.", BookOpen],
-  ["Exam preparation", "Past papers, topic practice, mock exams, assignments, resources, and certificates.", GraduationCap],
-  ["Instructor help", "Students can ask instructors questions, request help, and join live support sessions inside courses.", HelpCircle],
-  ["Bank transfer", "Students upload payment slips; admin verifies and emails the licence key for course access.", Banknote],
-  ["Payment support", "If bank transfer has an issue, students can contact +92 324 4270697.", Phone],
-];
+import { courses, curriculumOptions, subjects } from "@/lib/vortex-data";
 
 const catalogStats: Array<[LucideIcon, string, string]> = [
-  [BookOpen, `${courses.length} courses`, "Generated from the course library"],
+  [BookOpen, `${courses.length} courses`, "Linked to course detail pages"],
   [GraduationCap, "3 free modules", "Preview-first course access"],
   [Calendar, "Live + self paced", "Cohorts, bootcamps, and recordings"],
   [KeyRound, "Licence key", "Unlock after payment approval"],
@@ -65,32 +56,70 @@ export default function CoursesPage() {
       <CourseCatalog courses={courses} />
 
       <section id="subjects" className="section-wrap scroll-mt-28">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <SectionHeading
-            eyebrow="Subject coverage"
-            title="From school exams to professional skills."
-            description="The catalog structure supports academic boards, university entry, professional certifications, crash programs, and teacher training."
+            eyebrow="Subject explorer"
+            title="Curriculum and subject options in one catalog."
+            description="Use the catalog for FSc, O Level, A Level, IGCSE, GCSE, entry tests, languages, and professional skill tracks. Course cards link directly to the correct course page."
           />
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {subjects.map((subject) => (
-              <div key={subject.title} className="rounded-2xl border border-vortex-border bg-vortex-soft p-4">
-                <p className="text-sm font-semibold text-vortex-navy">{subject.title}</p>
-                <p className="mt-2 text-xs text-vortex-muted">{subject.count}</p>
+          <div className="grid gap-6">
+            <div className="rounded-[1.75rem] border border-vortex-border bg-white p-5 shadow-[0_16px_60px_rgba(9,29,83,0.06)]">
+              <div className="flex items-center gap-3">
+                <span className="grid size-11 place-items-center rounded-2xl bg-vortex-blue/10 text-vortex-blue">
+                  <Library className="size-5" />
+                </span>
+                <div>
+                  <p className="text-xs font-semibold uppercase text-vortex-blue">Curriculum options</p>
+                  <h2 className="font-heading text-3xl font-semibold text-vortex-navy">
+                    O Level, A Level, IGCSE, GCSE, and more
+                  </h2>
+                </div>
               </div>
-            ))}
+              <div className="mt-5 flex flex-wrap gap-2">
+                {curriculumOptions.map((option) => (
+                  <a
+                    key={option}
+                    href="#catalog"
+                    className="rounded-full border border-vortex-border bg-vortex-soft px-4 py-2 text-sm font-semibold text-vortex-slate transition hover:border-vortex-cyan hover:text-vortex-blue"
+                  >
+                    {option}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {subjects.map((subject) => (
+                <a
+                  key={subject.title}
+                  href="#catalog"
+                  className="group rounded-2xl border border-vortex-border bg-vortex-soft p-4 transition hover:border-vortex-cyan hover:bg-white"
+                >
+                  <span className="flex items-center justify-between gap-3">
+                    <span className="text-sm font-semibold text-vortex-navy">{subject.title}</span>
+                    <ArrowRight className="size-4 text-vortex-cyan transition group-hover:translate-x-1" />
+                  </span>
+                  <span className="mt-2 block text-xs text-vortex-muted">
+                    {subject.cluster} - {subject.count}
+                  </span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="section-wrap pt-0">
-        <div className="grid gap-5 lg:grid-cols-3">
-          {courseSystems.map(([title, text, Icon]) => (
-            <div key={title} className="rounded-3xl border border-vortex-border bg-white p-6 shadow-[0_16px_60px_rgba(9,29,83,0.06)]">
-              <Icon className="size-6 text-vortex-blue" />
-              <h2 className="mt-5 font-heading text-3xl font-semibold text-vortex-navy">{title}</h2>
-              <p className="mt-3 text-sm leading-7 text-vortex-muted">{text}</p>
-            </div>
-          ))}
+        <div className="grid gap-6 rounded-[2rem] border border-vortex-border bg-white p-7 shadow-[0_18px_70px_rgba(9,29,83,0.08)] lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p className="text-sm font-semibold text-vortex-blue">Questions about access?</p>
+            <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
+              Course access, live learning, bank transfer, and support are explained in FAQs.
+            </h2>
+          </div>
+          <Link href="/faqs" className="btn-primary h-11 px-5">
+            Open FAQs
+            <ArrowRight className="size-4" />
+          </Link>
         </div>
       </section>
     </SiteShell>

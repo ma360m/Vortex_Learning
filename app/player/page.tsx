@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Course Player",
+  title: "Course Preview",
   description:
-    "Preview the Vortex Learning course player with video, notes, downloads, transcript, AI assistant, bookmarks, progress, reminders, assignments, discussion, quiz, and certificates.",
+    "Preview the Vortex Learning course workspace with video, notes, downloads, transcript, AI assistant, bookmarks, progress, reminders, assignments, discussion, quiz, and certificates.",
 };
 
 export default function PlayerPage() {
-  redirect("/player/physics");
+  redirect("/preview/physics");
 }

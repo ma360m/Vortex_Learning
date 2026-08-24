@@ -78,7 +78,7 @@ export default async function StudentSectionPage({ params }: { params: Promise<{
             <div key={item} className="grid gap-3 rounded-2xl bg-vortex-soft p-4 sm:grid-cols-[1fr_auto] sm:items-center">
               <span className="text-sm font-semibold text-vortex-navy">{item}</span>
               {section === "courses" ? (
-                <Link href="/player" className="btn-primary h-9 px-4 text-xs">Resume</Link>
+                <Link href="/preview" className="btn-primary h-9 px-4 text-xs">Resume</Link>
               ) : null}
             </div>
           ))}

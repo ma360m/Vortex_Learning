@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import {
   ArrowRight,
   Award,
@@ -29,6 +30,10 @@ export const metadata = {
 };
 
 export default function InstructorsPage() {
+  redirect("/team#instructors");
+}
+
+function LegacyInstructorsPage() {
   return (
     <SiteShell>
       <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
@@ -104,7 +109,7 @@ export default function InstructorsPage() {
                   ))}
                 </div>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  <Link href="/support#consultation" className="btn-primary h-11 px-4">
+                  <Link href="/consultation" className="btn-primary h-11 px-4">
                     Book consultation
                     <ArrowRight className="size-4" />
                   </Link>
@@ -156,3 +161,5 @@ export default function InstructorsPage() {
     </SiteShell>
   );
 }
+
+void LegacyInstructorsPage;

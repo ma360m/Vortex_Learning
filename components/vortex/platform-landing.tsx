@@ -121,11 +121,11 @@ export function PlatformLanding() {
                 <BookOpen className="size-5" />
                 Explore Courses
               </Link>
-              <Link href="/support#consultation" className="btn-glass h-[3.25rem] px-6 text-base">
+              <Link href="/consultation" className="btn-glass h-[3.25rem] px-6 text-base">
                 <Calendar className="size-5" />
                 Book Consultation
               </Link>
-              <Link href="/instructors#apply" className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full px-2 text-sm font-semibold text-cyan-50 transition hover:text-white sm:px-4">
+              <Link href="/team#apply" className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full px-2 text-sm font-semibold text-cyan-50 transition hover:text-white sm:px-4">
                 <GraduationCap className="size-5" />
                 Become Instructor
               </Link>
@@ -387,7 +387,7 @@ export function PlatformLanding() {
             {instructors.map((instructor) => (
               <Link
                 key={instructor.name}
-                href="/instructors"
+                href="/team#instructors"
                 className="group grid grid-cols-[auto_1fr] items-center gap-4 rounded-3xl border border-vortex-border bg-white p-4 transition hover:-translate-y-1 hover:border-vortex-cyan/60 hover:shadow-[0_18px_70px_rgba(9,29,83,0.1)] sm:grid-cols-[auto_1fr_auto]"
               >
                 <Image
@@ -540,7 +540,7 @@ export function PlatformLanding() {
                 <BookOpen className="size-5" />
                 Explore Courses
               </Link>
-              <Link href="/support#consultation" className="btn-glass h-12 px-5">
+              <Link href="/consultation" className="btn-glass h-12 px-5">
                 <Calendar className="size-5" />
                 Book Consultation
               </Link>

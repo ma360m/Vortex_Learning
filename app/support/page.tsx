@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Suspense } from "react";
 import {
   ArrowRight,
   Bot,
@@ -15,7 +14,6 @@ import {
 import { SearchConsole } from "@/components/vortex/search-console";
 import { SectionHeading } from "@/components/vortex/section-heading";
 import { SiteShell } from "@/components/vortex/site-shell";
-import { ActionBanner } from "@/components/vortex/action-banner";
 
 const supportChannels: Array<[LucideIcon, string, string]> = [
   [MessageCircle, "Live chat", "Fast help for course access, schedules, resources, and account questions."],
@@ -79,23 +77,20 @@ export default function SupportPage() {
         </div>
       </section>
 
-      <section id="consultation" className="bg-white py-24">
+      <section className="bg-white py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <Suspense fallback={null}>
-              <ActionBanner />
-            </Suspense>
             <SectionHeading
-              eyebrow="Book consultation"
-              title="Match the learner to the right course, tutor, or plan."
-              description="Consultation requests can route to admissions, academic advisors, tutors, support agents, or admin escalation."
+              eyebrow="Support request"
+              title="Send the right details to the support team."
+              description="Use support for course access, technical issues, payment questions, parent portal access, resources, and account help."
             />
             <div className="mt-8 grid gap-3">
               {[
-                "Students choosing courses",
-                "Parents reviewing learning plans",
-                "Schools and institutes requesting partnerships",
-                "Professionals exploring certifications",
+                "Course access or locked resources",
+                "Payment slip or licence-key questions",
+                "Parent portal access",
+                "Technical account support",
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3 rounded-2xl border border-vortex-border bg-vortex-soft px-4 py-3 text-sm font-semibold text-vortex-navy">
                   <ArrowRight className="size-4 text-vortex-blue" />
@@ -107,13 +102,13 @@ export default function SupportPage() {
 
           <form action="/api/vortex/student-actions" method="post" className="rounded-[2rem] border border-vortex-border bg-vortex-soft p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
             <input type="hidden" name="intent" value="support-ticket" />
-            <input type="hidden" name="returnTo" value="/support#consultation" />
+            <input type="hidden" name="returnTo" value="/support" />
             <div className="grid gap-4 sm:grid-cols-2">
               {[
                 ["name", "Name", "Student or parent name"],
                 ["email", "Email", "Your email address"],
                 ["phone", "Phone", "+92 300 0000000"],
-                ["goal", "Goal", "O Level, IELTS, SAT, AI..."],
+                ["topic", "Topic", "Payment, course access, parent portal..."],
               ].map(([name, label, placeholder]) => (
                 <label key={label} className="grid gap-2 text-sm font-semibold text-vortex-navy">
                   {label}
@@ -129,7 +124,7 @@ export default function SupportPage() {
               Message
               <textarea
                 name="message"
-                placeholder="Tell us the learner's current stage, target exam, subject, or deadline."
+                placeholder="Tell us what happened, which course is involved, and the registered email if different."
                 className="min-h-36 rounded-2xl border border-vortex-border bg-white px-4 py-3 text-sm outline-none transition focus:border-vortex-cyan focus:ring-4 focus:ring-vortex-cyan/15"
               />
             </label>
@@ -145,34 +140,15 @@ export default function SupportPage() {
         <div className="rounded-[2rem] bg-vortex-gradient p-8 text-white shadow-[0_30px_100px_rgba(9,29,83,0.25)]">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-sm font-semibold text-cyan-100">Support operations</p>
+              <p className="text-sm font-semibold text-cyan-100">Need learning guidance?</p>
               <h2 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight">
-                Keep every learner, parent, and teacher connected.
+                Book consultation on its own dedicated page.
               </h2>
             </div>
-            <Link href="/support#consultation" className="btn-white h-12 px-5">
-              Create Support Request
+            <Link href="/consultation" className="btn-white h-12 px-5">
+              Book Consultation
               <ArrowRight className="size-4" />
             </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-24">
-        <div className="mx-auto grid max-w-7xl gap-6 px-5 sm:px-8 lg:grid-cols-2">
-          <div id="privacy" className="scroll-mt-28 rounded-[2rem] border border-vortex-border bg-vortex-soft p-6">
-            <p className="text-sm font-semibold text-vortex-blue">Privacy</p>
-            <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">Data handled by Vortex Learning</h2>
-            <p className="mt-4 text-sm leading-7 text-vortex-muted">
-              Vortex Learning stores account, learning progress, payment verification, licence-key, support, and certificate records needed to operate courses and dashboards. Final legal copy should be reviewed before the original domain goes live.
-            </p>
-          </div>
-          <div id="terms" className="scroll-mt-28 rounded-[2rem] border border-vortex-border bg-vortex-soft p-6">
-            <p className="text-sm font-semibold text-vortex-blue">Terms</p>
-            <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">Course access terms</h2>
-            <p className="mt-4 text-sm leading-7 text-vortex-muted">
-              Course access is unlocked after approved payment and licence-key redemption. The first three modules can be previewed, paid resources are locked, and downloading is disabled unless admin enables it for a course or resource.
-            </p>
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Bot, CreditCard, Eye, GraduationCap, Home, PlayCircle, Plus, Settings, Ticket, Users } from "lucide-react";
+import { Bot, CreditCard, Eye, FileText, GraduationCap, Home, PlayCircle, Plus, Settings, Ticket, Users } from "lucide-react";
 
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { courses } from "@/lib/vortex-data";
@@ -9,6 +9,7 @@ const navItems: PortalNavItem[] = [
   { label: "Courses", href: "/dashboard/admin/courses", icon: GraduationCap },
   { label: "Users", href: "/dashboard/admin/users", icon: Users },
   { label: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
+  { label: "Content", href: "/dashboard/admin/content", icon: FileText },
   { label: "AI agents", href: "/dashboard/admin/ai-agents", icon: Bot },
   { label: "Support", href: "/dashboard/admin/support", icon: Ticket },
   { label: "Settings", href: "/dashboard/admin/settings", icon: Settings },
@@ -25,7 +26,7 @@ export default function AdminCoursesPage() {
             <p className="text-xs font-semibold uppercase text-vortex-blue">Courses</p>
             <h2 className="mt-2 font-heading text-3xl font-semibold text-vortex-navy">Course catalog and approvals</h2>
             <p className="mt-2 text-sm text-vortex-muted">
-              Admin can open every published course page and player preview from here.
+              Admin can open every published course page and preview from here.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
@@ -52,9 +53,9 @@ export default function AdminCoursesPage() {
                   <Eye className="size-3.5" />
                   View page
                 </Link>
-                <Link href={`/player/${course.slug}`} className="inline-flex h-9 items-center gap-1.5 rounded-full border border-vortex-border bg-white px-3 text-xs font-semibold text-vortex-navy">
+                <Link href={`/preview/${course.slug}`} className="inline-flex h-9 items-center gap-1.5 rounded-full border border-vortex-border bg-white px-3 text-xs font-semibold text-vortex-navy">
                   <PlayCircle className="size-3.5 text-vortex-blue" />
-                  Player
+                  Preview
                 </Link>
                 <form action="/api/vortex/admin-actions" method="post" className="flex gap-2">
                   <input type="hidden" name="returnTo" value="/dashboard/admin/courses" />

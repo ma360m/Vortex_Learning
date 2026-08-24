@@ -81,7 +81,7 @@ export function SearchConsole({ compact = false }: { compact?: boolean }) {
           })
         ) : (
           <div className="rounded-2xl bg-vortex-soft px-4 py-5 text-sm text-vortex-muted">
-            No matching sample result yet.
+            No matching result yet.
           </div>
         )}
       </div>

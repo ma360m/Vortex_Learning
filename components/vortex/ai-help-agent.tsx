@@ -2,7 +2,7 @@
 
 import { FormEvent, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { Bot, BookOpen, Calendar, MessageCircle, Send, Sparkles, X } from "lucide-react";
+import { Bot, BookOpen, MessageCircle, Send, Sparkles, X } from "lucide-react";
 
 type ChatMessage = {
   id: number;
@@ -163,7 +163,7 @@ export function AIHelpAgent() {
                 <Sparkles className="size-3.5 text-vortex-blue" />
                 Sample assistant
               </span>
-              <Link href="/support#consultation" className="font-semibold text-vortex-blue">
+              <Link href="/consultation" className="font-semibold text-vortex-blue">
                 Talk to human
               </Link>
             </div>
@@ -189,16 +189,6 @@ export function AIHelpAgent() {
           Help
         </span>
       </button>
-
-      {!open && (
-        <Link
-          href="/support#consultation"
-          className="mt-2 ml-auto hidden h-10 w-fit items-center gap-2 rounded-full bg-vortex-navy px-4 text-xs font-semibold text-white shadow-[0_14px_40px_rgba(9,29,83,0.2)] transition hover:bg-vortex-blue sm:flex"
-        >
-          <Calendar className="size-3.5" />
-          Book consultation
-        </Link>
-      )}
     </div>
   );
 }

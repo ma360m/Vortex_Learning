@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import {
+  ArrowRight,
   Award,
   Bell,
   Bookmark,
@@ -15,7 +16,13 @@ import {
   PlayCircle,
 } from "lucide-react";
 
-import { courses, getCourseBySlug } from "@/lib/vortex-data";
+import {
+  courses,
+  getCourseBySlug,
+  learningJourney,
+  platformModules,
+  platformRoles,
+} from "@/lib/vortex-data";
 
 const tabs = ["Notes", "Resources", "Transcript", "AI Assistant", "Assignments", "Discussion", "Quiz"];
 
@@ -28,17 +35,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const course = getCourseBySlug(slug);
 
   return {
-    title: course ? `${course.title} Player` : "Course Player",
-    description: "Vortex Learning course player with free preview modules, locked resources, AI help, assignments, discussion, quiz, and certificate readiness.",
+    title: course ? `${course.title} Preview` : "Course Preview",
+    description: "Vortex Learning course preview with free modules, locked resources, AI help, assignments, discussion, quiz, learning journey, and platform modules.",
   };
 }
 
-export default async function CoursePlayerPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function CoursePreviewPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const course = getCourseBySlug(slug);
 
   if (!course) {
-    redirect(`/coming-soon?feature=${slug}-player`);
+    redirect(`/coming-soon?feature=${slug}-preview`);
   }
 
   const freeModuleCount = course.freeModuleCount ?? 3;
@@ -54,7 +61,7 @@ export default async function CoursePlayerPage({ params }: { params: Promise<{ s
             {course.title}
           </Link>
           <div className="hidden min-w-0 flex-1 text-center md:block">
-            <p className="truncate text-sm font-semibold">Free preview player</p>
+            <p className="truncate text-sm font-semibold">Course preview</p>
             <p className="text-xs text-vortex-muted">
               {freeModuleCount} preview modules open - full course unlocks with licence key
             </p>
@@ -183,7 +190,7 @@ export default async function CoursePlayerPage({ params }: { params: Promise<{ s
                 </div>
                 <form action="/api/vortex/student-actions" method="post" className="rounded-3xl border border-vortex-border p-5">
                   <input type="hidden" name="intent" value="student-help" />
-                  <input type="hidden" name="returnTo" value={`/player/${course.slug}`} />
+                  <input type="hidden" name="returnTo" value={`/preview/${course.slug}`} />
                   <p className="text-sm font-semibold">Ask instructor</p>
                   <textarea name="message" className="mt-3 min-h-24 w-full rounded-2xl border border-vortex-border bg-vortex-soft px-4 py-3 text-sm outline-none" placeholder="Ask a question about this course" />
                   <button type="submit" className="btn-primary mt-3 h-10 px-4 text-xs">
@@ -195,6 +202,72 @@ export default async function CoursePlayerPage({ params }: { params: Promise<{ s
           </div>
         </section>
       </main>
+
+      <section className="mx-auto max-w-7xl px-5 pb-6 sm:px-8">
+        <div className="rounded-[2rem] bg-vortex-navy p-6 text-white shadow-[0_24px_90px_rgba(9,29,83,0.18)] sm:p-8">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold text-[#47C8F2]">See the platform</p>
+              <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight">
+                Every role gets a focused workspace.
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-cyan-50">
+                Students, parents, instructors, and admins can work from dedicated previews without crowding the homepage.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {platformRoles.map((role) => (
+                <Link
+                  key={role.role}
+                  href={role.href}
+                  className="rounded-2xl border border-white/15 bg-white/8 p-4 transition hover:bg-white/14"
+                >
+                  <p className="text-sm font-semibold text-white">{role.role}</p>
+                  <p className="mt-2 text-xs leading-6 text-cyan-100">{role.title}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-[#47C8F2]">
+                    Open workspace
+                    <ArrowRight className="size-3.5" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-7xl gap-6 px-5 pb-12 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="rounded-[2rem] border border-vortex-border bg-white p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
+          <p className="text-sm font-semibold text-vortex-blue">Learning journey</p>
+          <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">Timeline</h2>
+          <div className="mt-6 grid gap-3">
+            {learningJourney.map((item, index) => (
+              <div key={item.title} className="grid grid-cols-[auto_1fr] gap-3 rounded-2xl bg-vortex-soft p-4">
+                <span className="grid size-9 place-items-center rounded-full bg-vortex-navy text-sm font-semibold text-white">
+                  {index + 1}
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-vortex-navy">{item.title}</span>
+                  <span className="mt-1 block text-xs leading-6 text-vortex-muted">{item.text}</span>
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[2rem] border border-vortex-border bg-white p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
+          <p className="text-sm font-semibold text-vortex-blue">Platform modules</p>
+          <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
+            Built around the full learning flow.
+          </h2>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {platformModules.map((module) => (
+              <div key={module} className="rounded-2xl border border-vortex-border bg-vortex-soft px-4 py-3 text-sm font-semibold text-vortex-navy">
+                {module}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

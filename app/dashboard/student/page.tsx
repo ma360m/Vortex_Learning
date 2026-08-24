@@ -72,7 +72,7 @@ export default function StudentDashboardPage() {
                     <div className="h-full rounded-full bg-vortex-gradient" style={{ width: progress }} />
                   </div>
                 </div>
-                <Link href="/player" className="btn-primary h-10 px-4 text-xs">
+                <Link href="/preview" className="btn-primary h-10 px-4 text-xs">
                   Resume
                 </Link>
               </div>

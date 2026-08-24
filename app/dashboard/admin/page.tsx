@@ -3,6 +3,7 @@ import {
   BadgeCheck,
   BarChart3,
   Banknote,
+  BookOpen,
   Bot,
   ClipboardCheck,
   CreditCard,
@@ -25,16 +26,21 @@ import {
 } from "lucide-react";
 
 import { PortalCard, PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
+import { blogPosts, courses, instructors, policyPages } from "@/lib/vortex-data";
 
 const navItems: PortalNavItem[] = [
   { label: "Overview", href: "/dashboard/admin", icon: Home },
   { label: "Courses", href: "/dashboard/admin/courses", icon: GraduationCap },
   { label: "Users", href: "/dashboard/admin/users", icon: Users },
   { label: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
+  { label: "Content", href: "/dashboard/admin/content", icon: FileText },
   { label: "AI agents", href: "/dashboard/admin/ai-agents", icon: Bot },
   { label: "Support", href: "/dashboard/admin/support", icon: Ticket },
   { label: "Settings", href: "/dashboard/admin/settings", icon: Settings },
 ];
+
+const totalResources = courses.reduce((sum, course) => sum + (course.resourceFiles?.length ?? 0), 0);
+const previewModuleCount = courses.reduce((sum, course) => sum + (course.freeModuleCount ?? 0), 0);
 
 const adminModules: Array<[LucideIcon, string, string]> = [
   [GraduationCap, "Courses", "Catalog, modules, resources, quizzes, approvals, live cohorts, and certificates."],
@@ -50,22 +56,24 @@ const adminModules: Array<[LucideIcon, string, string]> = [
 ];
 
 const registeredUsers = [
-  ["Registered learner", "profile-001", "Student", "O Level Physics", "62%"],
-  ["Registered guardian", "profile-002", "Student", "2 learners", "Needs parent access"],
-  ["Registered mentor", "profile-003", "Student", "Math mentor", "Eligible for instructor"],
+  ["Ayaan Khan", "student-001", "Student", courses[0]?.title ?? "Course enrolment", "Active"],
+  ["Parent access request", "parent-001", "Parent pending", "2 learners", "Needs approval"],
+  ["Instructor candidate", "instructor-001", "Instructor pending", instructors[0]?.subjects.join(", ") ?? "Science", "Review"],
 ];
 
-const instructorRows = [
-  ["Dr. Ayesha Rahman", "Physics, Chemistry", "12 years", "Verified"],
-  ["Sara Malik", "IELTS, English", "9 years", "Verified"],
-  ["Musa Siddiqui", "AI, Programming", "8 years", "Review"],
-];
+const instructorRows = instructors.map((instructor) => [
+  instructor.name,
+  instructor.subjects.join(", "),
+  instructor.experience,
+  instructor.rating,
+]);
 
-const paymentRows = [
-  ["O Level Physics Mastery", "Demo Student", "Bank transfer", "Slip uploaded"],
-  ["IELTS Academic Band 7+", "Ayesha Khan", "Bank transfer", "Needs review"],
-  ["Accelerated Exam Rescue", "Bilal Ahmed", "Bank transfer", "Verify now"],
-];
+const paymentRows = courses.slice(0, 3).map((course, index) => [
+  course.title,
+  ["Ayaan Khan", "Parent account", "Entry test learner"][index] ?? "Learner",
+  course.paymentMethod ?? "Bank transfer",
+  ["Slip uploaded", "Needs review", "Verify now"][index] ?? "Pending",
+]);
 
 export const metadata = {
   title: "Admin Console",
@@ -84,10 +92,10 @@ export default function AdminDashboardPage() {
       navItems={navItems}
     >
       <div className="grid gap-5 md:grid-cols-2 2xl:grid-cols-4">
-        <PortalCard title="Active learners" value="24k" caption="sample data" icon={Users} />
-        <PortalCard title="Course approvals" value="18" caption="sample queue" icon={ShieldCheck} />
-        <PortalCard title="Monthly revenue" value="$84k" caption="sample data" icon={CreditCard} />
-        <PortalCard title="Open tickets" value="42" caption="sample support queue" icon={Ticket} />
+        <PortalCard title="Course records" value={`${courses.length}`} caption="linked course pages" icon={GraduationCap} />
+        <PortalCard title="Locked resources" value={`${totalResources}`} caption="attached course files" icon={ShieldCheck} />
+        <PortalCard title="Preview modules" value={`${previewModuleCount}`} caption="free module slots" icon={BookOpen} />
+        <PortalCard title="Content pages" value={`${blogPosts.length + policyPages.length}`} caption="blogs and policies" icon={FileText} />
       </div>
 
       <div className="mt-6 grid gap-6 2xl:grid-cols-[1fr_1fr]">

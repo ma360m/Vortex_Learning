@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Vortex Learning | Serious Learning, Organized Beautifully",
+    default: "Vortex Learning | Learning, Structured for Your Path",
     template: "%s | Vortex Learning",
   },
   description:
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Vortex Learning",
     description:
-      "One platform for every subject, every student, every goal.",
+      "Learning, structured for your path.",
     siteName: "Vortex Learning",
     type: "website",
   },

@@ -2,14 +2,19 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
+  Briefcase,
+  Camera,
   ChevronDown,
   GraduationCap,
   LayoutDashboard,
   Menu,
   ShieldCheck,
+  Share2,
+  SquarePlay,
+  type LucideIcon,
 } from "lucide-react";
 
-import { navLinks } from "@/lib/vortex-data";
+import { navLinks, socialLinks } from "@/lib/vortex-data";
 import { AIHelpAgent } from "./ai-help-agent";
 import { VortexLogo } from "./logo";
 
@@ -61,7 +66,7 @@ export function SiteHeader() {
             </div>
           </details>
           <Link
-            href="/support"
+            href="/consultation"
             className="inline-flex h-10 items-center gap-2 rounded-full bg-vortex-navy px-4 text-sm font-semibold text-white shadow-[0_16px_45px_rgba(9,29,83,0.24)] transition hover:bg-vortex-blue"
           >
             Book consultation
@@ -96,7 +101,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link
-              href="/support"
+              href="/consultation"
               className="mt-2 flex items-center justify-between rounded-xl bg-vortex-navy px-4 py-3 text-sm font-semibold text-white"
             >
               Book consultation
@@ -114,32 +119,52 @@ export function SiteFooter() {
     {
       title: "Explore",
       links: [
-        ["Courses", "/courses"],
-        ["Instructors", "/instructors"],
-        ["Subjects", "/courses#subjects"],
+        ["Home", "/"],
+        ["Explore", "/explore"],
+        ["Course catalog", "/courses"],
+        ["Course preview", "/preview"],
+        ["FAQs", "/faqs"],
       ],
     },
     {
       title: "Company",
       links: [
-        ["Team", "/team"],
+        ["About", "/about"],
+        ["Our team", "/team"],
         ["Blog", "/blog"],
-        ["Become an instructor", "/instructors#apply"],
+        ["Project of Phonics Club", "/about#phonics-club"],
+        ["Become an instructor", "/team#apply"],
       ],
     },
     {
       title: "Support",
       links: [
-        ["Help center", "/support"],
-        ["Book consultation", "/support#consultation"],
-        ["Contact", "/support"],
+        ["Support", "/support"],
+        ["Book consultation", "/consultation"],
+        ["Community", "/community"],
+        ["Policies", "/policies"],
+      ],
+    },
+    {
+      title: "Policies",
+      links: [
+        ["Privacy", "/policies/privacy"],
+        ["Terms", "/policies/terms"],
+        ["Refunds", "/policies/refund"],
+        ["Cookies", "/policies/cookies"],
       ],
     },
   ];
+  const socialIcons: Record<string, LucideIcon> = {
+    facebook: Share2,
+    instagram: Camera,
+    linkedin: Briefcase,
+    youtube: SquarePlay,
+  };
 
   return (
     <footer className="border-t border-vortex-border bg-white">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_1.2fr]">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:px-8 sm:py-12 lg:grid-cols-[0.9fr_1.35fr]">
         <div className="max-w-xl">
           <VortexLogo />
           <p className="mt-5 text-sm leading-7 text-vortex-muted">
@@ -151,7 +176,7 @@ export function SiteFooter() {
               <BookOpen className="size-4" />
               Explore Courses
             </Link>
-            <Link href="/support#consultation" className="btn-secondary h-11 px-4">
+            <Link href="/consultation" className="btn-secondary h-11 px-4">
               <GraduationCap className="size-4" />
               Book Consultation
             </Link>
@@ -164,8 +189,24 @@ export function SiteFooter() {
               +92 324 4270697
             </a>
           </div>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {socialLinks.map((social) => {
+              const Icon = socialIcons[social.kind] ?? BookOpen;
+
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="grid size-10 place-items-center rounded-full border border-vortex-border bg-vortex-soft text-vortex-blue transition hover:border-vortex-cyan hover:bg-white"
+                  aria-label={social.href === "#" ? `${social.label} link pending` : social.label}
+                >
+                  <Icon className="size-4" />
+                </a>
+              );
+            })}
+          </div>
         </div>
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
           {footerLinks.map((group) => (
             <div key={group.title}>
               <h2 className="text-sm font-semibold text-vortex-navy">{group.title}</h2>
@@ -186,10 +227,10 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-vortex-border px-5 py-5">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-vortex-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>(c) 2026 Vortex Learning. Serious learning, organized beautifully.</p>
+          <p>(c) 2026 Vortex Learning- learn without limits.</p>
           <div className="flex gap-4">
-            <Link href="/support#privacy" className="hover:text-vortex-blue">Privacy</Link>
-            <Link href="/support#terms" className="hover:text-vortex-blue">Terms</Link>
+            <Link href="/policies/privacy" className="hover:text-vortex-blue">Privacy</Link>
+            <Link href="/policies/terms" className="hover:text-vortex-blue">Terms</Link>
           </div>
         </div>
       </div>

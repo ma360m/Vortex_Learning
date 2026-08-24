@@ -127,7 +127,7 @@ export default async function CoursePaymentPage({
               </div>
               <form action="/api/vortex/student-actions" method="post" className="mt-5 grid gap-3">
                 <input type="hidden" name="intent" value="student-unlock" />
-                <input type="hidden" name="returnTo" value={`/player/${course.slug}`} />
+                <input type="hidden" name="returnTo" value={`/preview/${course.slug}`} />
                 <input type="hidden" name="course_slug" value={course.slug} />
                 <input name="licence_key" required className="h-12 rounded-2xl border border-vortex-border bg-white px-4 text-sm outline-none" placeholder="Enter licence key after admin approval" />
                 <button type="submit" className="btn-primary h-12 px-5">
