@@ -8,6 +8,7 @@ import {
   Send,
   ShieldCheck,
   Ticket,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 
@@ -16,18 +17,18 @@ import { SectionHeading } from "@/components/vortex/section-heading";
 import { SiteShell } from "@/components/vortex/site-shell";
 
 const supportChannels: Array<[LucideIcon, string, string]> = [
-  [MessageCircle, "Live chat", "Fast help for course access, schedules, resources, and account questions."],
-  [Phone, "WhatsApp", "Parent and student support through a familiar conversation channel."],
-  [Ticket, "Support tickets", "Track status, ownership, priority, and escalation history."],
-  [Bot, "AI support", "FAQ assistance, course search, tutor recommendations, and revision planning."],
-  [Mail, "Contact forms", "Structured requests for consultations, instructors, schools, and partnerships."],
+  [MessageCircle, "Course discussions", "Lesson questions, peer conversation, and teacher notes stay connected to courses."],
+  [Users, "Parent visibility", "Parents can follow attendance, homework, progress, payments, and teacher feedback."],
+  [Ticket, "Support tickets", "Payment, access, account, and resource requests can be tracked by support teams."],
+  [Bot, "AI guidance", "FAQ assistance, course search, tutor recommendations, and revision planning."],
+  [Phone, "WhatsApp and phone", "Parent and student support through familiar conversation channels."],
   [ShieldCheck, "Admin escalation", "Sensitive academic, payment, or operations issues move to the right team."],
 ];
 
 export const metadata = {
-  title: "Support",
+  title: "Support and Community",
   description:
-    "Contact Vortex Learning through live chat, WhatsApp, contact forms, support tickets, AI support, and admin escalation.",
+    "Contact Vortex Learning and use the merged community support space for discussions, instructor help, tickets, AI support, WhatsApp, and admin escalation.",
 };
 
 export default function SupportPage() {
@@ -36,14 +37,14 @@ export default function SupportPage() {
       <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
-            <p className="text-sm font-semibold uppercase text-[#47C8F2]">Support</p>
+            <p className="text-sm font-semibold uppercase text-[#47C8F2]">Support and community</p>
             <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-              Human help, AI guidance, and clear escalation.
+              One place for questions, discussions, and help.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
-              Students, parents, teachers, schools, colleges, tutoring
-              institutes, and professionals can reach Vortex through the right
-              support lane.
+              Students, parents, teachers, schools, colleges, tutoring institutes,
+              and professionals can ask course questions, request help, and move
+              into the right support lane from one page.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="mailto:support@vortexelearning.com" className="btn-glass h-11 px-4 text-sm">
@@ -60,11 +61,11 @@ export default function SupportPage() {
         </div>
       </section>
 
-      <section id="ai-support" className="section-wrap">
+      <section id="community" className="section-wrap scroll-mt-28">
         <SectionHeading
-          eyebrow="Support center"
-          title="Connected support across chat, tickets, AI, and consultation."
-          description="The system supports customer support, FAQ assistance, tutor recommendations, live help, WhatsApp, and admin escalation."
+          eyebrow="Support network"
+          title="Community help without losing structure."
+          description="Course discussions, parent visibility, support tickets, AI guidance, WhatsApp, and admin escalation stay together in one organized support space."
         />
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {supportChannels.map(([Icon, title, text]) => (

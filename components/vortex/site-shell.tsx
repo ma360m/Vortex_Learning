@@ -132,16 +132,14 @@ export function SiteFooter() {
         ["About", "/about"],
         ["Our team", "/team"],
         ["Blog", "/blog"],
-        ["Project of Phonics Club", "/about#phonics-club"],
         ["Become an instructor", "/team#apply"],
       ],
     },
     {
       title: "Support",
       links: [
-        ["Support", "/support"],
+        ["Support and community", "/support#community"],
         ["Book consultation", "/consultation"],
-        ["Community", "/community"],
         ["Policies", "/policies"],
       ],
     },

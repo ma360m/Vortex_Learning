@@ -274,68 +274,92 @@ export function HomeLanding() {
         </div>
       </Reveal>
 
-      <Reveal className="bg-white py-14 sm:py-20">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-8">
-          <SectionHeading
-            eyebrow="Student feedback"
-            title="What learners and families notice first."
-            description="Short feedback cards give new visitors confidence without making the homepage feel crowded."
-          />
-          <div className="mt-9 grid gap-5 lg:grid-cols-3">
+      <Reveal className="relative isolate overflow-hidden bg-vortex-navy py-14 text-white sm:py-20">
+        <Image
+          src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=2200&q=75"
+          alt="Students working together during a guided study session"
+          fill
+          unoptimized
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.94)_0%,rgba(9,29,83,0.82)_48%,rgba(20,58,132,0.54)_100%)]" />
+        <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div>
+            <p className="text-sm font-semibold uppercase text-[#47C8F2]">Student feedback</p>
+            <h2 className="mt-4 max-w-3xl font-heading text-4xl font-semibold leading-tight sm:text-5xl">
+              Structure that makes learning feel calmer.
+            </h2>
+            <p className="mt-5 max-w-xl text-sm leading-7 text-cyan-50 sm:text-base sm:leading-8">
+              Students and families notice the same thing first: clear paths,
+              practical reminders, and teacher guidance make progress easier to follow.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3 lg:gap-4">
             {studentFeedbacks.map((feedback) => (
-              <article
+              <motion.article
                 key={feedback.name}
-                className="rounded-3xl border border-vortex-border bg-vortex-soft p-6"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2 }}
+                className="rounded-2xl border border-white/18 bg-white/12 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.16)] backdrop-blur-md"
               >
-                <MessageSquareQuote className="size-6 text-vortex-blue" />
-                <p className="mt-5 text-sm leading-7 text-vortex-slate">{feedback.quote}</p>
-                <div className="mt-6 border-t border-vortex-border pt-4">
-                  <p className="text-sm font-semibold text-vortex-navy">{feedback.name}</p>
-                  <p className="mt-1 text-xs text-vortex-muted">{feedback.role}</p>
+                <MessageSquareQuote className="size-5 text-[#47C8F2]" />
+                <p className="mt-5 text-sm leading-7 text-blue-50">{feedback.quote}</p>
+                <div className="mt-5 border-t border-white/14 pt-4">
+                  <p className="text-sm font-semibold text-white">{feedback.name}</p>
+                  <p className="mt-1 text-xs text-cyan-100">{feedback.role}</p>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
       </Reveal>
 
-      <Reveal className="section-wrap">
-        <div className="grid gap-8 rounded-[2rem] bg-vortex-gradient p-7 text-white shadow-[0_26px_90px_rgba(9,29,83,0.22)] lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div>
+      <Reveal className="bg-white px-4 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] border border-vortex-border shadow-[0_18px_70px_rgba(9,29,83,0.08)] lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="bg-vortex-gradient p-7 text-white sm:p-9">
             <p className="text-sm font-semibold text-cyan-100">Phonics Club initiative</p>
             <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight">
               {projectAttribution.title}
             </h2>
             <p className="mt-4 text-sm leading-7 text-blue-50">{projectAttribution.description}</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {projectAttribution.points.map((point) => (
+                <span key={point} className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-2 text-xs font-semibold text-cyan-50">
+                  <ShieldCheck className="size-4 text-[#47C8F2]" />
+                  {point}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {projectAttribution.points.map((point) => (
-              <div key={point} className="flex items-center gap-3 rounded-2xl bg-white/12 px-4 py-3 text-sm font-semibold">
-                <ShieldCheck className="size-4 text-[#47C8F2]" />
-                {point}
+          <div className="grid divide-y divide-vortex-border bg-white">
+            <Link
+              href="/about#phonics-club"
+              className="group flex items-center justify-between gap-6 p-7 transition hover:bg-vortex-soft sm:p-9"
+            >
+              <div>
+                <p className="text-sm font-semibold text-vortex-blue">About Vortex</p>
+                <h3 className="mt-2 font-heading text-3xl font-semibold leading-tight text-vortex-navy">
+                  Learn more about the project background.
+                </h3>
               </div>
-            ))}
+              <ArrowRight className="size-5 shrink-0 text-vortex-cyan transition group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/blog"
+              className="group flex items-center justify-between gap-6 p-7 transition hover:bg-vortex-soft sm:p-9"
+            >
+              <div>
+                <p className="text-sm font-semibold text-vortex-blue">Blog and guidance</p>
+                <h3 className="mt-2 font-heading text-3xl font-semibold leading-tight text-vortex-navy">
+                  Click here to see our blogs.
+                </h3>
+              </div>
+              <Newspaper className="size-5 shrink-0 text-vortex-cyan transition group-hover:translate-x-1" />
+            </Link>
           </div>
         </div>
       </Reveal>
-
-      <section className="px-4 pb-16 sm:px-8 sm:pb-24">
-        <div className="mx-auto grid max-w-7xl gap-6 rounded-[2rem] border border-vortex-border bg-white p-7 shadow-[0_18px_70px_rgba(9,29,83,0.08)] lg:grid-cols-[1fr_auto] lg:items-center">
-          <div>
-            <p className="text-sm font-semibold text-vortex-blue">Blog and guidance</p>
-            <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
-              Need study advice, exam guides, or course direction?
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-vortex-muted">
-              We have kept this section brief on the homepage so readers can go straight to the blog library.
-            </p>
-          </div>
-          <Link href="/blog" className="btn-secondary h-11 px-5">
-            <Newspaper className="size-4" />
-            Click here to see our blogs
-          </Link>
-        </div>
-      </section>
     </>
   );
 }
