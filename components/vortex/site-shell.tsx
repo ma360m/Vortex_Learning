@@ -2,19 +2,14 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
-  Briefcase,
-  Camera,
   ChevronDown,
   GraduationCap,
   LayoutDashboard,
   Menu,
   ShieldCheck,
-  Share2,
-  SquarePlay,
-  type LucideIcon,
 } from "lucide-react";
 
-import { navLinks, socialLinks } from "@/lib/vortex-data";
+import { navLinks } from "@/lib/vortex-data";
 import { AIHelpAgent } from "./ai-help-agent";
 import { VortexLogo } from "./logo";
 
@@ -26,7 +21,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-vortex-border bg-white/92 shadow-[0_12px_40px_rgba(9,29,83,0.05)] backdrop-blur-xl">
       <div className="mx-auto flex h-[4.65rem] w-full max-w-7xl items-center justify-between gap-4 px-4 sm:h-20 sm:px-8">
-        <VortexLogo compact />
+        <VortexLogo header />
         <nav
           className="hidden items-center gap-1 rounded-full border border-vortex-border bg-white/78 p-1 shadow-sm lg:flex"
           aria-label="Primary navigation"
@@ -45,7 +40,7 @@ export function SiteHeader() {
           <details className="relative">
             <summary className="inline-flex h-10 cursor-pointer list-none items-center gap-2 rounded-full border border-vortex-border bg-white px-4 text-sm font-semibold text-vortex-navy shadow-sm transition hover:border-vortex-cyan/50 hover:shadow-md">
               <LayoutDashboard className="size-4 text-vortex-blue" />
-              Portal
+              Sign in
               <ChevronDown className="size-4 text-vortex-blue" />
             </summary>
             <div className="absolute right-0 mt-3 w-64 rounded-2xl border border-vortex-border bg-white p-2 shadow-[0_24px_80px_rgba(9,29,83,0.18)]">
@@ -117,12 +112,10 @@ export function SiteHeader() {
 export function SiteFooter() {
   const footerLinks = [
     {
-      title: "Explore",
+      title: "Learning",
       links: [
-        ["Home", "/"],
-        ["Explore", "/explore"],
         ["Course catalog", "/courses"],
-        ["Course preview", "/preview"],
+        ["Training consultancy", "/trainings"],
         ["FAQs", "/faqs"],
       ],
     },
@@ -132,7 +125,6 @@ export function SiteFooter() {
         ["About", "/about"],
         ["Our team", "/team"],
         ["Blog", "/blog"],
-        ["Become an instructor", "/team#apply"],
       ],
     },
     {
@@ -143,26 +135,11 @@ export function SiteFooter() {
         ["Policies", "/policies"],
       ],
     },
-    {
-      title: "Policies",
-      links: [
-        ["Privacy", "/policies/privacy"],
-        ["Terms", "/policies/terms"],
-        ["Refunds", "/policies/refund"],
-        ["Cookies", "/policies/cookies"],
-      ],
-    },
   ];
-  const socialIcons: Record<string, LucideIcon> = {
-    facebook: Share2,
-    instagram: Camera,
-    linkedin: Briefcase,
-    youtube: SquarePlay,
-  };
 
   return (
     <footer className="border-t border-vortex-border bg-white">
-      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:px-8 sm:py-12 lg:grid-cols-[0.9fr_1.35fr]">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_1fr]">
         <div className="max-w-xl">
           <VortexLogo />
           <p className="mt-5 text-sm leading-7 text-vortex-muted">
@@ -187,24 +164,8 @@ export function SiteFooter() {
               +92 324 4270697
             </a>
           </div>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {socialLinks.map((social) => {
-              const Icon = socialIcons[social.kind] ?? BookOpen;
-
-              return (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  className="grid size-10 place-items-center rounded-full border border-vortex-border bg-vortex-soft text-vortex-blue transition hover:border-vortex-cyan hover:bg-white"
-                  aria-label={social.href === "#" ? `${social.label} link pending` : social.label}
-                >
-                  <Icon className="size-4" />
-                </a>
-              );
-            })}
-          </div>
         </div>
-        <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-3">
           {footerLinks.map((group) => (
             <div key={group.title}>
               <h2 className="text-sm font-semibold text-vortex-navy">{group.title}</h2>

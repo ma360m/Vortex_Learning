@@ -10,11 +10,11 @@ export const metadata = {
 export default function DashboardGatewayPage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-dashboard px-5 py-16 text-white sm:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold uppercase text-[#47C8F2]">Portal sign in</p>
           <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-            Open the right Vortex workspace.
+            Open the right Vortex workspace
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
             Student, instructor, parent, and admin tools live in separate signed-in dashboards.

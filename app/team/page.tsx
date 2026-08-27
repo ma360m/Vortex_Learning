@@ -24,11 +24,11 @@ export const metadata = {
 export default function TeamPage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-team px-5 py-16 text-white sm:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold uppercase text-[#47C8F2]">Our team</p>
           <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-            Teachers, advisors, and operators behind Vortex Learning.
+            Teachers, advisors, and operators behind Vortex Learning
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
             Leadership, teachers, support, developers, marketing, and academic advisors working around one standard: serious students deserve serious systems.
@@ -39,7 +39,7 @@ export default function TeamPage() {
       <section id="instructors" className="section-wrap scroll-mt-28">
         <SectionHeading
           eyebrow="Instructors"
-          title="Qualified experts with course ownership and consultation paths."
+          title="Qualified experts with course ownership and consultation paths"
           description="Instructor profiles connect qualifications, subjects, ratings, experience, biographies, availability, certificates, and consultation booking."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
@@ -102,7 +102,7 @@ export default function TeamPage() {
       <section className="section-wrap">
         <SectionHeading
           eyebrow="Organization"
-          title="Clear roles, visible experience, and trusted accountability."
+          title="Clear roles, visible experience, and trusted accountability"
           description="Profiles are structured for qualifications, responsibilities, social links, and the operating team behind the platform."
         />
         <div className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
@@ -155,7 +155,7 @@ export default function TeamPage() {
             <div>
               <p className="text-sm font-semibold text-vortex-blue">Join the academic network</p>
               <h2 className="mt-3 font-heading text-5xl font-semibold text-vortex-navy">
-                Build courses, advise students, or support operations.
+                Build courses, advise students, or support operations
               </h2>
             </div>
             <Link href="/team#apply" className="btn-primary h-12 px-5">

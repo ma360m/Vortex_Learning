@@ -36,7 +36,7 @@ export default async function CoursePaymentPage({
 
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-payment px-5 py-16 text-white sm:px-8">
         <div className="mx-auto max-w-7xl">
           <Link href={`/courses/${course.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
             <ArrowLeft className="size-4" />
@@ -46,7 +46,7 @@ export default async function CoursePaymentPage({
             <div>
               <p className="text-sm font-semibold uppercase text-[#47C8F2]">Bank transfer access</p>
               <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-                Register, upload payment slip, unlock with licence key.
+                Register, upload payment slip, unlock with licence key
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-cyan-50">
                 {course.title} includes {course.freeModuleCount ?? 3} free preview modules. Full modules, resources, instructor help, and certificate work unlock after admin verification.

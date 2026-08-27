@@ -47,11 +47,10 @@ export type Course = {
 
 export const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Explore", href: "/explore" },
   { label: "Courses", href: "/courses" },
-  { label: "Preview", href: "/preview" },
-  { label: "Our Team", href: "/team" },
-  { label: "Blog", href: "/blog" },
+  { label: "Trainings", href: "/trainings" },
+  { label: "Team", href: "/team" },
+  { label: "FAQs", href: "/faqs" },
   { label: "Support", href: "/support" },
 ];
 
@@ -326,25 +325,25 @@ export const instructors = [
 export const platformRoles = [
   {
     role: "Student",
-    title: "A calm cockpit for every learner.",
+    title: "A calm cockpit for every learner",
     href: "/signin?next=/dashboard/student",
     points: ["Continue learning", "Daily and weekly goals", "Bookmarks", "Certificates", "Recommended courses"],
   },
   {
     role: "Parent",
-    title: "Transparent progress without chasing updates.",
+    title: "Transparent progress without chasing updates",
     href: "/signin?next=/dashboard/parent",
     points: ["Attendance", "Payments", "Homework", "Teacher feedback", "Messages"],
   },
   {
     role: "Instructor",
-    title: "Teaching tools that keep learning organized.",
+    title: "Teaching tools that keep learning organized",
     href: "/signin?next=/dashboard/instructor",
     points: ["Live sessions", "Teacher notes", "Homework", "Course approvals", "Discussions"],
   },
   {
     role: "Admin",
-    title: "Operations for a scaled education business.",
+    title: "Operations for a scaled education business",
     href: "/signin?next=/dashboard/admin",
     points: ["Courses", "Users", "Payments", "Coupons", "Analytics", "Support tickets"],
   },
@@ -464,6 +463,13 @@ export const searchIndex = [
     description: "Parents can review attendance, homework, payments, messages, and teacher feedback.",
     href: "/faqs",
     tags: ["Parents", "Support"],
+  },
+  {
+    type: "Training",
+    title: "Training Consultancy",
+    description: "Request science training, teacher development, institutional consultancy, and workshop guidance.",
+    href: "/trainings",
+    tags: ["Training", "Consultancy", "Phonics Club"],
   },
   {
     type: "Study Notes",

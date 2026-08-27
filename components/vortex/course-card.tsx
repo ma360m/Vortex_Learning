@@ -13,6 +13,13 @@ export function CourseCard({ course, featured = false }: { course: Course; featu
     >
       <div className="relative min-h-36 overflow-hidden bg-vortex-gradient sm:min-h-40">
         <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.24),rgba(255,255,255,0)_54%)]" />
+        <div className="absolute inset-x-0 top-0 h-px bg-white/35" />
+        <span className="absolute right-4 top-4 rounded-full border border-white/18 bg-white/12 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+          {course.subject}
+        </span>
+        <span className="absolute -bottom-4 right-4 font-heading text-8xl font-semibold leading-none text-white/10">
+          {course.board}
+        </span>
         <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
           <p className="text-xs font-semibold uppercase opacity-80">{course.eyebrow}</p>
           <div className="mt-4 flex items-center gap-2 text-sm">

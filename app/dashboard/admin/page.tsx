@@ -85,7 +85,7 @@ export default function AdminDashboardPage() {
   return (
     <PortalShell
       role="Admin Console"
-      title="Institution control center."
+      title="Institution control center"
       description="A signed-in operations console for managing learning, users, teachers, parents, developers, payments, support, AI agents, analytics, approvals, settings, and logs."
       active="Overview"
       user="Admin"

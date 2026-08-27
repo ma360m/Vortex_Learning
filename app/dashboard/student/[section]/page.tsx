@@ -17,37 +17,37 @@ const navItems: PortalNavItem[] = [
 const content = {
   courses: {
     active: "My courses",
-    title: "Enrolled courses.",
+    title: "Enrolled courses",
     icon: Library,
     items: ["O Level Physics Mastery - 62%", "IELTS Academic Band 7+ - 48%", "SAT Intensive - 71%"],
   },
   calendar: {
     active: "Calendar",
-    title: "Study calendar.",
+    title: "Study calendar",
     icon: Calendar,
     items: ["Today 7:30 PM - Physics practice sprint", "Tomorrow - AI project review", "Friday - IELTS writing feedback"],
   },
   bookmarks: {
     active: "Bookmarks",
-    title: "Saved lessons.",
+    title: "Saved lessons",
     icon: Bookmark,
     items: ["Momentum formula recap", "IELTS Task 2 examples", "SAT algebra shortcuts"],
   },
   help: {
     active: "Messages",
-    title: "Instructor help.",
+    title: "Instructor help",
     icon: HelpCircle,
     items: ["Ask instructor", "Book live help", "Attach homework"],
   },
   certificates: {
     active: "Certificates",
-    title: "Certificates.",
+    title: "Certificates",
     icon: Award,
     items: ["Physics Topic Mastery - ready", "IELTS Writing Sprint - in progress", "SAT Diagnostic - issued"],
   },
   password: {
     active: "Password",
-    title: "Password settings.",
+    title: "Password settings",
     icon: KeyRound,
     items: [],
   },

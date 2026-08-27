@@ -23,13 +23,13 @@ export function ComingSoonContent({ feature }: { feature?: string }) {
     <section className="section-wrap">
       <div className="overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_24px_90px_rgba(9,29,83,0.08)]">
         <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="bg-vortex-gradient p-6 text-white sm:p-10 lg:p-12">
+          <div className="page-hero page-hero-dashboard p-6 text-white sm:p-10 lg:p-12">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/12 px-3 py-1.5 text-xs font-semibold text-cyan-50">
               <Sparkles className="size-3.5 text-[#47C8F2]" />
               Planned platform area
             </div>
             <h1 className="mt-8 font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-              {label} is coming soon.
+              {label} is coming soon
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
               This part of Vortex Learning is reserved for a finished, production-quality experience. For now, continue through the working catalog, support, sign-in, and dashboard flows.

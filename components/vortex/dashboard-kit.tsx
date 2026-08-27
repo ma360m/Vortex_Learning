@@ -56,7 +56,7 @@ type DashboardHeroProps = {
 
 export function DashboardHero({ eyebrow, title, description, cta }: DashboardHeroProps) {
   return (
-    <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+    <section className="page-hero page-hero-dashboard px-5 py-16 text-white sm:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
           <p className="text-sm font-semibold uppercase text-[#47C8F2]">{eyebrow}</p>

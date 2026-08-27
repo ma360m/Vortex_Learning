@@ -16,31 +16,31 @@ const navItems: PortalNavItem[] = [
 const content = {
   live: {
     active: "Live classes",
-    title: "Live session scheduler.",
+    title: "Live session scheduler",
     icon: Calendar,
     items: ["O Level Physics - 7:30 PM Zoom", "Mechanics clinic - Google Meet", "Parent consultation - notes ready"],
   },
   students: {
     active: "Students",
-    title: "Student progress.",
+    title: "Student progress",
     icon: Users,
     items: ["Ayaan Khan - 62% Physics", "Noor Ahmed - 81% Mechanics", "Hamza Ali - 44% revision sprint"],
   },
   assignments: {
     active: "Assignments",
-    title: "Assignment review.",
+    title: "Assignment review",
     icon: FileText,
     items: ["Momentum worksheet - 12 submissions", "Electricity quiz - 7 pending", "Past paper review - 3 escalated"],
   },
   discussion: {
     active: "Discussion",
-    title: "Instructor help queue.",
+    title: "Instructor help queue",
     icon: HelpCircle,
     items: ["Ayaan: Momentum worksheet question", "Noor: Book live doubt session", "Hamza: Past paper marking request"],
   },
   password: {
     active: "Password",
-    title: "Password settings.",
+    title: "Password settings",
     icon: KeyRound,
     items: [],
   },

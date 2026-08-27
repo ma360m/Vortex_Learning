@@ -29,7 +29,7 @@ export default async function PolicyPage({ params }: { params: Promise<{ slug: s
 
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-policies px-5 py-16 text-white sm:px-8">
         <div className="mx-auto max-w-7xl">
           <Link href="/policies" className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-100">
             <ArrowLeft className="size-4" />

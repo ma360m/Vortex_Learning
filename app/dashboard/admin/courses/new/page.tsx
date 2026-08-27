@@ -17,7 +17,7 @@ export const metadata = { title: "Admin Course Builder" };
 
 export default function AdminCourseBuilderPage() {
   return (
-    <PortalShell role="Admin Console" title="Admin course builder." description="Build courses with media, modules, lessons, pricing, licence-key access, instructor help, and publishing controls." active="Courses" user="Admin" navItems={navItems}>
+    <PortalShell role="Admin Console" title="Admin course builder" description="Build courses with media, modules, lessons, pricing, licence-key access, instructor help, and publishing controls." active="Courses" user="Admin" navItems={navItems}>
       <CourseBuilderStudio owner="admin" returnTo="/dashboard/admin/courses/new" />
     </PortalShell>
   );

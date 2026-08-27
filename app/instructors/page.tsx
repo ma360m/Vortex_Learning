@@ -36,12 +36,12 @@ export default function InstructorsPage() {
 function LegacyInstructorsPage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-team px-5 py-16 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Instructors</p>
             <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-              Teach with credibility, structure, and visibility.
+              Teach with credibility, structure, and visibility
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
               Instructor profiles connect qualifications, subjects, ratings,
@@ -66,7 +66,7 @@ function LegacyInstructorsPage() {
       <section className="section-wrap">
         <SectionHeading
           eyebrow="Profiles"
-          title="Qualified experts with course ownership and consultation paths."
+          title="Qualified experts with course ownership and consultation paths"
           description="Each instructor profile is ready for biography, courses, ratings, experience, subjects, availability, certificates, and social links."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-2">
@@ -127,7 +127,7 @@ function LegacyInstructorsPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             eyebrow="Instructor courses"
-            title="Programs connected directly to expert teaching."
+            title="Programs connected directly to expert teaching"
             description="Course ownership, quality review, live support, and certificate requirements can all map back to instructor profiles."
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -144,7 +144,7 @@ function LegacyInstructorsPage() {
             <div>
               <p className="text-sm font-semibold text-cyan-100">Instructor application</p>
               <h2 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight">
-                Bring your subject expertise into a premium learning ecosystem.
+                Bring your subject expertise into a premium learning ecosystem
               </h2>
             </div>
             <div className="grid gap-3 sm:grid-cols-3">

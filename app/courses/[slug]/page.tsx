@@ -77,7 +77,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
 
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-course-detail px-5 py-16 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_420px] lg:items-end">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">{course.eyebrow}</p>
@@ -96,8 +96,17 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
               </Link>
             </div>
           </div>
-          <div className="rounded-3xl border border-white/15 bg-white/10 p-6 backdrop-blur-xl">
-            <div className="grid gap-4">
+          <div className="rounded-3xl border border-white/15 bg-white/10 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+            <div className="rounded-[1.25rem] border border-white/12 bg-[#071847]/35 p-5">
+              <p className="text-xs font-semibold uppercase text-cyan-100">Course access</p>
+              <h2 className="mt-3 font-heading text-3xl font-semibold leading-tight">
+                Preview first. Unlock when approved
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-cyan-100">
+                Free modules stay open for evaluation. Full lessons, resources, instructor help, quizzes, and certificate steps unlock with a verified licence key.
+              </p>
+            </div>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {[
                 ["Mode", course.mode],
                 ["Level", course.level],
@@ -105,8 +114,6 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                 ["Lessons", `${course.lessons}`],
                 ["Free modules", `${freeModuleCount}`],
                 ["Resources", `${resourceFiles.length} locked`],
-                ["Instructor", course.instructor],
-                ["Rating", course.rating],
               ].map(([label, value]) => (
                 <div key={label} className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
                   <span className="text-sm text-cyan-100">{label}</span>
@@ -122,7 +129,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <SectionHeading
             eyebrow="Overview"
-            title="A complete course page designed for commitment."
+            title="A complete course page designed for commitment"
             description="The structure supports curriculum, instructor credibility, modules, reviews, FAQ, resources, assignments, discussion, and certificates."
           />
           <div className="grid gap-3">
@@ -140,7 +147,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading
             eyebrow="Curriculum"
-            title="Modules, lessons, and resource packs."
+            title="Modules, lessons, and resource packs"
             description={`The first ${freeModuleCount} modules are available as a free preview. Remaining modules, resources, and certificate work unlock after payment approval and licence-key redemption.`}
           />
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -188,7 +195,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <SectionHeading
             eyebrow="Resource library"
-            title="Locked flipbook material, preserved from the course package."
+            title="Locked flipbook material, preserved from the course package"
             description={`${resourceFiles.length} files are attached to this course. They are listed now, displayed as protected flipbooks after licence activation, and not downloadable unless admin enables downloads for the course or resource.`}
           />
           <div className="grid gap-3">
@@ -326,11 +333,11 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         </div>
       </section>
 
-      <section className="bg-vortex-navy px-5 py-20 text-white sm:px-8">
+      <section className="page-hero page-hero-faqs px-5 py-20 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
             <p className="text-sm font-semibold text-[#47C8F2]">FAQ</p>
-            <h2 className="mt-3 font-heading text-5xl font-semibold">Course questions, answered cleanly.</h2>
+            <h2 className="mt-3 font-heading text-5xl font-semibold">Course questions, answered cleanly</h2>
           </div>
           <div className="grid gap-3 lg:min-w-[520px]">
             {[
@@ -353,7 +360,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
             <div>
               <p className="text-sm font-semibold text-vortex-blue">Begin learning</p>
               <h2 className="mt-3 font-heading text-5xl font-semibold text-vortex-navy">
-                Open the course preview.
+                Open the course preview
               </h2>
             </div>
             <Link href={`/preview/${course.slug}`} className="btn-primary h-12 px-5">

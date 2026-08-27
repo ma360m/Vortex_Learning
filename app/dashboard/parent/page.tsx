@@ -31,7 +31,7 @@ export default function ParentDashboardPage() {
   return (
     <PortalShell
       role="Parent Portal"
-      title="Learner progress for the Khan family."
+      title="Learner progress for the Khan family"
       description="Track attendance, upcoming lessons, homework, payments, teacher feedback, and messages without searching across separate channels."
       active="Overview"
       user="Mrs. Khan"

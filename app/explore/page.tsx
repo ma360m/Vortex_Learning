@@ -17,12 +17,12 @@ export const metadata = {
 export default function ExplorePage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-explore px-5 py-16 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Explore</p>
             <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-              Search first, then choose the right learning path.
+              Search first, then choose the right learning path
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
               Search courses, subjects, tutors, articles, past papers, notes, and FAQs from one dedicated discovery page.
@@ -35,7 +35,7 @@ export default function ExplorePage() {
       <section className="section-wrap">
         <SectionHeading
           eyebrow="Find your path"
-          title="Explore by curriculum, subject, or learning goal."
+          title="Explore by curriculum, subject, or learning goal"
           description="The homepage now stays lighter, while this page carries the deeper browsing and search experience."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -78,7 +78,7 @@ export default function ExplorePage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.82fr_1.18fr]">
           <SectionHeading
             eyebrow="Quick routes"
-            title="Jump into a curriculum or subject."
+            title="Jump into a curriculum or subject"
             description="These options route visitors into the course catalog where every course card links to its course page and preview."
           />
           <div className="grid gap-6">

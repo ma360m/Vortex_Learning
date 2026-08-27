@@ -27,12 +27,6 @@ import {
 import { SectionHeading } from "./section-heading";
 
 const pathIcons = [Library, BookOpen, Target];
-const acceleratedCourses = courses
-  .filter((course) => {
-    const text = `${course.title} ${course.category} ${course.tags.join(" ")}`.toLowerCase();
-    return text.includes("accelerated") || text.includes("crash") || text.includes("entry");
-  })
-  .slice(0, 3);
 
 function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
@@ -59,13 +53,12 @@ export function HomeLanding() {
     <>
       <section className="relative isolate overflow-hidden bg-vortex-navy text-white">
         <Image
-          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2200&q=75"
-          alt="Students studying together in a modern learning environment"
+          src="/vortex-home-audience.jpeg"
+          alt="Vortex Learning training audience session"
           fill
           priority
-          unoptimized
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[44%_50%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.93)_0%,rgba(9,29,83,0.78)_56%,rgba(20,58,132,0.42)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(0deg,#f7fbff_0%,rgba(247,251,255,0)_100%)]" />
@@ -77,9 +70,9 @@ export function HomeLanding() {
               <span className="truncate">Vortex Learning - Learning, structured for your path.</span>
             </div>
             <h1 className="font-heading text-4xl font-semibold leading-[1.03] sm:text-5xl lg:text-[4.25rem]">
-              One platform.
-              <span className="block text-cyan-100">Every subject.</span>
-              <span className="block text-white">Every goal.</span>
+              One platform
+              <span className="block text-cyan-100">Every subject</span>
+              <span className="block text-white">Every goal</span>
             </h1>
             <p className="mt-5 max-w-[620px] text-base leading-7 text-blue-50 sm:text-lg sm:leading-8">
               Vortex Learning brings structured courses, live classes, tutor guidance,
@@ -87,17 +80,17 @@ export function HomeLanding() {
               education ecosystem.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="/explore" className="btn-white h-[3.05rem] px-5 text-sm">
+              <Link href="/courses" className="btn-white h-[3.05rem] px-5 text-sm">
                 <Sparkles className="size-4" />
-                Explore Paths
+                Explore Courses
               </Link>
-              <Link href="/courses" className="btn-glass h-[3.05rem] px-5 text-sm">
+              <Link href="/trainings" className="btn-glass h-[3.05rem] px-5 text-sm">
                 <BookOpen className="size-4" />
-                Course Catalog
+                Trainings
               </Link>
               <Link href="/consultation" className="inline-flex h-[3.05rem] items-center justify-center gap-2 rounded-full px-3 text-sm font-semibold text-cyan-50 transition hover:text-white">
                 <Calendar className="size-4" />
-                Contact Us Now
+                Consultation
               </Link>
             </div>
           </div>
@@ -157,7 +150,7 @@ export function HomeLanding() {
       <Reveal className="section-wrap pt-14 sm:pt-20">
         <SectionHeading
           eyebrow="Find your path"
-          title="Explore by curriculum, subject, or learning goal."
+          title="Explore by curriculum, subject, or learning goal"
           description="Choose a starting point, then move into a precise course, tutor, resource, or exam plan."
         />
         <div className="mt-9 grid gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
@@ -185,7 +178,7 @@ export function HomeLanding() {
                     {path.items.slice(0, 6).map((item) => (
                       <Link
                         key={item}
-                        href="/explore"
+                        href="/courses"
                         className="rounded-full border border-vortex-border bg-vortex-soft px-3 py-2 text-xs font-semibold text-vortex-slate transition hover:border-vortex-cyan hover:text-vortex-blue"
                       >
                         {item}
@@ -215,7 +208,7 @@ export function HomeLanding() {
           <div>
             <p className="text-sm font-semibold uppercase text-vortex-blue">Course catalog</p>
             <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight text-vortex-navy">
-              Browse the full catalog on a dedicated page.
+              Browse the full catalog on a dedicated page
             </h2>
             <p className="mt-4 text-sm leading-7 text-vortex-muted">
               The homepage stays light. The course catalog now carries filtering,
@@ -244,51 +237,12 @@ export function HomeLanding() {
         </div>
       </Reveal>
 
-      <Reveal className="section-wrap pt-0">
-        <div className="rounded-[2rem] border border-vortex-border bg-white p-7 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <SectionHeading
-              eyebrow="Accelerated Learning Programs"
-              title="Fast, guided routes for urgent goals."
-              description="Structured intensive programs for exam rescue, crash revision, entry tests, language goals, and professional skill sprints."
-            />
-            <div className="grid gap-3 sm:grid-cols-3">
-              {(acceleratedCourses.length > 0 ? acceleratedCourses : courses.slice(0, 3)).map((course) => (
-                <Link
-                  key={course.slug}
-                  href={`/courses/${course.slug}`}
-                  className="rounded-2xl border border-vortex-border bg-vortex-soft p-4 text-sm font-semibold text-vortex-navy transition hover:border-vortex-cyan hover:text-vortex-blue"
-                >
-                  {course.title}
-                  <span className="mt-3 block text-xs font-medium text-vortex-muted">
-                    {course.duration} - {course.mode}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-          <Link href="/consultation" className="btn-primary mt-7 h-11 px-5">
-            Contact Us Now
-            <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      </Reveal>
-
-      <Reveal className="relative isolate overflow-hidden bg-vortex-navy py-14 text-white sm:py-20">
-        <Image
-          src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=2200&q=75"
-          alt="Students working together during a guided study session"
-          fill
-          unoptimized
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.94)_0%,rgba(9,29,83,0.82)_48%,rgba(20,58,132,0.54)_100%)]" />
-        <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+      <Reveal className="page-hero page-hero-course-detail py-14 text-white sm:py-20">
+        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Student feedback</p>
             <h2 className="mt-4 max-w-3xl font-heading text-4xl font-semibold leading-tight sm:text-5xl">
-              Structure that makes learning feel calmer.
+              Structure that makes learning feel calmer
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-7 text-cyan-50 sm:text-base sm:leading-8">
               Students and families notice the same thing first: clear paths,
@@ -340,7 +294,7 @@ export function HomeLanding() {
               <div>
                 <p className="text-sm font-semibold text-vortex-blue">About Vortex</p>
                 <h3 className="mt-2 font-heading text-3xl font-semibold leading-tight text-vortex-navy">
-                  Learn more about the project background.
+                  Learn more about the project background
                 </h3>
               </div>
               <ArrowRight className="size-5 shrink-0 text-vortex-cyan transition group-hover:translate-x-1" />
@@ -352,7 +306,7 @@ export function HomeLanding() {
               <div>
                 <p className="text-sm font-semibold text-vortex-blue">Blog and guidance</p>
                 <h3 className="mt-2 font-heading text-3xl font-semibold leading-tight text-vortex-navy">
-                  Click here to see our blogs.
+                  Click here to see our blogs
                 </h3>
               </div>
               <Newspaper className="size-5 shrink-0 text-vortex-cyan transition group-hover:translate-x-1" />

@@ -39,7 +39,7 @@ export default function DeveloperPage() {
       <SiteShell>
         <DashboardHero
           eyebrow="Developer panel"
-          title="A separate workspace for building and operating the platform."
+          title="A separate workspace for building and operating the platform"
           description="Developers can manage content systems, theme tokens, feature flags, deployments, environment settings, access control, and logs without mixing with academic operations."
           cta={{ label: "Admin Console", href: "/signin?next=/dashboard/admin" }}
         />

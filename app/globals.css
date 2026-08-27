@@ -185,6 +185,91 @@
     background-image: linear-gradient(135deg, #091d53 0%, #143a84 44%, #1e8acb 78%, #47c8f2 100%);
   }
 
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: var(--vortex-navy);
+  }
+
+  .page-hero::before,
+  .page-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .page-hero > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-hero::before {
+    background-image: var(--hero-image);
+    background-position: var(--hero-position, center);
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.58;
+  }
+
+  .page-hero::after {
+    background:
+      linear-gradient(90deg, rgba(9, 29, 83, 0.95) 0%, rgba(9, 29, 83, 0.8) 48%, rgba(20, 58, 132, 0.45) 100%),
+      linear-gradient(0deg, rgba(9, 29, 83, 0.36), rgba(9, 29, 83, 0.08));
+  }
+
+  .page-hero-about {
+    --hero-image: url("https://unsplash.com/photos/GX8KBbVmC6c/download?force=true");
+    --hero-position: center;
+  }
+
+  .page-hero-blog,
+  .page-hero-signin {
+    --hero-image: url("https://images.unsplash.com/photo-1786456804676-5f2400df53af?auto=format&fit=crop&w=2400&q=70");
+    --hero-position: center;
+  }
+
+  .page-hero-courses,
+  .page-hero-explore {
+    --hero-image: url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=2400&q=70");
+    --hero-position: center;
+  }
+
+  .page-hero-course-detail {
+    --hero-image: url("https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=2400&q=70");
+    --hero-position: center;
+  }
+
+  .page-hero-faqs {
+    --hero-image: url("https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=2400&q=70");
+    --hero-position: center;
+  }
+
+  .page-hero-support,
+  .page-hero-consultation {
+    --hero-image: url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2400&q=70");
+    --hero-position: center;
+  }
+
+  .page-hero-payment,
+  .page-hero-policies,
+  .page-hero-dashboard {
+    --hero-image: url("https://images.unsplash.com/photo-1648554091527-890fcf687aab?auto=format&fit=crop&w=2400&q=70");
+    --hero-position: center;
+  }
+
+  .page-hero-resource {
+    --hero-image: url("https://images.unsplash.com/photo-1758685734062-165cc0094e61?auto=format&fit=crop&w=2400&q=70");
+    --hero-position: center;
+  }
+
+  .page-hero-team {
+    --hero-image: url("https://unsplash.com/photos/ute2XAFQU2I/download?force=true");
+    --hero-position: center;
+  }
+
   .btn-primary,
   .btn-secondary,
   .btn-glass,

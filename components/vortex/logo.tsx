@@ -3,10 +3,17 @@ import Link from "next/link";
 
 type LogoProps = {
   compact?: boolean;
+  header?: boolean;
   className?: string;
 };
 
-export function VortexLogo({ compact = false, className = "" }: LogoProps) {
+export function VortexLogo({ compact = false, header = false, className = "" }: LogoProps) {
+  const imageSize = header
+    ? "h-12 w-auto object-contain sm:h-16"
+    : compact
+      ? "h-10 w-auto object-contain"
+      : "h-11 w-auto object-contain sm:h-14";
+
   return (
     <Link
       href="/"
@@ -20,7 +27,7 @@ export function VortexLogo({ compact = false, className = "" }: LogoProps) {
           width={659}
           height={340}
           priority
-          className={compact ? "h-10 w-auto object-contain" : "h-11 w-auto object-contain sm:h-14"}
+          className={imageSize}
         />
       </span>
     </Link>

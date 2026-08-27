@@ -39,7 +39,7 @@ export default function StudentDashboardPage() {
   return (
     <PortalShell
       role="Student LMS"
-      title="Welcome back, Ayaan."
+      title="Welcome back, Ayaan"
       description="Continue learning, review today's goals, track achievements, manage bookmarks, and keep every lesson tied to your study plan."
       active="Overview"
       user="Ayaan"

@@ -34,12 +34,12 @@ export const metadata = {
 export default function SupportPage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-support px-5 py-16 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Support and community</p>
             <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-              One place for questions, discussions, and help.
+              One place for questions, discussions, and help
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
               Students, parents, teachers, schools, colleges, tutoring institutes,
@@ -64,7 +64,7 @@ export default function SupportPage() {
       <section id="community" className="section-wrap scroll-mt-28">
         <SectionHeading
           eyebrow="Support network"
-          title="Community help without losing structure."
+          title="Community help without losing structure"
           description="Course discussions, parent visibility, support tickets, AI guidance, WhatsApp, and admin escalation stay together in one organized support space."
         />
         <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -83,7 +83,7 @@ export default function SupportPage() {
           <div>
             <SectionHeading
               eyebrow="Support request"
-              title="Send the right details to the support team."
+              title="Send the right details to the support team"
               description="Use support for course access, technical issues, payment questions, parent portal access, resources, and account help."
             />
             <div className="mt-8 grid gap-3">
@@ -143,7 +143,7 @@ export default function SupportPage() {
             <div>
               <p className="text-sm font-semibold text-cyan-100">Need learning guidance?</p>
               <h2 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight">
-                Book consultation on its own dedicated page.
+                Book consultation on its own dedicated page
               </h2>
             </div>
             <Link href="/consultation" className="btn-white h-12 px-5">

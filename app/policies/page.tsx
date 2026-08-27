@@ -14,11 +14,11 @@ export const metadata = {
 export default function PoliciesPage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-policies px-5 py-16 text-white sm:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold uppercase text-[#47C8F2]">Policies</p>
           <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-            Structured policies for a structured learning platform.
+            Structured policies for a structured learning platform
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
             Privacy, terms, refunds, cookies, course access, payment verification, parent visibility, and protected resources are separated into clear pages.
@@ -29,7 +29,7 @@ export default function PoliciesPage() {
       <section className="section-wrap">
         <SectionHeading
           eyebrow="Policy library"
-          title="Choose the policy you need."
+          title="Choose the policy you need"
           description="These pages are launch-ready structure and should be reviewed by the business or legal team before the final public domain goes live."
         />
         <div className="mt-10 grid gap-5 md:grid-cols-2">
@@ -59,7 +59,7 @@ export default function PoliciesPage() {
           <div>
             <p className="text-sm font-semibold text-vortex-blue">Admin editable</p>
             <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
-              Admin content settings include policy sections and footer links.
+              Admin content settings include policy sections and footer links
             </h2>
           </div>
           <Link href="/signin?next=/dashboard/admin/content" className="btn-primary h-11 px-5">

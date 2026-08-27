@@ -209,7 +209,7 @@ export default async function CoursePreviewPage({ params }: { params: Promise<{ 
             <div>
               <p className="text-sm font-semibold text-[#47C8F2]">See the platform</p>
               <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight">
-                Every role gets a focused workspace.
+                Every role gets a focused workspace
               </h2>
               <p className="mt-4 text-sm leading-7 text-cyan-50">
                 Students, parents, instructors, and admins can work from dedicated previews without crowding the homepage.
@@ -257,7 +257,7 @@ export default async function CoursePreviewPage({ params }: { params: Promise<{ 
         <div className="rounded-[2rem] border border-vortex-border bg-white p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
           <p className="text-sm font-semibold text-vortex-blue">Platform modules</p>
           <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
-            Built around the full learning flow.
+            Built around the full learning flow
           </h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {platformModules.map((module) => (

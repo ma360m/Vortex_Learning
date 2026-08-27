@@ -76,7 +76,7 @@ export default async function AdminSectionPage({ params }: { params: Promise<{ s
                 : "Settings";
 
   return (
-    <PortalShell role="Admin Console" title={`${active} management.`} description="Admin-only operations connected to role promotion, payment verification, and licence-key issuing." active={active} user="Admin" navItems={navItems}>
+    <PortalShell role="Admin Console" title={`${active} management`} description="Admin-only operations connected to role promotion, payment verification, and licence-key issuing." active={active} user="Admin" navItems={navItems}>
       {section === "users" ? (
         <section className="rounded-[1.5rem] border border-vortex-border bg-white p-5 shadow-[0_14px_50px_rgba(9,29,83,0.06)]">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">

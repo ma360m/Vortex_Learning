@@ -22,7 +22,7 @@ export const metadata = { title: "Instructor Courses" };
 
 export default function InstructorCoursesPage() {
   return (
-    <PortalShell role="Instructor LMS" title="My courses." description="Create, submit, and maintain instructor-owned courses." active="My courses" user="Dr. Ayesha" navItems={navItems}>
+    <PortalShell role="Instructor LMS" title="My courses" description="Create, submit, and maintain instructor-owned courses." active="My courses" user="Dr. Ayesha" navItems={navItems}>
       <section className="rounded-[1.5rem] border border-vortex-border bg-white p-5 shadow-[0_14px_50px_rgba(9,29,83,0.06)]">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>

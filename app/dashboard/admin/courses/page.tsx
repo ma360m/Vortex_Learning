@@ -19,7 +19,7 @@ export const metadata = { title: "Admin Courses" };
 
 export default function AdminCoursesPage() {
   return (
-    <PortalShell role="Admin Console" title="Course operations." description="Review, create, approve, and publish courses from the admin workspace." active="Courses" user="Admin" navItems={navItems}>
+    <PortalShell role="Admin Console" title="Course operations" description="Review, create, approve, and publish courses from the admin workspace." active="Courses" user="Admin" navItems={navItems}>
       <div className="rounded-[1.5rem] border border-vortex-border bg-white p-5 shadow-[0_14px_50px_rgba(9,29,83,0.06)]">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>

@@ -55,7 +55,7 @@ export default function InstructorDashboardPage() {
   return (
     <PortalShell
       role="Instructor LMS"
-      title="Teaching studio for Dr. Ayesha."
+      title="Teaching studio for Dr. Ayesha"
       description="Manage live sessions, recorded modules, student progress, attendance, homework, teacher notes, discussions, resources, and certificate requirements."
       active="Overview"
       user="Dr. Ayesha"

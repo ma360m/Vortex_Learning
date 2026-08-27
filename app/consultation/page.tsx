@@ -14,12 +14,12 @@ export const metadata = {
 export default function ConsultationPage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-consultation px-5 py-16 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Book consultation</p>
             <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-              Match the learner to the right course, tutor, or plan.
+              Match the learner to the right course, tutor, or plan
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
               Consultation requests can route to admissions, academic advisors, tutors, support agents, or admin escalation.
@@ -58,7 +58,7 @@ export default function ConsultationPage() {
           <div>
             <SectionHeading
               eyebrow="Tell us the goal"
-              title="A focused request helps us guide you faster."
+              title="A focused request helps us guide you faster"
               description="Share the learner stage, curriculum, target exam, subject, preferred schedule, and deadline."
             />
             <div className="mt-8 grid gap-3">
@@ -119,7 +119,7 @@ export default function ConsultationPage() {
           <div>
             <p className="text-sm font-semibold text-vortex-blue">Prefer browsing first?</p>
             <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
-              Explore the catalog before sending a request.
+              Explore the catalog before sending a request
             </h2>
           </div>
           <Link href="/courses" className="btn-secondary h-11 px-5">

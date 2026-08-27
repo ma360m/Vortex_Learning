@@ -6,6 +6,7 @@ const validIntents = new Set([
   "support-ticket",
   "course-payment-register",
   "payment-slip-upload",
+  "training-consultancy",
   "password-change",
 ]);
 

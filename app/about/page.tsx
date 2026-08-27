@@ -21,11 +21,11 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-about px-5 py-16 text-white sm:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold uppercase text-[#47C8F2]">About</p>
           <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-            Learning, structured for each student path.
+            Learning, structured for each student path
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
             Vortex Learning organizes courses, live learning, resources, AI support, parent visibility, and academic operations into a calmer education platform.
@@ -57,7 +57,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.82fr_1.18fr]">
           <SectionHeading
             eyebrow="How Vortex helps"
-            title="A focused platform for students, parents, and academic teams."
+            title="A focused platform for students, parents, and academic teams"
             description="The platform is built around structured discovery, course previews, protected resources, support workflows, and visible progress."
           />
           <div className="grid gap-4 sm:grid-cols-2">
@@ -77,7 +77,7 @@ export default function AboutPage() {
           <div>
             <p className="text-sm font-semibold text-vortex-blue">Meet the people</p>
             <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
-              Our team and instructors are now together.
+              Our team and instructors are now together
             </h2>
           </div>
           <Link href="/team" className="btn-primary h-11 px-5">

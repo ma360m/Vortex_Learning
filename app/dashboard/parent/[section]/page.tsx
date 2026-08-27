@@ -16,37 +16,37 @@ const navItems: PortalNavItem[] = [
 const content = {
   learners: {
     active: "Learners",
-    title: "Learner profiles.",
+    title: "Learner profiles",
     icon: UserRound,
     items: ["Ayaan Khan - O Level Physics", "Noor Khan - IELTS Academic", "Family account - 2 learners"],
   },
   attendance: {
     active: "Attendance",
-    title: "Attendance record.",
+    title: "Attendance record",
     icon: CheckCircle2,
     items: ["Physics live class - present", "IELTS mock - present", "SAT review - missed"],
   },
   payments: {
     active: "Payments",
-    title: "Payment history.",
+    title: "Payment history",
     icon: CreditCard,
     items: ["O Level Physics - slip uploaded", "IELTS Academic - licence key emailed", "SAT Intensive - pending"],
   },
   messages: {
     active: "Messages",
-    title: "Parent messages.",
+    title: "Parent messages",
     icon: MessageSquare,
     items: ["Physics teacher feedback", "Payment support thread", "Upcoming lesson reminder"],
   },
   reports: {
     active: "Reports",
-    title: "Progress reports.",
+    title: "Progress reports",
     icon: TrendingUp,
     items: ["Monthly academic report", "Attendance summary", "Homework completion report"],
   },
   password: {
     active: "Password",
-    title: "Password settings.",
+    title: "Password settings",
     icon: KeyRound,
     items: [],
   },

@@ -107,9 +107,9 @@ export function PlatformLanding() {
               <span className="truncate">Vortex Learning</span>
             </div>
             <h1 className="font-heading text-4xl font-semibold leading-[1.04] sm:text-6xl lg:text-[4.9rem]">
-              Learn without limits.
-              <span className="block text-cyan-100">Every subject.</span>
-              <span className="block text-white">Every goal.</span>
+              Learn without limits
+              <span className="block text-cyan-100">Every subject</span>
+              <span className="block text-white">Every goal</span>
             </h1>
             <p className="mt-5 max-w-[640px] text-base leading-7 text-blue-50 sm:mt-7 sm:text-lg sm:leading-8">
               Vortex Learning brings courses, live classes, tutors, past papers,
@@ -206,7 +206,7 @@ export function PlatformLanding() {
       <Reveal className="section-wrap pt-16 sm:pt-24">
         <SectionHeading
           eyebrow="Find your path"
-          title="Start by curriculum, subject, or learning goal."
+          title="Start by curriculum, subject, or learning goal"
           description="Vortex keeps discovery structured so visitors can move from a broad ambition to a precise course, tutor, resource, or exam plan."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -248,7 +248,7 @@ export function PlatformLanding() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <SectionHeading
             eyebrow="Featured learning"
-            title="A catalog built for breadth without feeling like a marketplace."
+            title="A catalog built for breadth without feeling like a marketplace"
             description="Explore live cohorts, recorded courses, hybrid bootcamps, revision programs, mock exams, assignments, topic practice, and resource hubs."
           />
           <div className="flex gap-2 overflow-x-auto rounded-full border border-vortex-border bg-white p-2 shadow-sm">
@@ -281,7 +281,7 @@ export function PlatformLanding() {
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <SectionHeading
               eyebrow="Accelerated Learning Programs"
-              title="Fast, guided routes for urgent goals."
+              title="Fast, guided routes for urgent goals"
               description="Structured intensive programs for exam rescue, crash revision, entry tests, language goals, and professional skill sprints."
             />
             <div className="grid gap-3 sm:grid-cols-3">
@@ -307,7 +307,7 @@ export function PlatformLanding() {
           <div>
             <SectionHeading
               eyebrow="Subject explorer"
-              title="A disciplined map for every major academic and skills track."
+              title="A disciplined map for every major academic and skills track"
               description="Students can browse with intent, then drill into lessons, tutors, resources, practice, and exam preparation."
             />
             <div className="mt-8 rounded-3xl border border-vortex-border bg-vortex-soft p-6">
@@ -379,7 +379,7 @@ export function PlatformLanding() {
             <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(0deg,rgba(9,29,83,0.92),rgba(9,29,83,0)_100%)] p-5 text-white sm:p-8">
               <p className="text-sm font-semibold text-cyan-100">Meet the instructors</p>
               <h2 className="mt-3 max-w-2xl font-heading text-4xl font-semibold leading-tight">
-                Expert teachers, visible credentials, consultable schedules.
+                Expert teachers, visible credentials, consultable schedules
               </h2>
             </div>
           </div>
@@ -421,7 +421,7 @@ export function PlatformLanding() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <SectionHeading
               eyebrow="See the platform"
-              title="Every role gets a focused workspace."
+              title="Every role gets a focused workspace"
               description="The same ecosystem supports students, parents, teachers, administrators, and developers without turning the homepage into an admin dashboard."
               tone="dark"
             />
@@ -529,7 +529,7 @@ export function PlatformLanding() {
             <div>
               <p className="text-sm font-semibold text-cyan-100">Learn Without Limits.</p>
               <h2 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight sm:text-6xl">
-                Build a serious learning journey with Vortex Learning.
+                Build a serious learning journey with Vortex Learning
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-8 text-blue-50">
                 Explore courses, book guidance, or start the instructor application pathway.

@@ -36,12 +36,12 @@ export const metadata = {
 export default function BlogPage() {
   return (
     <SiteShell>
-      <section className="bg-vortex-navy px-5 py-16 text-white sm:px-8">
+      <section className="page-hero page-hero-blog px-5 py-16 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Blog</p>
             <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-              Exam clarity, study strategy, and career direction.
+              Exam clarity, study strategy, and career direction
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
               A professional publishing surface for articles, tips, tricks,
@@ -57,7 +57,7 @@ export default function BlogPage() {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <SectionHeading
             eyebrow="Editorial library"
-            title="Guidance that supports the courses."
+            title="Guidance that supports the courses"
             description="Posts can connect into course recommendations, resource hubs, past-paper collections, FAQs, and support flows."
           />
           <div className="grid gap-3 sm:grid-cols-3">
@@ -101,7 +101,7 @@ export default function BlogPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr]">
           <SectionHeading
             eyebrow="Content system"
-            title="A searchable knowledge layer for students and families."
+            title="A searchable knowledge layer for students and families"
             description="The blog can house SEO-ready guides while feeding AI support, FAQ answers, consultation prep, and course discovery."
           />
           <div className="grid gap-4 sm:grid-cols-2">

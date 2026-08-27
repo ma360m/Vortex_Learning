@@ -107,7 +107,8 @@ export function CourseCatalog({ courses }: { courses: Course[] }) {
 
   return (
     <section id="catalog" className="section-wrap scroll-mt-28 pt-10 sm:pt-14">
-      <div className="rounded-[1.75rem] border border-vortex-border bg-white p-4 shadow-[0_18px_70px_rgba(9,29,83,0.07)] sm:p-6">
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-vortex-border bg-[linear-gradient(180deg,#ffffff_0%,#f7fbff_100%)] p-4 shadow-[0_18px_70px_rgba(9,29,83,0.07)] sm:p-6">
+        <div className="absolute inset-x-0 top-0 h-1 bg-vortex-gradient" />
         <div className="grid gap-6 xl:grid-cols-[0.75fr_1.25fr] xl:items-end">
           <div>
             <p className="text-xs font-semibold uppercase text-vortex-blue">Explore courses</p>
@@ -120,7 +121,7 @@ export function CourseCatalog({ courses }: { courses: Course[] }) {
           </div>
 
           <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-center">
-            <label className="flex h-12 items-center gap-3 rounded-2xl border border-vortex-border bg-vortex-soft px-4">
+            <label className="flex h-12 items-center gap-3 rounded-2xl border border-vortex-border bg-white px-4 shadow-sm">
               <Search className="size-4 shrink-0 text-vortex-blue" />
               <input
                 value={query}
@@ -132,7 +133,7 @@ export function CourseCatalog({ courses }: { courses: Course[] }) {
             <button
               type="button"
               onClick={resetFilters}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-vortex-border bg-white px-4 text-xs font-semibold text-vortex-navy transition hover:border-vortex-cyan"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-2xl border border-vortex-border bg-white px-4 text-xs font-semibold text-vortex-navy shadow-sm transition hover:border-vortex-cyan"
             >
               <RotateCcw className="size-4 text-vortex-blue" />
               Reset
@@ -147,7 +148,7 @@ export function CourseCatalog({ courses }: { courses: Course[] }) {
               <select
                 value={value}
                 onChange={(event) => setter(event.target.value)}
-                className="h-11 rounded-2xl border border-vortex-border bg-vortex-soft px-4 text-sm font-semibold normal-case text-vortex-navy outline-none transition focus:border-vortex-cyan focus:ring-4 focus:ring-vortex-cyan/15"
+                className="h-11 rounded-2xl border border-vortex-border bg-white px-4 text-sm font-semibold normal-case text-vortex-navy outline-none transition focus:border-vortex-cyan focus:ring-4 focus:ring-vortex-cyan/15"
               >
                 <option>All</option>
                 {options.map((option) => (
@@ -162,7 +163,7 @@ export function CourseCatalog({ courses }: { courses: Course[] }) {
             <select
               value={sortMode}
               onChange={(event) => setSortMode(event.target.value as SortMode)}
-              className="h-11 rounded-2xl border border-vortex-border bg-vortex-soft px-4 text-sm font-semibold normal-case text-vortex-navy outline-none transition focus:border-vortex-cyan focus:ring-4 focus:ring-vortex-cyan/15"
+              className="h-11 rounded-2xl border border-vortex-border bg-white px-4 text-sm font-semibold normal-case text-vortex-navy outline-none transition focus:border-vortex-cyan focus:ring-4 focus:ring-vortex-cyan/15"
             >
               <option value="recommended">Recommended</option>
               <option value="title">A to Z</option>
@@ -171,13 +172,13 @@ export function CourseCatalog({ courses }: { courses: Course[] }) {
           </label>
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-5 flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
           {["All", "Live", "Self paced", "Hybrid", "Bootcamp"].map((item) => (
             <button
               key={item}
               type="button"
               onClick={() => setMode(item)}
-              className={`h-10 rounded-full px-4 text-sm font-semibold transition ${
+              className={`h-10 shrink-0 rounded-full px-4 text-sm font-semibold transition ${
                 mode === item
                   ? "bg-vortex-navy text-white"
                   : "border border-vortex-border bg-white text-vortex-slate hover:border-vortex-cyan"
