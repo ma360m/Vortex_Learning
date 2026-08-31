@@ -8,8 +8,6 @@ import {
   Home,
   KeyRound,
   Mail,
-  MessageSquareQuote,
-  Newspaper,
   ScrollText,
   Settings,
   ShieldCheck,
@@ -21,10 +19,12 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import { PortalLiveSummary, PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
+import { PortalRecordEmptyState } from "@/components/vortex/portal-empty-state";
+import { PortalLiveSummary } from "@/components/vortex/portal-live-data";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { AdminPaymentReviews } from "@/components/vortex/admin-payment-reviews";
 import { AdminRoleRequests } from "@/components/vortex/admin-role-requests";
+import { AdminSiteContentEditor } from "@/components/vortex/admin-site-content-editor";
 import { PasswordSettingsPanel } from "@/components/vortex/password-settings-panel";
 import {
   blogPosts,
@@ -257,90 +257,20 @@ export default async function AdminSectionPage({ params }: { params: Promise<{ s
               <p className="text-xs font-semibold uppercase text-vortex-blue">Site content</p>
               <h2 className="mt-2 font-heading text-3xl font-semibold text-vortex-navy">Editable homepage, feedback, policies, and footer content</h2>
               <p className="mt-2 max-w-3xl text-sm leading-7 text-vortex-muted">
-                These forms are wired to admin actions now. Connect the final database/CMS when you are ready for persisted production editing.
+                Save public website content into Supabase while keeping the built-in defaults available if the content tables are empty.
               </p>
             </div>
             <FileText className="size-5 text-vortex-blue" />
           </div>
 
-          <div className="mt-6 grid gap-5 2xl:grid-cols-2">
-            <form action="/api/vortex/admin-actions" method="post" className="rounded-2xl border border-vortex-border bg-vortex-soft p-4">
-              <input type="hidden" name="intent" value="content-save" />
-              <input type="hidden" name="returnTo" value="/dashboard/admin/content" />
-              <div className="flex items-center gap-3">
-                <Newspaper className="size-5 text-vortex-blue" />
-                <h3 className="text-sm font-semibold text-vortex-navy">Homepage hero and blog guidance</h3>
-              </div>
-              <label className="mt-4 grid gap-2 text-xs font-semibold uppercase text-vortex-blue">
-                Hero badge
-                <input name="hero_badge" defaultValue="Vortex Learning - Learning, structured for your path." className="h-11 rounded-2xl border border-vortex-border bg-white px-4 text-sm normal-case text-vortex-navy outline-none" />
-              </label>
-              <label className="mt-3 grid gap-2 text-xs font-semibold uppercase text-vortex-blue">
-                Blog CTA
-                <input name="blog_cta" defaultValue="Click here to see our blogs" className="h-11 rounded-2xl border border-vortex-border bg-white px-4 text-sm normal-case text-vortex-navy outline-none" />
-              </label>
-              <button className="btn-primary mt-4 h-10 px-4 text-xs">Save homepage content</button>
-            </form>
-
-            <form action="/api/vortex/admin-actions" method="post" className="rounded-2xl border border-vortex-border bg-vortex-soft p-4">
-              <input type="hidden" name="intent" value="project-save" />
-              <input type="hidden" name="returnTo" value="/dashboard/admin/content" />
-              <div className="flex items-center gap-3">
-                <ShieldCheck className="size-5 text-vortex-blue" />
-                <h3 className="text-sm font-semibold text-vortex-navy">Phonics Club attribution</h3>
-              </div>
-              <label className="mt-4 grid gap-2 text-xs font-semibold uppercase text-vortex-blue">
-                Title
-                <input name="project_title" defaultValue={projectAttribution.title} className="h-11 rounded-2xl border border-vortex-border bg-white px-4 text-sm normal-case text-vortex-navy outline-none" />
-              </label>
-              <label className="mt-3 grid gap-2 text-xs font-semibold uppercase text-vortex-blue">
-                Description
-                <textarea name="project_description" defaultValue={projectAttribution.description} className="min-h-24 rounded-2xl border border-vortex-border bg-white px-4 py-3 text-sm normal-case text-vortex-navy outline-none" />
-              </label>
-              <button className="btn-primary mt-4 h-10 px-4 text-xs">Save project section</button>
-            </form>
-
-            <form action="/api/vortex/admin-actions" method="post" className="rounded-2xl border border-vortex-border bg-vortex-soft p-4">
-              <input type="hidden" name="intent" value="feedback-save" />
-              <input type="hidden" name="returnTo" value="/dashboard/admin/content" />
-              <div className="flex items-center gap-3">
-                <MessageSquareQuote className="size-5 text-vortex-blue" />
-                <h3 className="text-sm font-semibold text-vortex-navy">Student feedback</h3>
-              </div>
-              <div className="mt-4 grid gap-3">
-                {studentFeedbacks.map((feedback, index) => (
-                  <label key={feedback.name} className="grid gap-2 text-xs font-semibold uppercase text-vortex-blue">
-                    Feedback {index + 1}
-                    <textarea name={`feedback_${index}`} defaultValue={feedback.quote} className="min-h-20 rounded-2xl border border-vortex-border bg-white px-4 py-3 text-sm normal-case text-vortex-navy outline-none" />
-                  </label>
-                ))}
-              </div>
-              <button className="btn-primary mt-4 h-10 px-4 text-xs">Save feedback</button>
-            </form>
-
-            <form action="/api/vortex/admin-actions" method="post" className="rounded-2xl border border-vortex-border bg-vortex-soft p-4">
-              <input type="hidden" name="intent" value="policy-save" />
-              <input type="hidden" name="returnTo" value="/dashboard/admin/content" />
-              <div className="flex items-center gap-3">
-                <FileText className="size-5 text-vortex-blue" />
-                <h3 className="text-sm font-semibold text-vortex-navy">Policies and socials</h3>
-              </div>
-              <div className="mt-4 grid gap-3">
-                {policyPages.map((policy) => (
-                  <label key={policy.slug} className="grid gap-2 text-xs font-semibold uppercase text-vortex-blue">
-                    {policy.title}
-                    <input name={`policy_${policy.slug}`} defaultValue={policy.summary} className="h-11 rounded-2xl border border-vortex-border bg-white px-4 text-sm normal-case text-vortex-navy outline-none" />
-                  </label>
-                ))}
-                {socialLinks.map((social) => (
-                  <label key={social.label} className="grid gap-2 text-xs font-semibold uppercase text-vortex-blue">
-                    {social.label} URL
-                    <input name={`social_${social.kind}`} defaultValue={social.href} className="h-11 rounded-2xl border border-vortex-border bg-white px-4 text-sm normal-case text-vortex-navy outline-none" />
-                  </label>
-                ))}
-              </div>
-              <button className="btn-primary mt-4 h-10 px-4 text-xs">Save policies and socials</button>
-            </form>
+          <div className="mt-6">
+            <AdminSiteContentEditor
+              heroBadge="Vortex Learning - Learning, structured for your path."
+              feedbacks={studentFeedbacks}
+              policies={policyPages}
+              project={projectAttribution}
+              socials={socialLinks}
+            />
           </div>
 
           <div className="mt-6 rounded-2xl border border-vortex-border bg-vortex-soft p-4">

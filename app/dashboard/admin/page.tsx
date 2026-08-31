@@ -22,7 +22,8 @@ import {
 } from "lucide-react";
 
 import { AdminPaymentReviews } from "@/components/vortex/admin-payment-reviews";
-import { PortalLiveSummary, PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
+import { PortalRecordEmptyState } from "@/components/vortex/portal-empty-state";
+import { PortalLiveSummary } from "@/components/vortex/portal-live-data";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { instructors } from "@/lib/vortex-data";
 

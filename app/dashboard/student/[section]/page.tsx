@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Award, Bookmark, Calendar, HelpCircle, Home, KeyRound, Library, MessageSquare, Send } from "lucide-react";
 
 import { LicenceKeyRedeemer } from "@/components/vortex/licence-key-redeemer";
-import { PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
+import { PortalRecordEmptyState } from "@/components/vortex/portal-empty-state";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { PasswordSettingsPanel } from "@/components/vortex/password-settings-panel";
 

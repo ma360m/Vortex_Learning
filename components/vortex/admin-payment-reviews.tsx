@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { BadgeCheck, CreditCard, Loader2, RefreshCw } from "lucide-react";
 
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase-client";
-import { PortalRecordEmptyState } from "./portal-live-data";
+import { PortalRecordEmptyState } from "./portal-empty-state";
 
 type PaymentRelation = {
   title?: string | null;

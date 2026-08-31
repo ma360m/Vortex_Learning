@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BookOpen, ClipboardCheck, FileQuestion, Home, KeyRound, MessageSquare, Plus, Upload, Users, Video } from "lucide-react";
 
-import { PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
+import { PortalRecordEmptyState } from "@/components/vortex/portal-empty-state";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 
 const navItems: PortalNavItem[] = [

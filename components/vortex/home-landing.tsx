@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -22,11 +23,42 @@ import {
   studentFeedbacks,
   subjects,
 } from "@/lib/vortex-data";
+import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase-client";
 import { SectionHeading } from "./section-heading";
 
 const pathIcons = [Library, BookOpen, Target];
+const defaultHeroBadge = "Vortex Learning - Learning, structured for your path.";
+const defaultFeedbackContent = {
+  eyebrow: "Student feedback",
+  title: "Clear guidance, real progress",
+  body:
+    "Students and families come here for structured courses, practical reminders, teacher support, and a learning path that is easier to follow.",
+  href: "/support#community",
+  secondaryHref: "/blog",
+  secondaryLabel: "See our blogs",
+};
 
-function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+type SiteContentBlockRow = {
+  block_key: string;
+  eyebrow: string | null;
+  title: string | null;
+  body: string | null;
+  href: string | null;
+  metadata: unknown;
+};
+
+type SiteFeedbackRow = {
+  name: string;
+  role: string | null;
+  quote: string;
+  sort_order: number | null;
+};
+
+function readableMetadata(value: unknown) {
+  return value && typeof value === "object" ? value as Record<string, unknown> : {};
+}
+
+function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 24 }}
@@ -41,11 +73,74 @@ function Reveal({ children, className = "" }: { children: React.ReactNode; class
 }
 
 export function HomeLanding() {
+  const [heroBadge, setHeroBadge] = useState(defaultHeroBadge);
+  const [feedbackContent, setFeedbackContent] = useState(defaultFeedbackContent);
+  const [feedbackItems, setFeedbackItems] = useState(studentFeedbacks);
   const stats = [
     [`${courses.length}`, "linked courses"],
     [`${subjects.length}`, "subject tracks"],
     [`${curriculumOptions.length}`, "curriculum routes"],
   ];
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadPublishedContent() {
+      if (!isSupabaseConfigured()) return;
+
+      try {
+        const supabase = getSupabaseClient();
+        const [blocksResult, feedbackResult] = await Promise.all([
+          supabase
+            .from("site_content_blocks")
+            .select("block_key, eyebrow, title, body, href, metadata")
+            .eq("published", true)
+            .in("block_key", ["home_hero_badge", "home_feedback"]),
+          supabase
+            .from("site_student_feedbacks")
+            .select("name, role, quote, sort_order")
+            .eq("published", true)
+            .order("sort_order", { ascending: true }),
+        ]);
+
+        if (!isMounted || blocksResult.error || feedbackResult.error) return;
+
+        const blocks = (blocksResult.data as SiteContentBlockRow[] | null) ?? [];
+        const badgeBlock = blocks.find((block) => block.block_key === "home_hero_badge");
+        const feedbackBlock = blocks.find((block) => block.block_key === "home_feedback");
+
+        if (badgeBlock?.title) setHeroBadge(badgeBlock.title);
+        if (feedbackBlock) {
+          const metadata = readableMetadata(feedbackBlock.metadata);
+          setFeedbackContent({
+            eyebrow: feedbackBlock.eyebrow || defaultFeedbackContent.eyebrow,
+            title: feedbackBlock.title || defaultFeedbackContent.title,
+            body: feedbackBlock.body || defaultFeedbackContent.body,
+            href: feedbackBlock.href || defaultFeedbackContent.href,
+            secondaryHref: typeof metadata.secondary_href === "string" ? metadata.secondary_href : defaultFeedbackContent.secondaryHref,
+            secondaryLabel: typeof metadata.secondary_label === "string" ? metadata.secondary_label : defaultFeedbackContent.secondaryLabel,
+          });
+        }
+
+        const savedFeedbacks = (feedbackResult.data as SiteFeedbackRow[] | null) ?? [];
+        if (savedFeedbacks.length) {
+          setFeedbackItems(savedFeedbacks.map((feedback) => ({
+            name: feedback.name,
+            role: feedback.role || "Student feedback",
+            quote: feedback.quote,
+          })));
+        }
+      } catch {
+        // Keep built-in content when the optional content tables are not installed yet.
+      }
+    }
+
+    void loadPublishedContent();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <>
@@ -65,7 +160,7 @@ export function HomeLanding() {
           <div className="max-w-[700px]">
             <div className="mb-5 inline-flex max-w-full items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-cyan-50 backdrop-blur">
               <span className="size-2.5 rounded-full bg-[#47C8F2]" />
-              <span className="truncate">Vortex Learning - Learning, structured for your path.</span>
+              <span className="truncate">{heroBadge}</span>
             </div>
             <h1 className="font-heading text-4xl font-semibold leading-[1.03] sm:text-5xl lg:text-[4.25rem]">
               One platform
@@ -246,29 +341,28 @@ export function HomeLanding() {
         <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(9,29,83,0.96)_0%,rgba(9,29,83,0.86)_48%,rgba(30,138,203,0.62)_100%)]" />
         <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
-            <p className="text-sm font-semibold uppercase text-[#47C8F2]">Student feedback</p>
+            <p className="text-sm font-semibold uppercase text-[#47C8F2]">{feedbackContent.eyebrow}</p>
             <h2 className="mt-4 max-w-3xl font-heading text-4xl font-semibold leading-tight sm:text-5xl">
-              Clear guidance, real progress
+              {feedbackContent.title}
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-7 text-cyan-50 sm:text-base sm:leading-8">
-              Students and families come here for structured courses, practical
-              reminders, teacher support, and a learning path that is easier to follow.
+              {feedbackContent.body}
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/support#community" className="btn-white h-11 px-5">
+              <Link href={feedbackContent.href} className="btn-white h-11 px-5">
                 Support and community
                 <ArrowRight className="size-4" />
               </Link>
-              <Link href="/blog" className="btn-glass h-11 px-5">
+              <Link href={feedbackContent.secondaryHref} className="btn-glass h-11 px-5">
                 <Newspaper className="size-4" />
-                See our blogs
+                {feedbackContent.secondaryLabel}
               </Link>
             </div>
           </div>
 
           <div className="grid gap-4">
             <div className="grid gap-4 md:grid-cols-2">
-              {studentFeedbacks.map((feedback) => (
+              {feedbackItems.map((feedback) => (
                 <motion.article
                   key={feedback.name}
                   whileHover={{ y: -4 }}

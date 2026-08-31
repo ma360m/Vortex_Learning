@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { CheckCircle2, CreditCard, FileText, Home, KeyRound, MessageSquare, Send, TrendingUp, UserRound, Users } from "lucide-react";
 
-import { PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
+import { PortalRecordEmptyState } from "@/components/vortex/portal-empty-state";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { PasswordSettingsPanel } from "@/components/vortex/password-settings-panel";
 

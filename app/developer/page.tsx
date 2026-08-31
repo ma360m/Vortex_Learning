@@ -6,13 +6,12 @@ import {
   Palette,
   Rocket,
   ScrollText,
-  Server,
   Settings,
   SlidersHorizontal,
   type LucideIcon,
 } from "lucide-react";
 
-import { DashboardHero, MetricCard, Worklist } from "@/components/vortex/dashboard-kit";
+import { DashboardHero } from "@/components/vortex/dashboard-kit";
 import { PortalGate } from "@/components/vortex/portal-gate";
 import { SiteShell } from "@/components/vortex/site-shell";
 
@@ -45,33 +44,25 @@ export default function DeveloperPage() {
         />
 
       <section className="section-wrap">
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          <MetricCard label="Preview builds" value="12" caption="sample queue" icon={Rocket} />
-          <MetricCard label="Feature flags" value="28" caption="sample controls" icon={SlidersHorizontal} />
-          <MetricCard label="CMS records" value="1.8k" caption="sample content" icon={Database} />
-          <MetricCard label="Error rate" value="0.4%" caption="sample telemetry" icon={Server} />
-        </div>
-
-        <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="grid gap-6">
-            <Worklist
-              title="Deployment lane"
-              items={[
-                "Preview: catalog filters",
-                "Production: parent dashboard copy",
-                "Rollback note: certificate template",
-                "Release checklist: AI assistant prompts",
-              ]}
-            />
-            <Worklist
-              title="Developer logs"
-              items={[
-                "Build completed - 2m 14s",
-                "Email digest job delivered",
-                "Feature flag updated: player-dark-mode",
-                "CMS publish: IELTS guide",
-              ]}
-            />
+        <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="rounded-[2rem] border border-vortex-border bg-white p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
+            <div className="flex items-center justify-between">
+              <h2 className="font-heading text-3xl font-semibold text-vortex-navy">
+                Live developer data
+              </h2>
+              <ScrollText className="size-5 text-vortex-blue" />
+            </div>
+            <p className="mt-4 text-sm leading-7 text-vortex-muted">
+              Deployment telemetry, feature flag history, CMS activity, and error logs will appear here after the production developer tables or deployment provider integration are connected. No sample operational numbers are shown.
+            </p>
+            <div className="mt-6 grid gap-3">
+              {["Preview builds", "Feature flags", "CMS records", "Error logs"].map((item) => (
+                <div key={item} className="flex items-center justify-between rounded-2xl bg-vortex-soft px-4 py-3">
+                  <span className="text-sm font-semibold text-vortex-navy">{item}</span>
+                  <span className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-vortex-muted">Awaiting live source</span>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="rounded-[2rem] border border-vortex-border bg-white p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
             <div className="flex items-center justify-between">

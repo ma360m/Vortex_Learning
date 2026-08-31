@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Loader2, ShieldCheck, UserCog } from "lucide-react";
 
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase-client";
-import { PortalRecordEmptyState } from "./portal-live-data";
+import { PortalRecordEmptyState } from "./portal-empty-state";
 
 type ProfileRelation = {
   full_name?: string | null;

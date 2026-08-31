@@ -9,7 +9,8 @@ import {
   Users,
 } from "lucide-react";
 
-import { PortalLiveSummary, PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
+import { PortalRecordEmptyState } from "@/components/vortex/portal-empty-state";
+import { PortalLiveSummary } from "@/components/vortex/portal-live-data";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 
 const navItems: PortalNavItem[] = [

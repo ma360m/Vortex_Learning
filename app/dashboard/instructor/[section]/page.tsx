@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { BookOpen, Calendar, ClipboardCheck, FileText, HelpCircle, Home, KeyRound, MessageSquare, Send, Users, Video } from "lucide-react";
 
-import { PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
+import { PortalRecordEmptyState } from "@/components/vortex/portal-empty-state";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { PasswordSettingsPanel } from "@/components/vortex/password-settings-panel";
 
