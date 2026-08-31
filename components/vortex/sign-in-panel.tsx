@@ -2,7 +2,7 @@
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowRight, KeyRound, Lock, ShieldCheck, UserPlus } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, Lock, ShieldCheck, UserPlus, type LucideIcon } from "lucide-react";
 
 import { canAccessPath, dashboardForRole } from "@/lib/vortex-auth";
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase-client";
@@ -11,14 +11,56 @@ import { cacheVortexProfile, loadCurrentVortexProfile } from "@/lib/supabase-pro
 type AuthMode = "signin" | "signup" | "reset" | "update-password";
 
 const authModes: Array<{
-  value: Exclude<AuthMode, "update-password">;
+  value: "signin" | "signup";
   label: string;
-  icon: typeof Lock;
+  icon: LucideIcon;
 }> = [
   { value: "signin", label: "Sign in", icon: Lock },
   { value: "signup", label: "Create", icon: UserPlus },
-  { value: "reset", label: "Reset", icon: KeyRound },
 ];
+
+function PasswordField({
+  label,
+  value,
+  onChange,
+  placeholder,
+  visible,
+  onToggle,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  visible: boolean;
+  onToggle: () => void;
+}) {
+  const VisibilityIcon = visible ? EyeOff : Eye;
+
+  return (
+    <label className="grid gap-2 text-sm font-semibold text-vortex-navy">
+      {label}
+      <span className="flex h-12 items-center rounded-2xl border border-vortex-border bg-vortex-soft px-4 transition focus-within:border-vortex-cyan focus-within:ring-4 focus-within:ring-vortex-cyan/15">
+        <input
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          type={visible ? "text" : "password"}
+          required
+          minLength={8}
+          className="min-w-0 flex-1 bg-transparent text-sm outline-none"
+          placeholder={placeholder}
+        />
+        <button
+          type="button"
+          onClick={onToggle}
+          className="grid size-9 shrink-0 place-items-center rounded-xl text-vortex-muted transition hover:bg-white hover:text-vortex-blue"
+          aria-label={visible ? "Hide password" : "Show password"}
+        >
+          <VisibilityIcon className="size-4" />
+        </button>
+      </span>
+    </label>
+  );
+}
 
 export function SignInPanel() {
   const router = useRouter();
@@ -33,6 +75,8 @@ export function SignInPanel() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const requestedRole = useMemo(() => {
     if (requestedPath.includes("/admin")) return "Admin Console";
@@ -140,7 +184,7 @@ export function SignInPanel() {
 
       if (mode === "reset") {
         const { error: resetError } = await supabase.auth.resetPasswordForEmail(email.trim().toLowerCase(), {
-          redirectTo: `${window.location.origin}/signin?mode=update-password`,
+          redirectTo: `${window.location.origin}/signin?mode=update-password&next=${encodeURIComponent(requestedPath)}`,
         });
 
         if (resetError) throw new Error(resetError.message);
@@ -172,25 +216,39 @@ export function SignInPanel() {
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-3 gap-2 rounded-2xl bg-vortex-soft p-1 text-xs font-semibold text-vortex-slate">
-        {authModes.map(({ value, label, icon: Icon }) => (
-          <button
-            key={value}
-            type="button"
-            onClick={() => {
-              setMode(value);
-              setError("");
-              setMessage("");
-            }}
-            className={`inline-flex h-10 items-center justify-center gap-2 rounded-xl transition ${
-              mode === value ? "bg-white text-vortex-navy shadow-sm" : "hover:text-vortex-blue"
-            }`}
-          >
-            <Icon className="size-3.5" />
-            {label}
-          </button>
-        ))}
-      </div>
+      {mode !== "reset" && mode !== "update-password" ? (
+        <div className="mt-6 grid grid-cols-2 gap-2 rounded-2xl bg-vortex-soft p-1 text-xs font-semibold text-vortex-slate">
+          {authModes.map(({ value, label, icon: Icon }) => (
+            <button
+              key={value}
+              type="button"
+              onClick={() => {
+                setMode(value);
+                setError("");
+                setMessage("");
+              }}
+              className={`inline-flex h-10 items-center justify-center gap-2 rounded-xl transition ${
+                mode === value ? "bg-white text-vortex-navy shadow-sm" : "hover:text-vortex-blue"
+              }`}
+            >
+              <Icon className="size-3.5" />
+              {label}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            setMode("signin");
+            setError("");
+            setMessage("");
+          }}
+          className="mt-6 inline-flex h-10 w-fit items-center gap-2 rounded-full border border-vortex-border bg-vortex-soft px-4 text-xs font-semibold text-vortex-blue transition hover:bg-white"
+        >
+          Back to sign in
+        </button>
+      )}
 
       <form onSubmit={handleSubmit} className="mt-5 grid gap-4">
         {error && (
@@ -229,32 +287,37 @@ export function SignInPanel() {
           </label>
         )}
         {mode !== "reset" && (
-          <label className="grid gap-2 text-sm font-semibold text-vortex-navy">
-            {mode === "update-password" ? "New password" : "Password"}
-            <input
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              type="password"
-              required
-              minLength={8}
-              className="h-12 rounded-2xl border border-vortex-border bg-vortex-soft px-4 text-sm outline-none transition focus:border-vortex-cyan focus:ring-4 focus:ring-vortex-cyan/15"
-              placeholder={mode === "update-password" ? "Choose a new password" : "Enter password"}
-            />
-          </label>
+          <PasswordField
+            label={mode === "update-password" ? "New password" : "Password"}
+            value={password}
+            onChange={setPassword}
+            visible={showPassword}
+            onToggle={() => setShowPassword((current) => !current)}
+            placeholder={mode === "update-password" ? "Choose a new password" : "Enter password"}
+          />
         )}
         {(mode === "signup" || mode === "update-password") && (
-          <label className="grid gap-2 text-sm font-semibold text-vortex-navy">
-            Confirm password
-            <input
-              value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
-              type="password"
-              required
-              minLength={8}
-              className="h-12 rounded-2xl border border-vortex-border bg-vortex-soft px-4 text-sm outline-none transition focus:border-vortex-cyan focus:ring-4 focus:ring-vortex-cyan/15"
-              placeholder="Repeat password"
-            />
-          </label>
+          <PasswordField
+            label="Confirm password"
+            value={confirmPassword}
+            onChange={setConfirmPassword}
+            visible={showConfirmPassword}
+            onToggle={() => setShowConfirmPassword((current) => !current)}
+            placeholder="Repeat password"
+          />
+        )}
+        {mode === "signin" && (
+          <button
+            type="button"
+            onClick={() => {
+              setMode("reset");
+              setError("");
+              setMessage("");
+            }}
+            className="w-fit text-sm font-semibold text-vortex-blue transition hover:text-vortex-navy"
+          >
+            Forgot password?
+          </button>
         )}
         <button type="submit" disabled={isSubmitting} className="btn-primary h-12 px-5 disabled:opacity-60">
           {mode === "signin"

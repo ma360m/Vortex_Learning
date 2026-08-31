@@ -307,7 +307,6 @@ export const instructors = [
     qualification: "Cambridge, Pearson Edexcel, OCR, AQA, and Oxford board specialist",
     availability: "One-to-one and group sessions",
     rating: "Consultations open",
-    photo: "/instructors/ayesha-saddiqa.png",
     bio: "Cambridge-certified trainer specializing in Physics and Mathematics for students who need stronger concepts, exam technique, and targeted practice. Her sessions focus on clearing weak areas and helping each learner work toward excellence.",
     highlights: [
       "Physics and Mathematics across all levels",
@@ -323,7 +322,6 @@ export const instructors = [
     qualification: "MBBS",
     availability: "Dynamic digital sessions",
     rating: "New profile",
-    photo: "/instructors/aroma-saleem.png",
     bio: "Doctor and biology mentor with strong academic performance and deep familiarity with GCSE, IGCSE, AQA, and Edexcel science syllabi. She uses a tablet and digital stylus to explain diagrams, solve problems, and keep lessons interactive.",
     highlights: [
       "Biology strength backed by MBBS training",
@@ -339,7 +337,6 @@ export const instructors = [
     qualification: "PhD Zoology candidate, MS Zoology, BS Zoology",
     availability: "Biology sessions",
     rating: "Examiner experience",
-    photo: "/instructors/kashmala-aziz.png",
     bio: "Biology lecturer with Lahore College teaching experience, annual board practical duties, and Biology sub-examiner work under BISE Lahore. She brings academic leadership, laboratory practice, and structured feedback into student learning.",
     highlights: [
       "Visiting Lecturer Biology at Lahore College for Women University",
@@ -355,7 +352,6 @@ export const instructors = [
     qualification: "MS Chemistry candidate, BS Chemistry",
     availability: "Chemistry support",
     rating: "New profile",
-    photo: "/instructors/iman-aziz.png",
     bio: "Chemistry educator with BS Chemistry from Lahore College for Women University and current MS Chemistry studies at COMSATS Lahore. Her background includes analytical, organic, inorganic, physical chemistry, biochemistry, and nanocomposite research.",
     highlights: [
       "BS Chemistry with 3.59/4 final grade",

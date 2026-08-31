@@ -56,6 +56,15 @@ const stats = [
 
 const pathIcons = [Library, BookOpen, Target];
 
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+}
+
 function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <motion.section
@@ -390,14 +399,9 @@ export function PlatformLanding() {
                 href="/team#instructors"
                 className="group grid grid-cols-[auto_1fr] items-center gap-4 rounded-3xl border border-vortex-border bg-white p-4 transition hover:-translate-y-1 hover:border-vortex-cyan/60 hover:shadow-[0_18px_70px_rgba(9,29,83,0.1)] sm:grid-cols-[auto_1fr_auto]"
               >
-                <Image
-                  src={instructor.photo}
-                  alt={instructor.name}
-                  width={78}
-                  height={78}
-                  unoptimized
-                  className="size-16 rounded-2xl object-cover"
-                />
+                <span className="grid size-16 place-items-center rounded-2xl bg-[linear-gradient(135deg,#091D53,#1E8ACB)] text-sm font-semibold text-white shadow-sm">
+                  {initials(instructor.name)}
+                </span>
                 <span className="min-w-0">
                   <span className="block font-semibold text-vortex-navy">{instructor.name}</span>
                   <span className="mt-1 block text-sm text-vortex-muted">{instructor.role}</span>

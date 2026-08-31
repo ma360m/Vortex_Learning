@@ -1,10 +1,18 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
 import { SectionHeading } from "@/components/vortex/section-heading";
 import { SiteShell } from "@/components/vortex/site-shell";
 import { instructors } from "@/lib/vortex-data";
+
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+}
 
 export const metadata = {
   title: "Our Team",
@@ -41,15 +49,10 @@ export default function TeamPage() {
                 index === 0 ? "lg:col-span-2" : ""
               }`}
             >
-              <div className="relative mx-auto size-36 overflow-hidden rounded-full border-4 border-white bg-vortex-soft shadow-[0_16px_45px_rgba(9,29,83,0.16)] ring-1 ring-vortex-border sm:mx-0">
-                <Image
-                  src={instructor.photo}
-                  alt={instructor.name}
-                  fill
-                  unoptimized
-                  sizes="144px"
-                  className="object-cover"
-                />
+              <div className="mx-auto grid size-36 place-items-center rounded-full border-4 border-white bg-[radial-gradient(circle_at_32%_26%,#47C8F2_0%,#1E8ACB_38%,#091D53_100%)] text-white shadow-[0_16px_45px_rgba(9,29,83,0.16)] ring-1 ring-vortex-border sm:mx-0">
+                <div className="grid size-28 place-items-center rounded-full border border-white/20 bg-white/10">
+                  <span className="font-heading text-4xl font-semibold">{initials(instructor.name)}</span>
+                </div>
               </div>
               <div className="mt-5 text-center sm:mt-0 sm:pl-6 sm:text-left">
                 <div className="flex flex-wrap justify-center gap-2 sm:justify-start">

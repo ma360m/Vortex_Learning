@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { ArrowRight, Building2, FlaskConical, GraduationCap, Send, Users } from "lucide-react";
@@ -22,16 +21,8 @@ export const metadata = {
 export default function TrainingsPage() {
   return (
     <SiteShell>
-      <section className="relative isolate overflow-hidden bg-vortex-navy px-5 py-16 text-white sm:px-8">
-        <Image
-          src="/vortex-training-collage.png"
-          alt="Vortex Learning science training workshop collage"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[50%_48%]"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.94)_0%,rgba(9,29,83,0.74)_52%,rgba(20,58,132,0.36)_100%)]" />
+      <section className="relative isolate overflow-hidden bg-[linear-gradient(112deg,#091D53_0%,#143A84_58%,#1E8ACB_100%)] px-5 py-16 text-white sm:px-8">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.28)_0%,rgba(9,29,83,0)_100%)]" />
         <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Training Consultancy</p>
@@ -56,16 +47,22 @@ export default function TrainingsPage() {
               </a>
             </div>
           </div>
-          <div className="hidden overflow-hidden rounded-[2rem] border border-white/18 bg-white/10 p-3 shadow-[0_30px_100px_rgba(0,0,0,0.22)] backdrop-blur-xl md:block">
-            <div className="relative min-h-[360px] overflow-hidden rounded-[1.45rem]">
-              <Image
-                src="/vortex-science-demo.png"
-                alt="Science demonstration during a training session"
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
+          <div className="grid gap-3 rounded-[2rem] border border-white/18 bg-white/10 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.16)] backdrop-blur-xl">
+            {trainingTracks.map(([title, text], index) => {
+              const Icon = [FlaskConical, GraduationCap, Building2][index] ?? Users;
+
+              return (
+                <div key={title} className="grid gap-3 rounded-2xl bg-white/10 p-4 sm:grid-cols-[auto_1fr]">
+                  <span className="grid size-11 place-items-center rounded-2xl bg-white text-vortex-blue">
+                    <Icon className="size-5" />
+                  </span>
+                  <div>
+                    <h2 className="text-sm font-semibold text-white">{title}</h2>
+                    <p className="mt-1 text-xs leading-6 text-cyan-50">{text}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -105,31 +102,20 @@ export default function TrainingsPage() {
               title="Tell us what your institution or team needs"
               description="Share the audience, preferred training type, timeline, and whether classroom products are required."
             />
-            <div className="mt-8 overflow-hidden rounded-[1.75rem] border border-vortex-border bg-vortex-soft">
-              <div className="relative min-h-72">
-                <Image
-                  src="/vortex-science-demo.png"
-                  alt="Science demonstration during a training session"
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-5">
-                <p className="text-sm font-semibold text-vortex-navy">Need classroom products?</p>
-                <p className="mt-2 text-sm leading-7 text-vortex-muted">
-                  Visit Phonics Club for relevant products and learning resources.
-                </p>
-                <a
-                  href="https://phonicsclub.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-vortex-blue"
-                >
-                  phonicsclub.com
-                  <ArrowRight className="size-4" />
-                </a>
-              </div>
+            <div className="mt-8 rounded-[1.75rem] border border-vortex-border bg-vortex-soft p-5">
+              <p className="text-sm font-semibold text-vortex-navy">Need classroom products?</p>
+              <p className="mt-2 text-sm leading-7 text-vortex-muted">
+                Visit Phonics Club for relevant products and learning resources.
+              </p>
+              <a
+                href="https://phonicsclub.com"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-vortex-blue"
+              >
+                phonicsclub.com
+                <ArrowRight className="size-4" />
+              </a>
             </div>
           </div>
 
