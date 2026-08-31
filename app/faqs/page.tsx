@@ -42,20 +42,23 @@ export default function FAQsPage() {
       </section>
 
       <section className="section-wrap pt-0">
-        <div className="grid gap-6 rounded-[2rem] bg-vortex-gradient p-7 text-white shadow-[0_26px_90px_rgba(9,29,83,0.22)] lg:grid-cols-[1fr_auto] lg:items-center">
+        <div className="grid gap-6 rounded-[2rem] border border-vortex-border bg-white p-7 shadow-[0_18px_70px_rgba(9,29,83,0.08)] lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <p className="text-sm font-semibold text-cyan-100">Still need help?</p>
-            <h2 className="mt-3 font-heading text-4xl font-semibold">Talk to Vortex support or book a consultation</h2>
+            <p className="text-sm font-semibold text-vortex-blue">Still need help?</p>
+            <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">Reach Vortex support directly</h2>
+            <div className="mt-4 flex flex-wrap gap-4 text-sm font-semibold">
+              <a href="mailto:support@vortexelearning.com" className="text-vortex-blue">
+                support@vortexelearning.com
+              </a>
+              <a href="tel:+923244270697" className="text-vortex-blue">
+                +92 324 4270697
+              </a>
+            </div>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link href="/support" className="btn-white h-11 px-5">
-              Support
-            </Link>
-            <Link href="/consultation" className="btn-glass h-11 px-5">
-              Book Consultation
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
+          <Link href="/support" className="btn-secondary h-11 px-5">
+            Open Support
+            <ArrowRight className="size-4" />
+          </Link>
         </div>
       </section>
     </SiteShell>

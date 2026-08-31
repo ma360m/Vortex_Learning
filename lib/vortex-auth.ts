@@ -1,12 +1,13 @@
 export type VortexRole = "student" | "parent" | "instructor" | "admin" | "developer";
 
 export type VortexProfile = {
+  id?: string;
   name: string;
   email: string;
   role: VortexRole;
+  phone?: string;
+  avatarUrl?: string;
 };
-
-export const approvedAdminEmails = ["maryamrrehman@gmail.com"];
 
 export const roleLabels: Record<VortexRole, string> = {
   student: "Student LMS",
@@ -40,16 +41,4 @@ export function roleFromPath(path: string): VortexRole | null {
 export function canAccessPath(role: VortexRole, path: string) {
   const requiredRole = roleFromPath(path);
   return !requiredRole || requiredRole === role;
-}
-
-export function findProfileByEmail(email: string) {
-  const normalizedEmail = email.trim().toLowerCase();
-  const role: VortexRole = approvedAdminEmails.includes(normalizedEmail) ? "admin" : "student";
-  const name = normalizedEmail.split("@")[0] || "Student";
-
-  return {
-    name,
-    email: normalizedEmail,
-    role,
-  };
 }

@@ -4,6 +4,7 @@ const validIntents = new Set([
   "student-unlock",
   "student-help",
   "support-ticket",
+  "consultation-request",
   "course-payment-register",
   "payment-slip-upload",
   "training-consultancy",
@@ -12,7 +13,7 @@ const validIntents = new Set([
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  return redirectWithIntent({
+  return await redirectWithIntent({
     request,
     formData,
     validIntents,

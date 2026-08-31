@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { BookOpen, Calendar, ClipboardCheck, FileText, HelpCircle, Home, KeyRound, MessageSquare, Send, Users, Video } from "lucide-react";
 
+import { PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { PasswordSettingsPanel } from "@/components/vortex/password-settings-panel";
 
@@ -18,25 +19,25 @@ const content = {
     active: "Live classes",
     title: "Live session scheduler",
     icon: Calendar,
-    items: ["O Level Physics - 7:30 PM Zoom", "Mechanics clinic - Google Meet", "Parent consultation - notes ready"],
+    items: [],
   },
   students: {
     active: "Students",
     title: "Student progress",
     icon: Users,
-    items: ["Ayaan Khan - 62% Physics", "Noor Ahmed - 81% Mechanics", "Hamza Ali - 44% revision sprint"],
+    items: [],
   },
   assignments: {
     active: "Assignments",
     title: "Assignment review",
     icon: FileText,
-    items: ["Momentum worksheet - 12 submissions", "Electricity quiz - 7 pending", "Past paper review - 3 escalated"],
+    items: [],
   },
   discussion: {
     active: "Discussion",
     title: "Instructor help queue",
     icon: HelpCircle,
-    items: ["Ayaan: Momentum worksheet question", "Noor: Book live doubt session", "Hamza: Past paper marking request"],
+    items: [],
   },
   password: {
     active: "Password",
@@ -57,7 +58,7 @@ export default async function InstructorSectionPage({ params }: { params: Promis
   const Icon = page.icon;
 
   return (
-    <PortalShell role="Instructor LMS" title={page.title} description="Instructor-only workspace for teaching operations and student support." active={page.active} user="Dr. Ayesha" navItems={navItems}>
+    <PortalShell role="Instructor LMS" title={page.title} description="Instructor-only workspace for teaching operations and student support." active={page.active} user="Instructor" navItems={navItems}>
       {section === "password" ? (
         <PasswordSettingsPanel action="/api/vortex/instructor-actions" returnTo="/dashboard/instructor/password" />
       ) : (
@@ -66,10 +67,20 @@ export default async function InstructorSectionPage({ params }: { params: Promis
           <h2 className="font-heading text-3xl font-semibold text-vortex-navy">{page.active}</h2>
           <Icon className="size-5 text-vortex-blue" />
         </div>
-        <div className="mt-5 grid gap-3">
-          {page.items.map((item) => (
-            <div key={item} className="rounded-2xl bg-vortex-soft p-4 text-sm font-semibold text-vortex-navy">{item}</div>
-          ))}
+        <div className="mt-5">
+          {page.items.length ? (
+            <div className="grid gap-3">
+              {page.items.map((item) => (
+                <div key={item} className="rounded-2xl bg-vortex-soft p-4 text-sm font-semibold text-vortex-navy">{item}</div>
+              ))}
+            </div>
+          ) : (
+            <PortalRecordEmptyState
+              title="No live records yet"
+              description={`${page.active} will appear here after this instructor profile owns courses, sessions, assignments, or discussion requests in Supabase.`}
+              icon={page.icon}
+            />
+          )}
         </div>
         <form action="/api/vortex/instructor-actions" method="post" className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto]">
           <input type="hidden" name="intent" value={section === "live" ? "instructor-live" : "student-help"} />

@@ -21,12 +21,12 @@ const catalogStats: Array<[LucideIcon, string, string]> = [
 ];
 
 const catalogRoutes = [
-  "Curriculum",
-  "Subject",
-  "Live classes",
-  "Accelerated",
-  "Past papers",
-  "Self paced",
+  ["Curriculum", "/courses?board=FSc#catalog"],
+  ["Subject", "/courses?subject=Physics#catalog"],
+  ["Live classes", "/courses?mode=Live#catalog"],
+  ["Accelerated", "/courses?query=accelerated#catalog"],
+  ["Past papers", "/courses?query=past%20paper#catalog"],
+  ["Self paced", "/courses?mode=Self%20paced#catalog"],
 ];
 
 export const metadata = {
@@ -35,7 +35,45 @@ export const metadata = {
     "Explore Vortex Learning courses across O Level, A Level, IGCSE, FSc, Matric, SAT, IELTS, AI, programming, business, science, and more.",
 };
 
-export default function CoursesPage() {
+function firstParam(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function sortParam(value: string | string[] | undefined): "recommended" | "title" | "lessons" {
+  const next = firstParam(value);
+  return next === "title" || next === "lessons" ? next : "recommended";
+}
+
+export default async function CoursesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    query?: string | string[];
+    mode?: string | string[];
+    subject?: string | string[];
+    board?: string | string[];
+    category?: string | string[];
+    sort?: string | string[];
+  }>;
+}) {
+  const filters = await searchParams;
+  const initialFilters = {
+    query: firstParam(filters.query) ?? "",
+    mode: firstParam(filters.mode) ?? "All",
+    subject: firstParam(filters.subject) ?? "All",
+    board: firstParam(filters.board) ?? "All",
+    category: firstParam(filters.category) ?? "All",
+    sort: sortParam(filters.sort),
+  };
+  const catalogKey = [
+    initialFilters.query,
+    initialFilters.mode,
+    initialFilters.subject,
+    initialFilters.board,
+    initialFilters.category,
+    initialFilters.sort,
+  ].join("|");
+
   return (
     <SiteShell>
       <section className="page-hero page-hero-courses px-5 py-16 text-white sm:px-8">
@@ -84,10 +122,10 @@ export default function CoursesPage() {
             <div className="mt-5 rounded-2xl border border-white/14 bg-[#071847]/35 p-4">
               <p className="text-xs font-semibold uppercase text-cyan-100">Fast routes</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {catalogRoutes.map((route) => (
+                {catalogRoutes.map(([route, href]) => (
                   <Link
                     key={route}
-                    href="#catalog"
+                    href={href}
                     className="rounded-full border border-white/14 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white transition hover:border-[#47C8F2]/70 hover:bg-white/16"
                   >
                     {route}
@@ -99,7 +137,7 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      <CourseCatalog courses={courses} />
+      <CourseCatalog key={catalogKey} courses={courses} initialFilters={initialFilters} />
 
       <section className="section-wrap pt-0">
         <div className="grid gap-6 rounded-[2rem] border border-vortex-border bg-white p-7 shadow-[0_18px_70px_rgba(9,29,83,0.08)] lg:grid-cols-[1fr_auto] lg:items-center">

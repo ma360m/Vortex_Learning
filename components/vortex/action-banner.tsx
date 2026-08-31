@@ -20,6 +20,7 @@ const messages: Record<string, string> = {
   "instructor-live": "Live session request saved.",
   "parent-message": "Parent message sent.",
   "support-ticket": "Support ticket submitted.",
+  "consultation-request": "Consultation request submitted.",
   "training-consultancy": "Training consultancy request submitted.",
   "content-save": "Homepage content update received.",
   "feedback-save": "Student feedback update received.",

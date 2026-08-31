@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 
 import { VortexLogo } from "./logo";
+import { PortalProfileBadge } from "./portal-profile-badge";
 import { SignOutButton } from "./sign-out-button";
 import { ActionBanner } from "./action-banner";
 
@@ -37,6 +38,13 @@ function passwordHrefForRole(role: string) {
   return "/dashboard/student/password";
 }
 
+function notificationHrefForRole(role: string) {
+  if (role.includes("Parent")) return "/dashboard/parent/messages";
+  if (role.includes("Instructor")) return "/dashboard/instructor/discussion";
+  if (role.includes("Admin")) return "/dashboard/admin/support";
+  return "/dashboard/student/help";
+}
+
 export function PortalShell({
   role,
   title,
@@ -47,6 +55,7 @@ export function PortalShell({
   children,
 }: PortalShellProps) {
   const passwordHref = passwordHrefForRole(role);
+  const notificationHref = notificationHrefForRole(role);
 
   return (
     <div className="min-h-screen bg-[#eef6ff] text-vortex-navy">
@@ -60,7 +69,7 @@ export function PortalShell({
             <p className="mt-1 text-xs leading-5 text-cyan-100">Signed-in workspace</p>
           </div>
 
-          <nav className="mt-5 grid gap-1" aria-label={`${role} navigation`}>
+          <nav className="mt-5 grid min-h-0 gap-1 overflow-y-auto pr-1" aria-label={`${role} navigation`}>
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = item.label === active;
@@ -83,15 +92,7 @@ export function PortalShell({
           </nav>
 
           <div className="mt-auto rounded-[1.35rem] border border-white/12 bg-white/8 p-4">
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-full bg-[#47C8F2] text-sm font-bold text-vortex-navy">
-                {user.slice(0, 1)}
-              </span>
-              <div className="min-w-0">
-                <p className="truncate text-sm font-semibold">{user}</p>
-                <p className="text-xs text-cyan-100">Signed-in profile</p>
-              </div>
-            </div>
+            <PortalProfileBadge fallback={user} variant="sidebar" />
             <Link
               href={passwordHref}
               className="mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-full border border-white/15 text-xs font-semibold text-cyan-50 transition hover:bg-white/10"
@@ -159,19 +160,14 @@ export function PortalShell({
               >
                 <KeyRound className="size-4" />
               </Link>
-              <button
-                type="button"
+              <Link
+                href={notificationHref}
                 className="grid size-11 place-items-center rounded-full border border-vortex-border bg-white text-vortex-navy transition hover:border-vortex-cyan"
-                aria-label="Notifications"
+                aria-label="Open messages and notifications"
               >
                 <Bell className="size-4" />
-              </button>
-              <div className="hidden items-center gap-2 rounded-full border border-vortex-border bg-white py-1 pl-1 pr-3 sm:flex">
-                <span className="grid size-9 place-items-center rounded-full bg-vortex-gradient text-sm font-bold text-white">
-                  {user.slice(0, 1)}
-                </span>
-                <span className="text-sm font-semibold text-vortex-navy">{user}</span>
-              </div>
+              </Link>
+              <PortalProfileBadge fallback={user} />
             </div>
           </div>
         </header>

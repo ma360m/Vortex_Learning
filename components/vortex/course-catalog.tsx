@@ -19,6 +19,14 @@ import type { Course } from "@/lib/vortex-data";
 import { CourseCard } from "./course-card";
 
 type SortMode = "recommended" | "title" | "lessons";
+type CatalogInitialFilters = {
+  query?: string;
+  mode?: string;
+  subject?: string;
+  board?: string;
+  category?: string;
+  sort?: SortMode;
+};
 
 function unique(values: string[]) {
   return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b));
@@ -33,13 +41,19 @@ function hasAcceleratedSignal(course: Course) {
   return text.includes("accelerated") || text.includes("crash") || text.includes("entry");
 }
 
-export function CourseCatalog({ courses }: { courses: Course[] }) {
-  const [query, setQuery] = useState("");
-  const [mode, setMode] = useState("All");
-  const [subject, setSubject] = useState("All");
-  const [board, setBoard] = useState("All");
-  const [category, setCategory] = useState("All");
-  const [sortMode, setSortMode] = useState<SortMode>("recommended");
+export function CourseCatalog({
+  courses,
+  initialFilters,
+}: {
+  courses: Course[];
+  initialFilters?: CatalogInitialFilters;
+}) {
+  const [query, setQuery] = useState(initialFilters?.query ?? "");
+  const [mode, setMode] = useState(initialFilters?.mode ?? "All");
+  const [subject, setSubject] = useState(initialFilters?.subject ?? "All");
+  const [board, setBoard] = useState(initialFilters?.board ?? "All");
+  const [category, setCategory] = useState(initialFilters?.category ?? "All");
+  const [sortMode, setSortMode] = useState<SortMode>(initialFilters?.sort ?? "recommended");
 
   const modes = useMemo(() => unique(courses.map((course) => course.mode)), [courses]);
   const subjects = useMemo(() => unique(courses.map((course) => course.subject)), [courses]);

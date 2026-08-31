@@ -11,7 +11,6 @@ import {
   Library,
   MessageSquareQuote,
   Newspaper,
-  ShieldCheck,
   Sparkles,
   Target,
 } from "lucide-react";
@@ -20,7 +19,6 @@ import {
   courses,
   curriculumOptions,
   learningPaths,
-  projectAttribution,
   studentFeedbacks,
   subjects,
 } from "@/lib/vortex-data";
@@ -237,80 +235,55 @@ export function HomeLanding() {
         </div>
       </Reveal>
 
-      <Reveal className="page-hero page-hero-course-detail py-14 text-white sm:py-20">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+      <Reveal className="relative isolate overflow-hidden bg-vortex-navy py-14 text-white sm:py-20">
+        <Image
+          src="/vortex-audience-session.jpeg"
+          alt="Vortex Learning students and families in a guided session"
+          fill
+          sizes="100vw"
+          className="object-cover object-[50%_46%] opacity-55"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(9,29,83,0.96)_0%,rgba(9,29,83,0.86)_48%,rgba(30,138,203,0.62)_100%)]" />
+        <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Student feedback</p>
             <h2 className="mt-4 max-w-3xl font-heading text-4xl font-semibold leading-tight sm:text-5xl">
-              Structure that makes learning feel calmer
+              Clear guidance, real progress
             </h2>
             <p className="mt-5 max-w-xl text-sm leading-7 text-cyan-50 sm:text-base sm:leading-8">
-              Students and families notice the same thing first: clear paths,
-              practical reminders, and teacher guidance make progress easier to follow.
+              Students and families come here for structured courses, practical
+              reminders, teacher support, and a learning path that is easier to follow.
             </p>
-          </div>
-          <div className="grid gap-3 md:grid-cols-3 lg:gap-4">
-            {studentFeedbacks.map((feedback) => (
-              <motion.article
-                key={feedback.name}
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.2 }}
-                className="rounded-2xl border border-white/18 bg-white/12 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.16)] backdrop-blur-md"
-              >
-                <MessageSquareQuote className="size-5 text-[#47C8F2]" />
-                <p className="mt-5 text-sm leading-7 text-blue-50">{feedback.quote}</p>
-                <div className="mt-5 border-t border-white/14 pt-4">
-                  <p className="text-sm font-semibold text-white">{feedback.name}</p>
-                  <p className="mt-1 text-xs text-cyan-100">{feedback.role}</p>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-
-      <Reveal className="bg-white px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] border border-vortex-border shadow-[0_18px_70px_rgba(9,29,83,0.08)] lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="bg-vortex-gradient p-7 text-white sm:p-9">
-            <p className="text-sm font-semibold text-cyan-100">Phonics Club initiative</p>
-            <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight">
-              {projectAttribution.title}
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-blue-50">{projectAttribution.description}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {projectAttribution.points.map((point) => (
-                <span key={point} className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-2 text-xs font-semibold text-cyan-50">
-                  <ShieldCheck className="size-4 text-[#47C8F2]" />
-                  {point}
-                </span>
-              ))}
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/support#community" className="btn-white h-11 px-5">
+                Support and community
+                <ArrowRight className="size-4" />
+              </Link>
+              <Link href="/blog" className="btn-glass h-11 px-5">
+                <Newspaper className="size-4" />
+                See our blogs
+              </Link>
             </div>
           </div>
-          <div className="grid divide-y divide-vortex-border bg-white">
-            <Link
-              href="/about#phonics-club"
-              className="group flex items-center justify-between gap-6 p-7 transition hover:bg-vortex-soft sm:p-9"
-            >
-              <div>
-                <p className="text-sm font-semibold text-vortex-blue">About Vortex</p>
-                <h3 className="mt-2 font-heading text-3xl font-semibold leading-tight text-vortex-navy">
-                  Learn more about the project background
-                </h3>
-              </div>
-              <ArrowRight className="size-5 shrink-0 text-vortex-cyan transition group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/blog"
-              className="group flex items-center justify-between gap-6 p-7 transition hover:bg-vortex-soft sm:p-9"
-            >
-              <div>
-                <p className="text-sm font-semibold text-vortex-blue">Blog and guidance</p>
-                <h3 className="mt-2 font-heading text-3xl font-semibold leading-tight text-vortex-navy">
-                  Click here to see our blogs
-                </h3>
-              </div>
-              <Newspaper className="size-5 shrink-0 text-vortex-cyan transition group-hover:translate-x-1" />
-            </Link>
+
+          <div className="grid gap-4">
+            <div className="grid gap-4 md:grid-cols-2">
+              {studentFeedbacks.map((feedback) => (
+                <motion.article
+                  key={feedback.name}
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="rounded-2xl border border-white/18 bg-white/12 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.16)] backdrop-blur-md"
+                >
+                  <MessageSquareQuote className="size-5 text-[#47C8F2]" />
+                  <p className="mt-5 text-sm leading-7 text-blue-50">{feedback.quote}</p>
+                  <div className="mt-5 border-t border-white/14 pt-4">
+                    <p className="text-sm font-semibold text-white">{feedback.name}</p>
+                    <p className="mt-1 text-xs text-cyan-100">{feedback.role}</p>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
           </div>
         </div>
       </Reveal>

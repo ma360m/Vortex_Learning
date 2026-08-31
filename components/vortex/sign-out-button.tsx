@@ -3,11 +3,19 @@
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 
+import { getSupabaseClient } from "@/lib/supabase-client";
+import { clearCachedVortexProfile } from "@/lib/supabase-profile";
+
 export function SignOutButton() {
   const router = useRouter();
 
-  function signOut() {
-    window.localStorage.removeItem("vortex_session");
+  async function signOut() {
+    try {
+      await getSupabaseClient().auth.signOut();
+    } finally {
+      clearCachedVortexProfile();
+    }
+
     router.push("/signin");
   }
 

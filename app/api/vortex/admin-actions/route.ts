@@ -18,6 +18,9 @@ const validIntents = new Set([
   "policy-save",
   "social-save",
   "ai-agent-save",
+  "email-save",
+  "tutor-request-save",
+  "log-review",
   "settings-save",
   "password-change",
   "resource-save",
@@ -38,5 +41,5 @@ function redirectBack(request: Request, formData: FormData) {
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  return redirectBack(request, formData);
+  return await redirectBack(request, formData);
 }

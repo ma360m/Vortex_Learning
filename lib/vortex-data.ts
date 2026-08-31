@@ -99,22 +99,34 @@ export const courses: Course[] = generatedCourses;
 
 export const studentFeedbacks = [
   {
+    name: "O Level learner",
+    role: "Physics exam preparation",
+    quote:
+      "My papers went extremely well, especially Physics. Mark-scheme practice helped me understand what examiners wanted and shape stronger answers.",
+  },
+  {
+    name: "Parent feedback",
+    role: "Concept clarity and progress",
+    quote:
+      "She loved studying with Ms Aiyesha and showed clear progress after starting lessons. We are grateful for the care and effort.",
+  },
+  {
+    name: "Mathematics learner",
+    role: "Confidence before exams",
+    quote:
+      "My maths exam felt so much easier. Thank you for devoting your time and helping me understand the questions with confidence.",
+  },
+  {
+    name: "Long-term learner",
+    role: "Three-year journey",
+    quote:
+      "Ms Aiyesha helped me rise when I had almost given up. Her teaching and encouragement made these exams possible.",
+  },
+  {
     name: "A Level learner",
-    role: "Physics and Mathematics",
+    role: "Moving forward",
     quote:
-      "The course structure helped me see exactly what to study next instead of jumping between random notes and videos.",
-  },
-  {
-    name: "Parent of O Level student",
-    role: "Parent visibility",
-    quote:
-      "The organized path, reminders, and teacher feedback make it much easier to support learning from home.",
-  },
-  {
-    name: "Entry test student",
-    role: "Accelerated program",
-    quote:
-      "The revision plan and practice checkpoints made the final weeks before the exam feel manageable.",
+      "My family is happy and proud. After O Levels, I feel ready and motivated to begin A Levels with full focus.",
   },
 ];
 
@@ -252,73 +264,104 @@ export const policyPages = [
 ];
 
 export const socialLinks = [
-  { label: "Facebook", href: "#", kind: "facebook" },
-  { label: "Instagram", href: "#", kind: "instagram" },
-  { label: "LinkedIn", href: "#", kind: "linkedin" },
-  { label: "YouTube", href: "#", kind: "youtube" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/vortex.learning?igsi=ZDNlZDc0MzIxNw==",
+    kind: "instagram",
+  },
+  {
+    label: "YouTube",
+    href: "https://youtube.com/@vortex-elearning?si=itlglnaI6To7Msuv",
+    kind: "youtube",
+  },
 ];
 
+function courseCountLabel(subject: string) {
+  const count = courses.filter((course) => course.subject.toLowerCase() === subject.toLowerCase()).length;
+  return `${count} course${count === 1 ? "" : "s"}`;
+}
+
 export const subjects = [
-  { title: "Physics", cluster: "Science", description: "Concept modeling, labs, numericals, and exam method.", count: "38 courses" },
-  { title: "Chemistry", cluster: "Science", description: "Physical, organic, inorganic, and board-focused revision.", count: "31 courses" },
-  { title: "Biology", cluster: "Science", description: "Diagrams, systems, memorization strategy, and MCQ practice.", count: "29 courses" },
-  { title: "Mathematics", cluster: "Core", description: "Algebra, calculus, statistics, mechanics, and past papers.", count: "44 courses" },
-  { title: "English", cluster: "Language", description: "Academic writing, IELTS, grammar, literature, and speaking.", count: "22 courses" },
-  { title: "Computer Science", cluster: "Technology", description: "Theory, programming, databases, algorithms, and projects.", count: "27 courses" },
-  { title: "Economics", cluster: "Commerce", description: "Micro, macro, policy analysis, diagrams, and essays.", count: "18 courses" },
-  { title: "Accounting", cluster: "Commerce", description: "Ledgers, financial statements, ratios, and exam drills.", count: "16 courses" },
-  { title: "Business", cluster: "Commerce", description: "Strategy, operations, marketing, finance, and case writing.", count: "21 courses" },
-  { title: "Psychology", cluster: "Humanities", description: "Research methods, case studies, and structured responses.", count: "12 courses" },
-  { title: "Statistics", cluster: "Core", description: "Probability, distributions, interpretation, and data tasks.", count: "14 courses" },
-  { title: "AI", cluster: "Technology", description: "AI literacy, prompt systems, projects, and responsible use.", count: "11 courses" },
-  { title: "Programming", cluster: "Technology", description: "Python, web, problem solving, and portfolio projects.", count: "20 courses" },
-  { title: "Languages", cluster: "Language", description: "English fluency, exam speaking, and academic communication.", count: "15 courses" },
+  { title: "Physics", cluster: "Science", description: "Concept modeling, labs, numericals, and exam method.", count: courseCountLabel("Physics") },
+  { title: "Chemistry", cluster: "Science", description: "Physical, organic, inorganic, and board-focused revision.", count: courseCountLabel("Chemistry") },
+  { title: "Biology", cluster: "Science", description: "Diagrams, systems, memorization strategy, and MCQ practice.", count: courseCountLabel("Biology") },
+  { title: "Mathematics", cluster: "Core", description: "Algebra, calculus, statistics, mechanics, and past papers.", count: courseCountLabel("Mathematics") },
+  { title: "English", cluster: "Language", description: "Academic writing, IELTS, grammar, literature, and speaking.", count: courseCountLabel("English") },
+  { title: "Computer Science", cluster: "Technology", description: "Theory, programming, databases, algorithms, and projects.", count: courseCountLabel("Computer Science") },
+  { title: "Economics", cluster: "Commerce", description: "Micro, macro, policy analysis, diagrams, and essays.", count: courseCountLabel("Economics") },
+  { title: "Accounting", cluster: "Commerce", description: "Ledgers, financial statements, ratios, and exam drills.", count: courseCountLabel("Accounting") },
+  { title: "Business", cluster: "Commerce", description: "Strategy, operations, marketing, finance, and case writing.", count: courseCountLabel("Business") },
+  { title: "Psychology", cluster: "Humanities", description: "Research methods, case studies, and structured responses.", count: courseCountLabel("Psychology") },
+  { title: "Statistics", cluster: "Core", description: "Probability, distributions, interpretation, and data tasks.", count: courseCountLabel("Statistics") },
+  { title: "AI", cluster: "Technology", description: "AI literacy, prompt systems, projects, and responsible use.", count: courseCountLabel("AI") },
+  { title: "Programming", cluster: "Technology", description: "Python, web, problem solving, and portfolio projects.", count: courseCountLabel("Programming") },
+  { title: "Languages", cluster: "Language", description: "English fluency, exam speaking, and academic communication.", count: courseCountLabel("Languages") },
 ];
 
 export const instructors = [
   {
-    name: "Dr. Ayesha Rahman",
-    role: "Lead Science Instructor",
-    subjects: ["Physics", "Chemistry", "O Level"],
-    experience: "12 years",
-    qualification: "PhD Physics Education",
-    availability: "Weekday evenings",
-    rating: "4.9",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=720&q=75",
-    bio: "Specializes in turning abstract science into disciplined exam answers and strong conceptual intuition.",
+    name: "Aiyesha Saddiqua",
+    role: "Cambridge-certified Physics and Mathematics Trainer",
+    subjects: ["Physics", "Mathematics", "IB", "IGCSE/GCSE", "A Level"],
+    experience: "IGCSE, O Level, A Level",
+    qualification: "Cambridge, Pearson Edexcel, OCR, AQA, and Oxford board specialist",
+    availability: "One-to-one and group sessions",
+    rating: "Consultations open",
+    photo: "/instructors/ayesha-saddiqa.png",
+    bio: "Cambridge-certified trainer specializing in Physics and Mathematics for students who need stronger concepts, exam technique, and targeted practice. Her sessions focus on clearing weak areas and helping each learner work toward excellence.",
+    highlights: [
+      "Physics and Mathematics across all levels",
+      "IB, Pearson Edexcel, Cambridge, AQA, Oxford, A Level, IGCSE, and GCSE",
+      "Concept clarity, exam technique, and structured practice",
+    ],
   },
   {
-    name: "Hamza Qureshi",
-    role: "Mathematics Program Director",
-    subjects: ["A Level Math", "Statistics", "SAT"],
-    experience: "10 years",
-    qualification: "MSc Applied Mathematics",
-    availability: "Live cohorts",
-    rating: "4.8",
-    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=720&q=75",
-    bio: "Builds structured problem-solving systems for students preparing for advanced boards and university entry.",
+    name: "Dr. Aroma Saleem",
+    role: "Biology Instructor and Medical Sciences Mentor",
+    subjects: ["Biology", "GCSE", "IGCSE", "AQA", "Edexcel"],
+    experience: "Medical science teaching",
+    qualification: "MBBS",
+    availability: "Dynamic digital sessions",
+    rating: "New profile",
+    photo: "/instructors/aroma-saleem.png",
+    bio: "Doctor and biology mentor with strong academic performance and deep familiarity with GCSE, IGCSE, AQA, and Edexcel science syllabi. She uses a tablet and digital stylus to explain diagrams, solve problems, and keep lessons interactive.",
+    highlights: [
+      "Biology strength backed by MBBS training",
+      "GCSE, IGCSE, AQA, and Edexcel syllabus support",
+      "Virtual whiteboard lessons with diagrams and active problem-solving",
+    ],
   },
   {
-    name: "Sara Malik",
-    role: "English and IELTS Coach",
-    subjects: ["IELTS", "English Language", "Writing"],
-    experience: "9 years",
-    qualification: "MA Applied Linguistics",
-    availability: "Consultations open",
-    rating: "4.9",
-    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=720&q=75",
-    bio: "Coaches international students through speaking confidence, academic writing, and band-focused improvement.",
+    name: "Kashmala Aziz",
+    role: "Biology Lecturer and Zoologist",
+    subjects: ["Biology", "Zoology", "FSc", "Board practicals"],
+    experience: "4+ years",
+    qualification: "PhD Zoology candidate, MS Zoology, BS Zoology",
+    availability: "Biology sessions",
+    rating: "Examiner experience",
+    photo: "/instructors/kashmala-aziz.png",
+    bio: "Biology lecturer with Lahore College teaching experience, annual board practical duties, and Biology sub-examiner work under BISE Lahore. She brings academic leadership, laboratory practice, and structured feedback into student learning.",
+    highlights: [
+      "Visiting Lecturer Biology at Lahore College for Women University",
+      "BISE Lahore practical examiner and sub-examiner experience",
+      "Academic Roll of Honour and Zoological Sorority leadership",
+    ],
   },
   {
-    name: "Musa Siddiqui",
-    role: "AI and Programming Mentor",
-    subjects: ["Programming", "AI", "Computer Science"],
-    experience: "8 years",
-    qualification: "Software Engineer, ML Systems",
-    availability: "Weekend bootcamps",
-    rating: "4.8",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=720&q=75",
-    bio: "Helps students build practical technology skills through projects, code reviews, and AI-supported workflows.",
+    name: "Iman Aziz",
+    role: "Chemistry Instructor and Research Mentor",
+    subjects: ["Chemistry", "Analytical Chemistry", "Organic Chemistry", "Physical Chemistry"],
+    experience: "Research-focused chemistry",
+    qualification: "MS Chemistry candidate, BS Chemistry",
+    availability: "Chemistry support",
+    rating: "New profile",
+    photo: "/instructors/iman-aziz.png",
+    bio: "Chemistry educator with BS Chemistry from Lahore College for Women University and current MS Chemistry studies at COMSATS Lahore. Her background includes analytical, organic, inorganic, physical chemistry, biochemistry, and nanocomposite research.",
+    highlights: [
+      "BS Chemistry with 3.59/4 final grade",
+      "MS Chemistry at COMSATS University Islamabad, Lahore Campus",
+      "Research on graphene-based ZnO nanocomposites and green solvents",
+    ],
   },
 ];
 
@@ -351,46 +394,32 @@ export const platformRoles = [
 
 export const team = [
   {
-    name: "Zara Farooq",
-    role: "Founder and Academic Lead",
-    group: "Leadership",
-    experience: "15 years in education strategy",
-    qualification: "MEd Learning Design",
+    name: "Aiyesha Saddiqua",
+    role: "Physics and Mathematics Lecturer",
+    group: "Instructors",
+    experience: "IGCSE, O Level, A Level, Cambridge, Pearson Edexcel, OCR, AQA, and Oxford boards",
+    qualification: "Cambridge-certified trainer",
   },
   {
-    name: "Omar Saeed",
-    role: "Head of Product",
-    group: "Developers",
-    experience: "Scaled learning products and CMS systems",
-    qualification: "BS Computer Science",
+    name: "Dr. Aroma Saleem",
+    role: "Biology Instructor and Medical Sciences Mentor",
+    group: "Instructors",
+    experience: "GCSE, IGCSE, AQA, Edexcel, and digital whiteboard biology support",
+    qualification: "MBBS",
   },
   {
-    name: "Mariam Iqbal",
-    role: "Student Success Manager",
-    group: "Support Team",
-    experience: "Parent communications and retention",
-    qualification: "MA Education Leadership",
+    name: "Kashmala Aziz",
+    role: "Biology Lecturer and Zoologist",
+    group: "Instructors",
+    experience: "Lahore College teaching, board practicals, and BISE Lahore sub-examiner work",
+    qualification: "MS Zoology, PhD Zoology candidate",
   },
   {
-    name: "Danish Raza",
-    role: "Growth and Partnerships",
-    group: "Marketing",
-    experience: "Schools, colleges, and tutoring institutes",
-    qualification: "MBA Marketing",
-  },
-  {
-    name: "Prof. Sameer Ali",
-    role: "Academic Advisor",
-    group: "Advisors",
-    experience: "Curriculum review and assessment design",
-    qualification: "PhD Assessment",
-  },
-  {
-    name: "Nida Hassan",
-    role: "Teacher Enablement Lead",
-    group: "Teachers",
-    experience: "Instructor training and quality assurance",
-    qualification: "PGCert Teacher Training",
+    name: "Iman Aziz",
+    role: "Chemistry Instructor and Research Mentor",
+    group: "Instructors",
+    experience: "Analytical, organic, inorganic, physical chemistry, biochemistry, and nanocomposite research",
+    qualification: "BS Chemistry, MS Chemistry candidate",
   },
 ];
 
@@ -398,25 +427,25 @@ export const blogPosts = [
   {
     title: "How to Build a Revision Plan That Survives Exam Season",
     category: "Exam Guides",
-    date: "Sample article",
+    date: "Guidance",
     excerpt: "A practical framework for turning past papers, weak topics, and daily targets into a weekly study rhythm.",
   },
   {
     title: "IELTS Writing: Why Most Essays Lose Band Scores",
     category: "Tips and Tricks",
-    date: "Sample article",
+    date: "Guidance",
     excerpt: "Common structure, cohesion, and task-response errors students can fix before booking the exam.",
   },
   {
     title: "Choosing Between FSc, A Level, and University Entry Routes",
     category: "University Guides",
-    date: "Sample article",
+    date: "Guidance",
     excerpt: "A parent-friendly comparison of curriculum demands, timelines, and admissions implications.",
   },
   {
     title: "AI for Students: Helpful Assistant, Not Shortcut",
     category: "Career Advice",
-    date: "Sample article",
+    date: "Guidance",
     excerpt: "How to use AI for planning, feedback, and practice while keeping learning honest and durable.",
   },
 ];

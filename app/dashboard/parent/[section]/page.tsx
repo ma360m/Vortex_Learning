@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { CheckCircle2, CreditCard, FileText, Home, KeyRound, MessageSquare, Send, TrendingUp, UserRound, Users } from "lucide-react";
 
+import { PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { PasswordSettingsPanel } from "@/components/vortex/password-settings-panel";
 
@@ -18,31 +19,31 @@ const content = {
     active: "Learners",
     title: "Learner profiles",
     icon: UserRound,
-    items: ["Ayaan Khan - O Level Physics", "Noor Khan - IELTS Academic", "Family account - 2 learners"],
+    items: [],
   },
   attendance: {
     active: "Attendance",
     title: "Attendance record",
     icon: CheckCircle2,
-    items: ["Physics live class - present", "IELTS mock - present", "SAT review - missed"],
+    items: [],
   },
   payments: {
     active: "Payments",
     title: "Payment history",
     icon: CreditCard,
-    items: ["O Level Physics - slip uploaded", "IELTS Academic - licence key emailed", "SAT Intensive - pending"],
+    items: [],
   },
   messages: {
     active: "Messages",
     title: "Parent messages",
     icon: MessageSquare,
-    items: ["Physics teacher feedback", "Payment support thread", "Upcoming lesson reminder"],
+    items: [],
   },
   reports: {
     active: "Reports",
     title: "Progress reports",
     icon: TrendingUp,
-    items: ["Monthly academic report", "Attendance summary", "Homework completion report"],
+    items: [],
   },
   password: {
     active: "Password",
@@ -63,7 +64,7 @@ export default async function ParentSectionPage({ params }: { params: Promise<{ 
   const Icon = page.icon;
 
   return (
-    <PortalShell role="Parent Portal" title={page.title} description="Parent-only workspace for learner visibility, payments, attendance, and teacher communication." active={page.active} user="Mrs. Khan" navItems={navItems}>
+    <PortalShell role="Parent Portal" title={page.title} description="Parent-only workspace for learner visibility, payments, attendance, and teacher communication." active={page.active} user="Parent" navItems={navItems}>
       {section === "password" ? (
         <PasswordSettingsPanel action="/api/vortex/parent-actions" returnTo="/dashboard/parent/password" />
       ) : (
@@ -72,10 +73,20 @@ export default async function ParentSectionPage({ params }: { params: Promise<{ 
           <h2 className="font-heading text-3xl font-semibold text-vortex-navy">{page.active}</h2>
           <Icon className="size-5 text-vortex-blue" />
         </div>
-        <div className="mt-5 grid gap-3">
-          {page.items.map((item) => (
-            <div key={item} className="rounded-2xl bg-vortex-soft p-4 text-sm font-semibold text-vortex-navy">{item}</div>
-          ))}
+        <div className="mt-5">
+          {page.items.length ? (
+            <div className="grid gap-3">
+              {page.items.map((item) => (
+                <div key={item} className="rounded-2xl bg-vortex-soft p-4 text-sm font-semibold text-vortex-navy">{item}</div>
+              ))}
+            </div>
+          ) : (
+            <PortalRecordEmptyState
+              title="No live records yet"
+              description={`${page.active} will appear here after this parent account is connected to student profiles in Supabase.`}
+              icon={page.icon}
+            />
+          )}
         </div>
         {section === "messages" ? (
           <form action="/api/vortex/parent-actions" method="post" className="mt-5 grid gap-3">

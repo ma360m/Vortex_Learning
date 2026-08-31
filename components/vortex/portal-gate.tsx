@@ -1,33 +1,16 @@
 "use client";
 
-import { useEffect, useMemo, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ShieldCheck } from "lucide-react";
 
 import { canAccessPath, dashboardForRole, type VortexProfile, type VortexRole } from "@/lib/vortex-auth";
-
-const sessionKey = "vortex_session";
-
-function parseSession(rawSession: string | null): VortexProfile | null {
-  try {
-    return rawSession ? (JSON.parse(rawSession) as VortexProfile) : null;
-  } catch {
-    return null;
-  }
-}
-
-function subscribe(callback: () => void) {
-  window.addEventListener("storage", callback);
-  return () => window.removeEventListener("storage", callback);
-}
-
-function getSnapshot() {
-  return window.localStorage.getItem(sessionKey);
-}
-
-function getServerSnapshot() {
-  return null;
-}
+import { getSupabaseClient } from "@/lib/supabase-client";
+import {
+  cacheVortexProfile,
+  clearCachedVortexProfile,
+  loadCurrentVortexProfile,
+} from "@/lib/supabase-profile";
 
 export function PortalGate({
   allowed,
@@ -38,23 +21,64 @@ export function PortalGate({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const rawSession = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
-  const profile = useMemo(() => parseSession(rawSession), [rawSession]);
+  const [profile, setProfile] = useState<VortexProfile | null>(null);
+  const [isChecking, setIsChecking] = useState(true);
   const hasAccess = Boolean(profile && allowed.includes(profile.role) && canAccessPath(profile.role, pathname));
+  const allowedKey = allowed.join("|");
 
   useEffect(() => {
-    if (!profile) {
-      router.replace(`/signin?next=${encodeURIComponent(pathname)}`);
-      return;
+    let isMounted = true;
+    let subscription: { unsubscribe: () => void } | undefined;
+
+    async function checkAccess() {
+      try {
+        const supabase = getSupabaseClient();
+        const currentProfile = await loadCurrentVortexProfile(supabase);
+
+        if (!isMounted) return;
+
+        if (!currentProfile) {
+          clearCachedVortexProfile();
+          router.replace(`/signin?next=${encodeURIComponent(pathname)}`);
+          return;
+        }
+
+        cacheVortexProfile(currentProfile);
+        setProfile(currentProfile);
+
+        if (!allowed.includes(currentProfile.role) || !canAccessPath(currentProfile.role, pathname)) {
+          router.replace(dashboardForRole(currentProfile.role));
+        }
+      } catch {
+        if (!isMounted) return;
+        clearCachedVortexProfile();
+        router.replace(`/signin?next=${encodeURIComponent(pathname)}`);
+      } finally {
+        if (isMounted) setIsChecking(false);
+      }
     }
 
-    if (!allowed.includes(profile.role) || !canAccessPath(profile.role, pathname)) {
-      router.replace(dashboardForRole(profile.role));
-      return;
-    }
-  }, [allowed, pathname, profile, router]);
+    void checkAccess();
 
-  if (!hasAccess) {
+    try {
+      const supabase = getSupabaseClient();
+      const {
+        data: { subscription: authSubscription },
+      } = supabase.auth.onAuthStateChange(() => {
+        void checkAccess();
+      });
+      subscription = authSubscription;
+    } catch {
+      void checkAccess();
+    }
+
+    return () => {
+      isMounted = false;
+      subscription?.unsubscribe();
+    };
+  }, [allowed, allowedKey, pathname, router]);
+
+  if (isChecking || !hasAccess) {
     return (
       <div className="grid min-h-screen place-items-center bg-vortex-paper px-5 text-vortex-navy">
         <div className="rounded-[1.5rem] border border-vortex-border bg-white p-6 text-center shadow-[0_18px_70px_rgba(9,29,83,0.08)]">

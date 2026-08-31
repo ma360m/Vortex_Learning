@@ -138,16 +138,24 @@ export default function SupportPage() {
       </section>
 
       <section className="section-wrap">
-        <div className="rounded-[2rem] bg-vortex-gradient p-8 text-white shadow-[0_30px_100px_rgba(9,29,83,0.25)]">
+        <div className="rounded-[2rem] border border-vortex-border bg-white p-8 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-sm font-semibold text-cyan-100">Need learning guidance?</p>
-              <h2 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight">
-                Book consultation on its own dedicated page
+              <p className="text-sm font-semibold text-vortex-blue">Direct support</p>
+              <h2 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight text-vortex-navy">
+                For payment, account, or course access issues
               </h2>
+              <div className="mt-4 flex flex-wrap gap-4 text-sm font-semibold">
+                <a href="mailto:support@vortexelearning.com" className="text-vortex-blue">
+                  support@vortexelearning.com
+                </a>
+                <a href="tel:+923244270697" className="text-vortex-blue">
+                  +92 324 4270697
+                </a>
+              </div>
             </div>
-            <Link href="/consultation" className="btn-white h-12 px-5">
-              Book Consultation
+            <Link href="/consultation" className="btn-secondary h-12 px-5">
+              Consultation Page
               <ArrowRight className="size-4" />
             </Link>
           </div>

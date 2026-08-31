@@ -3,17 +3,14 @@ import { redirect } from "next/navigation";
 import {
   ArrowRight,
   Award,
-  Bell,
-  Bookmark,
+  BookOpen,
   Bot,
   CheckCircle2,
   FileText,
   KeyRound,
   Lock,
   MessageSquare,
-  Moon,
   PanelLeft,
-  PlayCircle,
 } from "lucide-react";
 
 import {
@@ -66,10 +63,13 @@ export default async function CoursePreviewPage({ params }: { params: Promise<{ 
               {freeModuleCount} preview modules open - full course unlocks with licence key
             </p>
           </div>
-          <button type="button" className="inline-flex size-10 items-center justify-center rounded-full border border-vortex-border bg-white text-vortex-navy">
-            <Moon className="size-4" />
-            <span className="sr-only">Dark mode preview</span>
-          </button>
+          <Link
+            href={`/courses/${course.slug}/payment`}
+            className="inline-flex size-10 items-center justify-center rounded-full border border-vortex-border bg-white text-vortex-navy transition hover:border-vortex-cyan"
+            aria-label="Unlock full course"
+          >
+            <KeyRound className="size-4" />
+          </Link>
         </div>
       </header>
 
@@ -100,35 +100,42 @@ export default async function CoursePreviewPage({ params }: { params: Promise<{ 
                     <span className="block text-sm font-semibold">{module.title}</span>
                     <span className="mt-1 block text-xs opacity-70">{isFree ? "Free preview" : "Locked after preview"}</span>
                   </span>
-                  <PlayCircle className="size-4 opacity-70" />
+                  <BookOpen className="size-4 opacity-70" />
                 </div>
               );
             })}
           </div>
           <div className="mt-5 grid grid-cols-2 gap-2">
-            <button type="button" className="inline-flex h-10 items-center justify-center gap-2 rounded-2xl border border-vortex-border text-xs font-semibold">
-              <Bookmark className="size-4" />
+            <Link href="/signin?next=/dashboard/student/bookmarks" className="inline-flex h-10 items-center justify-center gap-2 rounded-2xl border border-vortex-border text-xs font-semibold transition hover:border-vortex-cyan">
+              <BookOpen className="size-4" />
               Bookmark
-            </button>
-            <button type="button" className="inline-flex h-10 items-center justify-center gap-2 rounded-2xl border border-vortex-border text-xs font-semibold">
-              <Bell className="size-4" />
+            </Link>
+            <Link href="/signin?next=/dashboard/student/calendar" className="inline-flex h-10 items-center justify-center gap-2 rounded-2xl border border-vortex-border text-xs font-semibold transition hover:border-vortex-cyan">
+              <CheckCircle2 className="size-4" />
               Reminder
-            </button>
+            </Link>
           </div>
         </aside>
 
         <section className="grid gap-5">
           <div className="overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_22px_80px_rgba(9,29,83,0.1)]">
-            <div className="aspect-video bg-[linear-gradient(135deg,#091D53,#143A84_52%,#1E8ACB)] p-6 text-white">
+            <div className="min-h-[360px] bg-[linear-gradient(135deg,#091D53,#143A84_52%,#1E8ACB)] p-6 text-white">
               <div className="flex items-center justify-between text-sm text-cyan-100">
                 <span>{course.board}</span>
                 <span className="rounded-full bg-white/12 px-3 py-1">Free preview</span>
               </div>
-              <div className="flex h-full items-center justify-center">
-                <button type="button" className="grid size-20 place-items-center rounded-full border border-white/30 bg-white/18 text-white shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur">
-                  <PlayCircle className="size-9" />
-                  <span className="sr-only">Play preview lesson</span>
-                </button>
+              <div className="flex min-h-[286px] items-center justify-center py-8 text-center">
+                <span className="max-w-xl">
+                  <span className="mx-auto grid size-20 place-items-center rounded-3xl border border-white/30 bg-white/18 text-white shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur">
+                    <FileText className="size-9" />
+                  </span>
+                  <span className="mt-6 block font-heading text-4xl font-semibold leading-tight">
+                    Reading preview workspace
+                  </span>
+                  <span className="mt-3 block text-sm leading-7 text-cyan-100">
+                    Open notes, text lessons, resources, assignments, and instructor questions from one course preview area.
+                  </span>
+                </span>
               </div>
             </div>
             <div className="grid gap-4 border-t border-vortex-border p-5 xl:grid-cols-[1fr_auto]">
@@ -166,7 +173,7 @@ export default async function CoursePreviewPage({ params }: { params: Promise<{ 
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
                   {[
                     [FileText, "Lesson summary"],
-                    [Lock, `${course.resourceFiles?.length ?? 0} locked resources`],
+                    [FileText, `${course.resourceFiles?.length ?? 0} resource files`],
                     [Bot, "Course assistant"],
                     [MessageSquare, "Instructor help"],
                   ].map(([Icon, label]) => (

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   Award,
   Banknote,
@@ -13,12 +12,13 @@ import {
   Library,
   MessageSquare,
   Phone,
-  Target,
-  Trophy,
   Upload,
 } from "lucide-react";
 
-import { PortalCard, PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
+import { LicenceKeyRedeemer } from "@/components/vortex/licence-key-redeemer";
+import { PortalLiveSummary, PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
+import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
+import { RoleRequestForm } from "@/components/vortex/role-request-form";
 
 const navItems: PortalNavItem[] = [
   { label: "Overview", href: "/dashboard/student", icon: Home },
@@ -39,18 +39,13 @@ export default function StudentDashboardPage() {
   return (
     <PortalShell
       role="Student LMS"
-      title="Welcome back, Ayaan"
-      description="Continue learning, review today's goals, track achievements, manage bookmarks, and keep every lesson tied to your study plan."
+      title="Student dashboard"
+      description="Continue learning, review goals, manage bookmarks, redeem licence keys, and keep every lesson tied to your study plan."
       active="Overview"
-      user="Ayaan"
+      user="Student"
       navItems={navItems}
     >
-      <div className="grid gap-5 md:grid-cols-2 2xl:grid-cols-4">
-        <PortalCard title="Continue learning" value="62%" caption="O Level Physics progress" icon={Clock} />
-        <PortalCard title="Daily goal" value="42m" caption="18 minutes remaining today" icon={Target} />
-        <PortalCard title="Achievements" value="18" caption="sample badges earned" icon={Trophy} />
-        <PortalCard title="Certificates" value="4" caption="sample completions" icon={Award} />
-      </div>
+      <PortalLiveSummary role="student" />
 
       <div className="mt-6 grid gap-6 2xl:grid-cols-[1.1fr_0.9fr]">
         <section className="rounded-[1.5rem] border border-vortex-border bg-white p-5 shadow-[0_14px_50px_rgba(9,29,83,0.06)]">
@@ -58,25 +53,12 @@ export default function StudentDashboardPage() {
             <h2 className="font-heading text-3xl font-semibold text-vortex-navy">Continue learning</h2>
             <GraduationCap className="size-5 text-vortex-blue" />
           </div>
-          <div className="mt-5 grid gap-3">
-            {[
-              ["O Level Physics", "Momentum and conservation", "62%"],
-              ["IELTS Academic", "Task 2 essay structure", "48%"],
-              ["SAT Intensive", "Advanced math diagnostics", "71%"],
-            ].map(([course, lesson, progress]) => (
-              <div key={course} className="grid gap-4 rounded-2xl bg-vortex-soft p-4 lg:grid-cols-[1fr_auto] lg:items-center">
-                <div>
-                  <p className="text-sm font-semibold text-vortex-navy">{course}</p>
-                  <p className="mt-1 text-xs text-vortex-muted">{lesson}</p>
-                  <div className="mt-4 h-2 overflow-hidden rounded-full bg-white">
-                    <div className="h-full rounded-full bg-vortex-gradient" style={{ width: progress }} />
-                  </div>
-                </div>
-                <Link href="/preview" className="btn-primary h-10 px-4 text-xs">
-                  Resume
-                </Link>
-              </div>
-            ))}
+          <div className="mt-5">
+            <PortalRecordEmptyState
+              title="No enrolled course records yet"
+              description="After a licence key is redeemed, your unlocked courses, last lesson, and progress will appear here from Supabase."
+              icon={Clock}
+            />
           </div>
         </section>
 
@@ -85,17 +67,8 @@ export default function StudentDashboardPage() {
             <h2 className="font-heading text-3xl font-semibold text-vortex-navy">Today</h2>
             <Calendar className="size-5 text-vortex-blue" />
           </div>
-          <div className="mt-5 grid gap-3">
-            {[
-              ["7:30 PM", "Physics practice sprint"],
-              ["8:20 PM", "IELTS writing feedback"],
-              ["Tomorrow", "AI project review"],
-            ].map(([time, item]) => (
-              <div key={item} className="flex items-center justify-between rounded-2xl border border-vortex-border px-4 py-3">
-                <span className="text-sm font-semibold text-vortex-navy">{item}</span>
-                <span className="text-xs text-vortex-muted">{time}</span>
-              </div>
-            ))}
+          <div className="mt-5 rounded-2xl border border-vortex-border bg-vortex-soft p-4 text-sm leading-7 text-vortex-muted">
+            Live lessons, reminders, and study goals will appear here after they are created in the student account.
           </div>
           <div className="mt-5 grid grid-cols-3 gap-3">
             {[
@@ -121,18 +94,7 @@ export default function StudentDashboardPage() {
             </div>
             <KeyRound className="size-5 text-vortex-blue" />
           </div>
-          <form action="/api/vortex/student-actions" method="post" className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto]">
-            <input type="hidden" name="intent" value="student-unlock" />
-            <input type="hidden" name="returnTo" value="/dashboard/student" />
-            <input
-              name="licence_key"
-              className="h-11 rounded-2xl border border-vortex-border bg-vortex-soft px-4 text-sm text-vortex-navy outline-none"
-              placeholder="Enter licence key to unlock course"
-            />
-            <button type="submit" className="btn-primary h-11 px-5 text-xs">
-              Unlock
-            </button>
-          </form>
+          <LicenceKeyRedeemer returnHref="/dashboard/student" label="Unlock" />
           <div className="mt-4 grid gap-3 sm:grid-cols-2">
             <div className="rounded-2xl bg-vortex-soft p-4">
               <div className="flex items-center gap-2 text-sm font-semibold text-vortex-navy">
@@ -148,7 +110,7 @@ export default function StudentDashboardPage() {
                 <Upload className="size-4 text-vortex-blue" />
                 Slip status
               </div>
-              <p className="mt-2 text-xs leading-6 text-vortex-muted">O Level Physics payment slip is waiting for verification.</p>
+              <p className="mt-2 text-xs leading-6 text-vortex-muted">Your latest upload and verification status will appear here after submission.</p>
             </div>
           </div>
           <a href="tel:+923244270697" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-vortex-blue">
@@ -183,6 +145,10 @@ export default function StudentDashboardPage() {
             ))}
           </div>
         </section>
+      </div>
+
+      <div className="mt-6">
+        <RoleRequestForm />
       </div>
     </PortalShell>
   );

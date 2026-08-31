@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Calendar, FileText, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, FileText, Sparkles } from "lucide-react";
 
 const buildQueue = [
   "Blog article detail pages",
@@ -34,15 +34,14 @@ export function ComingSoonContent({ feature }: { feature?: string }) {
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
               This part of Vortex Learning is reserved for a finished, production-quality experience. For now, continue through the working catalog, support, sign-in, and dashboard flows.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link href="/courses" className="btn-white h-12 px-5">
                 <BookOpen className="size-5" />
-                Explore Courses
+                Open Course Catalog
               </Link>
-              <Link href="/consultation" className="btn-glass h-12 px-5">
-                <Calendar className="size-5" />
-                Book Consultation
-              </Link>
+              <a href="mailto:support@vortexelearning.com" className="text-sm font-semibold text-cyan-50 transition hover:text-white">
+                support@vortexelearning.com
+              </a>
             </div>
           </div>
 

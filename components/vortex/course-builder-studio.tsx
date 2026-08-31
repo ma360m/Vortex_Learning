@@ -109,10 +109,10 @@ export function CourseBuilderStudio({
             <label className="grid gap-2 text-sm font-semibold text-vortex-navy">
               Instructor
               <select name="instructor" className="h-11 rounded-2xl border border-vortex-border bg-vortex-soft px-4 text-sm outline-none">
-                <option>Dr. Ayesha Rahman</option>
-                <option>Hamza Qureshi</option>
-                <option>Sara Malik</option>
-                <option>Musa Siddiqui</option>
+                <option>Aiyesha Saddiqua</option>
+                <option>Dr. Aroma Saleem</option>
+                <option>Kashmala Aziz</option>
+                <option>Iman Aziz</option>
               </select>
             </label>
           </div>

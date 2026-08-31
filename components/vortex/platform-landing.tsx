@@ -49,9 +49,9 @@ const tabCourseMap: Record<string, string[]> = {
 };
 
 const stats = [
-  ["320+", "sample courses"],
-  ["24k", "sample learners"],
-  ["96%", "sample completion"],
+  [`${courses.length}`, "linked courses"],
+  [`${subjects.length}`, "subject tracks"],
+  [`${instructors.length}`, "instructors"],
 ];
 
 const pathIcons = [Library, BookOpen, Target];
@@ -125,9 +125,9 @@ export function PlatformLanding() {
                 <Calendar className="size-5" />
                 Book Consultation
               </Link>
-              <Link href="/team#apply" className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full px-2 text-sm font-semibold text-cyan-50 transition hover:text-white sm:px-4">
+              <Link href="/consultation?goal=become-tutor" className="inline-flex h-[3.25rem] items-center justify-center gap-2 rounded-full px-2 text-sm font-semibold text-cyan-50 transition hover:text-white sm:px-4">
                 <GraduationCap className="size-5" />
-                Become Instructor
+                Become a Tutor
               </Link>
             </div>
           </div>
@@ -470,7 +470,7 @@ export function PlatformLanding() {
                     </span>
                     <div>
                       <p className="text-sm font-semibold text-white">Vortex OS</p>
-                      <p className="text-xs text-cyan-100">Sample role preview</p>
+                      <p className="text-xs text-cyan-100">Role preview</p>
                     </div>
                   </div>
                   <div className="mt-4 grid gap-2">
@@ -499,7 +499,7 @@ export function PlatformLanding() {
                           <p className="mt-2 font-heading text-3xl font-semibold text-vortex-navy">
                             {[82, 94, 7][index]}%
                           </p>
-                          <p className="mt-1 text-[0.7rem] text-vortex-muted">sample data</p>
+                          <p className="mt-1 text-[0.7rem] text-vortex-muted">visible after sign-in</p>
                         </div>
                       ))}
                     </div>

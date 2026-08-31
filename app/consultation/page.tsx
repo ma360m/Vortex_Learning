@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { ArrowRight, Calendar, GraduationCap, Send, Users } from "lucide-react";
 
+import { ActionBanner } from "@/components/vortex/action-banner";
 import { SectionHeading } from "@/components/vortex/section-heading";
 import { SiteShell } from "@/components/vortex/site-shell";
 import { curriculumOptions, subjects } from "@/lib/vortex-data";
@@ -71,7 +73,10 @@ export default function ConsultationPage() {
           </div>
 
           <form action="/api/vortex/student-actions" method="post" className="rounded-[2rem] border border-vortex-border bg-vortex-soft p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)]">
-            <input type="hidden" name="intent" value="support-ticket" />
+            <Suspense fallback={null}>
+              <ActionBanner />
+            </Suspense>
+            <input type="hidden" name="intent" value="consultation-request" />
             <input type="hidden" name="returnTo" value="/consultation" />
             <div className="grid gap-4 sm:grid-cols-2">
               {[

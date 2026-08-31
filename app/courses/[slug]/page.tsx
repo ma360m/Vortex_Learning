@@ -18,7 +18,6 @@ import {
   Phone,
   Star,
   Upload,
-  Video,
   type LucideIcon,
 } from "lucide-react";
 
@@ -27,11 +26,11 @@ import { SiteShell } from "@/components/vortex/site-shell";
 import { courses, getCourseBySlug, instructors } from "@/lib/vortex-data";
 
 const courseSystems: Array<[LucideIcon, string, string]> = [
-  [FileText, "Resources", "Locked flipbooks, transcripts, study notes, past papers, and mark schemes."],
+  [FileText, "Resources", "Books, notes, transcripts, past papers, and mark schemes with clear access and download status."],
   [ClipboardCheck, "Assignments", "Homework, uploads, rubric status, teacher feedback, and reminders."],
   [MessageSquare, "Instructor help", "Ask the instructor questions, request help, join live doubt sessions, and track replies."],
   [Award, "Certificates", "Completion progress, quiz requirements, assignment review, and certificate issue state."],
-  [Star, "Reviews", "Placeholder ratings and structured student feedback for launch."],
+  [Star, "Reviews", "Structured student feedback can be attached to each course after review."],
   [Bot, "AI assistant", "Course assistant, homework helper, quiz helper, and revision planner."],
 ];
 
@@ -87,8 +86,8 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
             <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50">{course.description}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href={`/preview/${course.slug}`} className="btn-white h-12 px-5">
-                <Video className="size-5" />
-                Start Free Preview
+                <BookOpen className="size-5" />
+                Open Free Preview
               </Link>
               <Link href={`/courses/${course.slug}/payment`} className="btn-glass h-12 px-5">
                 <Banknote className="size-5" />
@@ -113,7 +112,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                 ["Duration", course.duration],
                 ["Lessons", `${course.lessons}`],
                 ["Free modules", `${freeModuleCount}`],
-                ["Resources", `${resourceFiles.length} locked`],
+                ["Resources", `${resourceFiles.length} attached`],
               ].map(([label, value]) => (
                 <div key={label} className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3">
                   <span className="text-sm text-cyan-100">{label}</span>
@@ -195,8 +194,8 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <SectionHeading
             eyebrow="Resource library"
-            title="Locked flipbook material, preserved from the course package"
-            description={`${resourceFiles.length} files are attached to this course. They are listed now, displayed as protected flipbooks after licence activation, and not downloadable unless admin enables downloads for the course or resource.`}
+            title="Books and resources, easy to find"
+            description={`${resourceFiles.length} files are attached to this course. Students can open each resource page, see access status, and download files when admin enables downloads for the course or resource.`}
           />
           <div className="grid gap-3">
             {resourceFiles.length > 0 ? (
@@ -212,12 +211,12 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
                       {resource.title}
                     </span>
                     <span className="mt-1 block text-xs text-vortex-muted">
-                      {resource.fileName} - {resource.sizeLabel} - Flipbook locked
+                      {resource.fileName} - {resource.sizeLabel} - {resource.downloadable ? "Download enabled" : "Download controlled by admin"}
                     </span>
                   </span>
                   <span className="inline-flex items-center gap-2 text-xs font-semibold text-vortex-blue">
-                    <Lock className="size-4" />
-                    Open gate
+                    <FileText className="size-4" />
+                    View resource
                   </span>
                 </Link>
               ))

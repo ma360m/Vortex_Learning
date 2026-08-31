@@ -16,7 +16,7 @@ export const metadata = { title: "Instructor Course Builder" };
 
 export default function InstructorCourseBuilderPage() {
   return (
-    <PortalShell role="Instructor LMS" title="Instructor course builder" description="Build modules, lessons, resources, live help, assignments, pricing, and submit for admin approval." active="My courses" user="Dr. Ayesha" navItems={navItems}>
+    <PortalShell role="Instructor LMS" title="Instructor course builder" description="Build modules, lessons, resources, live help, assignments, pricing, and submit for admin approval." active="My courses" user="Instructor" navItems={navItems}>
       <CourseBuilderStudio owner="instructor" returnTo="/dashboard/instructor/courses/new" />
     </PortalShell>
   );

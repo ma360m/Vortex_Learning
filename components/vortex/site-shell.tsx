@@ -2,14 +2,16 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpen,
+  Camera,
   ChevronDown,
-  GraduationCap,
   LayoutDashboard,
   Menu,
   ShieldCheck,
+  SquarePlay,
+  type LucideIcon,
 } from "lucide-react";
 
-import { navLinks } from "@/lib/vortex-data";
+import { navLinks, socialLinks } from "@/lib/vortex-data";
 import { AIHelpAgent } from "./ai-help-agent";
 import { VortexLogo } from "./logo";
 
@@ -110,6 +112,11 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
+  const socialIcons: Record<string, LucideIcon> = {
+    instagram: Camera,
+    youtube: SquarePlay,
+  };
+
   const footerLinks = [
     {
       title: "Learning",
@@ -146,16 +153,6 @@ export function SiteFooter() {
             A premium education operating system for serious students, families,
             teachers, and academic organizations.
           </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Link href="/courses" className="btn-primary h-11 px-4">
-              <BookOpen className="size-4" />
-              Explore Courses
-            </Link>
-            <Link href="/consultation" className="btn-secondary h-11 px-4">
-              <GraduationCap className="size-4" />
-              Book Consultation
-            </Link>
-          </div>
           <div className="mt-6 grid gap-2 text-sm text-vortex-muted">
             <a href="mailto:support@vortexelearning.com" className="font-semibold text-vortex-blue">
               support@vortexelearning.com
@@ -163,6 +160,24 @@ export function SiteFooter() {
             <a href="tel:+923244270697" className="font-semibold text-vortex-blue">
               +92 324 4270697
             </a>
+          </div>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {socialLinks.map((social) => {
+              const Icon = socialIcons[social.kind] ?? BookOpen;
+
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="grid size-10 place-items-center rounded-full border border-vortex-border bg-vortex-soft text-vortex-blue transition hover:border-vortex-cyan hover:bg-white"
+                  aria-label={social.label}
+                >
+                  <Icon className="size-4" />
+                </a>
+              );
+            })}
           </div>
         </div>
         <div className="grid gap-8 sm:grid-cols-3">
@@ -186,7 +201,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-vortex-border px-5 py-5">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-vortex-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>(c) 2026 Vortex Learning- learn without limits.</p>
+          <p>(c) 2026 Vortex Learning. Learn without limits.</p>
           <div className="flex gap-4">
             <Link href="/policies/privacy" className="hover:text-vortex-blue">Privacy</Link>
             <Link href="/policies/terms" className="hover:text-vortex-blue">Terms</Link>

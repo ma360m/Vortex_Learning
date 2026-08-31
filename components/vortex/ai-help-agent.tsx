@@ -12,43 +12,118 @@ type ChatMessage = {
 
 const quickPrompts = [
   "Help me choose a course",
-  "Book a consultation",
   "Payment or licence key help",
+  "Unlock my course",
   "Do you offer live classes?",
   "How can parents track progress?",
+  "Training consultancy",
 ];
+
+const courseAreas = [
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "Mathematics",
+  "English",
+  "Computer Science",
+  "Programming",
+  "AI",
+  "Business",
+  "Accounting",
+  "Economics",
+  "Statistics",
+  "FSc",
+  "Matric",
+  "O Level",
+  "A Level",
+  "IGCSE",
+  "GCSE",
+  "MDCAT",
+  "ECAT",
+  "LAT",
+  "SAT",
+  "IELTS",
+];
+
+function hasAny(text: string, words: string[]) {
+  return words.some((word) => text.includes(word));
+}
+
+function matchedCourseAreas(message: string) {
+  const normalized = message.toLowerCase();
+
+  return courseAreas.filter((area) => normalized.includes(area.toLowerCase()));
+}
+
+function isGreeting(text: string) {
+  return /\b(hi|hello|hey|salam|assalam)\b/.test(text);
+}
 
 function answerFor(message: string) {
   const text = message.toLowerCase();
+  const matches = matchedCourseAreas(message);
 
-  if (text.includes("consult") || text.includes("book")) {
-    return "I can help with that. Share the learner's curriculum, subject, target exam, and deadline, then the Vortex team can match a course or tutor.";
+  if (isGreeting(text)) {
+    return "Hello. I can help you choose courses, understand access, request instructor help, book guidance, or contact support.";
   }
 
   if (
-    text.includes("payment") ||
-    text.includes("bank") ||
-    text.includes("slip") ||
-    text.includes("licence") ||
-    text.includes("license") ||
-    text.includes("key")
+    hasAny(text, ["payment", "bank", "transfer", "slip", "receipt", "paid", "fee", "fees", "price", "cost"])
   ) {
-    return "For bank transfer, upload your payment slip from the student dashboard. Admin verifies it and emails your licence key. If payment has an issue, contact support@vortexelearning.com or +92 324 4270697.";
+    return "Vortex supports bank transfer verification. After payment, upload the slip from your student dashboard. Admin reviews it, then Vortex emails the licence key. If payment has an issue, contact support@vortexelearning.com or +92 324 4270697.";
   }
 
-  if (text.includes("parent") || text.includes("progress")) {
+  if (hasAny(text, ["licence", "license", "key", "unlock", "access", "locked"])) {
+    return "Course access works in stages: preview modules are open first, paid modules and resources unlock after admin verifies payment and sends the licence key. Enter the key from the student dashboard or course access page.";
+  }
+
+  if (hasAny(text, ["preview", "free", "trial", "sample", "demo"])) {
+    return "The first preview modules are open so students can check the course structure before payment. Full modules, resources, instructor help, final quiz, and certificates require licence activation.";
+  }
+
+  if (hasAny(text, ["consult", "book", "guidance", "advisor", "recommend", "recommendation", "plan"])) {
+    return "For a good recommendation, share the learner's curriculum, subject, exam goal, current level, and deadline. You can also book consultation from the site so the academic team can guide the route.";
+  }
+
+  if (hasAny(text, ["parent", "progress", "attendance", "homework", "feedback", "child", "children"])) {
     return "Parents can track attendance, progress, homework, upcoming lessons, payments, teacher feedback, and messages from the parent portal.";
   }
 
-  if (text.includes("live") || text.includes("zoom") || text.includes("meet")) {
+  if (hasAny(text, ["live", "zoom", "meet", "class", "calendar", "session", "cohort"])) {
     return "Yes. Vortex supports live classes, calendar reminders, attendance, teacher notes, homework, recordings, and hybrid programs.";
   }
 
-  if (text.includes("course") || text.includes("subject")) {
-    return "Tell me the curriculum or goal: O Level, A Level, IGCSE, FSc, SAT, IELTS, AI, programming, or a specific subject. I will suggest the best learning path.";
+  if (hasAny(text, ["instructor", "teacher", "tutor", "question", "doubt", "help session"])) {
+    return "Students can ask instructors from the course workspace. For available courses, instructor help can include written replies, homework review, and live support sessions where enabled.";
   }
 
-  return "I can help with course selection, live classes, tutor matching, parent access, payments, certificates, and technical support. What are you trying to solve today?";
+  if (hasAny(text, ["certificate", "quiz", "final", "completion", "award"])) {
+    return "Certificates unlock after the final quiz and any required course completion checks. The admin and instructor can supervise quiz, assignment, and certificate settings.";
+  }
+
+  if (hasAny(text, ["resource", "notes", "book", "past paper", "paper", "download", "flipbook", "pdf"])) {
+    return "Course resources can be shown as locked flipbook-style materials after payment. Downloads stay disabled unless admin allows downloading for a specific course or resource.";
+  }
+
+  if (hasAny(text, ["training", "consultancy", "school", "workshop", "professional", "phonics club", "products"])) {
+    return "For training consultancy, use the Trainings page to request a program. For related products, visit phonicsclub.com from the training page.";
+  }
+
+  if (hasAny(text, ["login", "sign in", "signin", "password", "portal", "dashboard", "role"])) {
+    return "After sign-in, every registered user starts with student access. Parent and instructor access are assigned by admin. Admin access is restricted to approved admin emails.";
+  }
+
+  if (matches.length > 0 || hasAny(text, ["course", "subject", "curriculum", "exam", "study"])) {
+    const focus = matches.length > 0 ? ` For ${matches.slice(0, 3).join(", ")},` : " For course selection,";
+
+    return `${focus} compare curriculum, current level, deadline, and whether you need self-paced lessons, live classes, or accelerated revision. Start from the course catalog, then book consultation if you need a guided match.`;
+  }
+
+  if (hasAny(text, ["email", "phone", "contact", "support", "whatsapp", "issue", "problem", "error"])) {
+    return "For direct support, email support@vortexelearning.com or call +92 324 4270697. I can also help you decide whether the issue is course access, payment verification, account role, or consultation.";
+  }
+
+  return "I can help with course selection, live classes, tutor matching, parent access, payment slips, licence keys, resources, certificates, training consultancy, and support. Tell me the learner's goal or the issue you want to solve.";
 }
 
 export function AIHelpAgent() {
@@ -161,7 +236,7 @@ export function AIHelpAgent() {
             <div className="mt-3 flex items-center justify-between text-xs text-vortex-muted">
               <span className="inline-flex items-center gap-1">
                 <Sparkles className="size-3.5 text-vortex-blue" />
-                Sample assistant
+                Vortex assistant
               </span>
               <Link href="/consultation" className="font-semibold text-vortex-blue">
                 Talk to human

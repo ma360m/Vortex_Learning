@@ -4,25 +4,34 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 
-import { dashboardForRole, type VortexProfile } from "@/lib/vortex-auth";
+import { dashboardForRole } from "@/lib/vortex-auth";
+import { getSupabaseClient } from "@/lib/supabase-client";
+import { cacheVortexProfile, clearCachedVortexProfile, loadCurrentVortexProfile } from "@/lib/supabase-profile";
 
 export function DashboardRouter() {
   const router = useRouter();
 
   useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem("vortex_session");
-      const profile = raw ? (JSON.parse(raw) as VortexProfile) : null;
+    async function openDashboard() {
+      try {
+        const supabase = getSupabaseClient();
+        const profile = await loadCurrentVortexProfile(supabase);
 
-      if (!profile) {
+        if (!profile) {
+          clearCachedVortexProfile();
+          router.replace("/signin?next=/dashboard");
+          return;
+        }
+
+        cacheVortexProfile(profile);
+        router.replace(dashboardForRole(profile.role));
+      } catch {
+        clearCachedVortexProfile();
         router.replace("/signin?next=/dashboard");
-        return;
       }
-
-      router.replace(dashboardForRole(profile.role));
-    } catch {
-      router.replace("/signin?next=/dashboard");
     }
+
+    void openDashboard();
   }, [router]);
 
   return (

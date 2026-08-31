@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Bot, CreditCard, Eye, FileText, GraduationCap, Home, PlayCircle, Plus, Settings, Ticket, Users } from "lucide-react";
+import { Bot, ClipboardCheck, CreditCard, Eye, FileText, GraduationCap, Home, Mail, PlayCircle, Plus, ScrollText, Settings, Ticket, UserCog, Users } from "lucide-react";
 
+import { AdminCourseActions } from "@/components/vortex/admin-course-actions";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 import { courses } from "@/lib/vortex-data";
 
@@ -9,10 +10,14 @@ const navItems: PortalNavItem[] = [
   { label: "Courses", href: "/dashboard/admin/courses", icon: GraduationCap },
   { label: "Users", href: "/dashboard/admin/users", icon: Users },
   { label: "Payments", href: "/dashboard/admin/payments", icon: CreditCard },
+  { label: "Assignments", href: "/dashboard/admin/assignments", icon: ClipboardCheck },
   { label: "Content", href: "/dashboard/admin/content", icon: FileText },
+  { label: "Emails", href: "/dashboard/admin/emails", icon: Mail },
   { label: "AI agents", href: "/dashboard/admin/ai-agents", icon: Bot },
   { label: "Support", href: "/dashboard/admin/support", icon: Ticket },
+  { label: "Tutor requests", href: "/dashboard/admin/tutor-requests", icon: UserCog },
   { label: "Settings", href: "/dashboard/admin/settings", icon: Settings },
+  { label: "Logs", href: "/dashboard/admin/logs", icon: ScrollText },
 ];
 
 export const metadata = { title: "Admin Courses" };
@@ -57,15 +62,7 @@ export default function AdminCoursesPage() {
                   <PlayCircle className="size-3.5 text-vortex-blue" />
                   Preview
                 </Link>
-                <form action="/api/vortex/admin-actions" method="post" className="flex gap-2">
-                  <input type="hidden" name="returnTo" value="/dashboard/admin/courses" />
-                  <button name="intent" value="course-submit" className="h-9 rounded-full border border-vortex-border bg-white px-3 text-xs font-semibold text-vortex-navy">
-                    Review
-                  </button>
-                  <button name="intent" value="course-publish" className="h-9 rounded-full border border-vortex-border bg-white px-3 text-xs font-semibold text-vortex-navy">
-                    Publish
-                  </button>
-                </form>
+                <AdminCourseActions courseSlug={course.slug} />
               </div>
             </div>
           ))}

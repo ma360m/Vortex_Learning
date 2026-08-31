@@ -117,14 +117,19 @@ export function LearningPlayer() {
             <div className="overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_22px_80px_rgba(9,29,83,0.1)] dark:border-white/10 dark:bg-white/8">
               <div className="aspect-video bg-[linear-gradient(135deg,#091D53,#143A84_52%,#1E8ACB)] p-6 text-white">
                 <div className="flex items-center justify-between text-sm text-cyan-100">
-                  <span>Live replay - Momentum</span>
-                  <span className="rounded-full bg-white/12 px-3 py-1">HD</span>
+                  <span>Preview lesson - Momentum</span>
+                  <span className="rounded-full bg-white/12 px-3 py-1">Workspace</span>
                 </div>
                 <div className="flex h-full items-center justify-center">
-                  <button type="button" className="grid size-20 place-items-center rounded-full border border-white/30 bg-white/18 text-white shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur">
-                    <PlayCircle className="size-9" />
-                    <span className="sr-only">Play lesson</span>
-                  </button>
+                  <div className="max-w-md text-center">
+                    <span className="mx-auto grid size-20 place-items-center rounded-3xl border border-white/30 bg-white/18 text-white shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur">
+                      <FileText className="size-9" />
+                    </span>
+                    <p className="mt-5 font-heading text-3xl font-semibold">Lesson workspace</p>
+                    <p className="mt-2 text-sm leading-6 text-cyan-100">
+                      Video lessons can be attached from the course builder when lesson URLs are ready.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="grid gap-4 border-t border-vortex-border p-5 dark:border-white/10 xl:grid-cols-[1fr_auto]">
@@ -180,7 +185,7 @@ export function LearningPlayer() {
                         ? "Teacher notes and peer questions stay attached to the exact lesson context."
                         : activeTab === "Quiz"
                           ? "A short diagnostic checks definitions, calculations, and common exam traps."
-                          : "Structured notes, transcript highlights, bookmarks, and revision prompts stay synchronized with the video."}
+                          : "Structured notes, transcript highlights, bookmarks, and revision prompts stay synchronized with the lesson."}
                   </p>
                   <div className="mt-5 grid gap-3 sm:grid-cols-2">
                     {lessonTools.map(([Icon, label]) => (

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BookOpen, ClipboardCheck, FileQuestion, Home, KeyRound, MessageSquare, Plus, Upload, Users, Video } from "lucide-react";
 
+import { PortalRecordEmptyState } from "@/components/vortex/portal-live-data";
 import { PortalShell, type PortalNavItem } from "@/components/vortex/portal-shell";
 
 const navItems: PortalNavItem[] = [
@@ -12,17 +13,11 @@ const navItems: PortalNavItem[] = [
   { label: "Discussion", href: "/dashboard/instructor/discussion", icon: MessageSquare },
 ];
 
-const courses = [
-  ["O Level Physics Mastery", "Published", "412 students"],
-  ["Accelerated Exam Rescue", "Draft", "86 students"],
-  ["A Level Mechanics Clinic", "Submitted", "124 students"],
-];
-
 export const metadata = { title: "Instructor Courses" };
 
 export default function InstructorCoursesPage() {
   return (
-    <PortalShell role="Instructor LMS" title="My courses" description="Create, submit, and maintain instructor-owned courses." active="My courses" user="Dr. Ayesha" navItems={navItems}>
+    <PortalShell role="Instructor LMS" title="My courses" description="Create, submit, and maintain instructor-owned courses." active="My courses" user="Instructor" navItems={navItems}>
       <section className="rounded-[1.5rem] border border-vortex-border bg-white p-5 shadow-[0_14px_50px_rgba(9,29,83,0.06)]">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
@@ -37,14 +32,12 @@ export default function InstructorCoursesPage() {
             New Course
           </Link>
         </div>
-        <div className="mt-6 grid gap-3">
-          {courses.map(([title, status, students]) => (
-            <div key={title} className="grid gap-3 rounded-2xl bg-vortex-soft p-4 sm:grid-cols-[1fr_auto_auto] sm:items-center">
-              <span className="font-semibold text-vortex-navy">{title}</span>
-              <span className="text-sm text-vortex-muted">{students}</span>
-              <span className="rounded-full bg-white px-3 py-2 text-xs font-semibold text-vortex-blue">{status}</span>
-            </div>
-          ))}
+        <div className="mt-6">
+          <PortalRecordEmptyState
+            title="No instructor-owned courses yet"
+            description="Courses created by this signed-in instructor will appear here after the instructor profile is connected in Supabase and drafts are saved."
+            icon={BookOpen}
+          />
         </div>
         <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-5">
           {[

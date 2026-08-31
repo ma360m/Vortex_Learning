@@ -24,12 +24,12 @@ export default function TrainingsPage() {
     <SiteShell>
       <section className="relative isolate overflow-hidden bg-vortex-navy px-5 py-16 text-white sm:px-8">
         <Image
-          src="/vortex-training-seminar.png"
-          alt="Science training session by Vortex Learning"
+          src="/vortex-training-collage.png"
+          alt="Vortex Learning science training workshop collage"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[50%_42%]"
+          className="object-cover object-[50%_48%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.94)_0%,rgba(9,29,83,0.74)_52%,rgba(20,58,132,0.36)_100%)]" />
         <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -59,8 +59,8 @@ export default function TrainingsPage() {
           <div className="hidden overflow-hidden rounded-[2rem] border border-white/18 bg-white/10 p-3 shadow-[0_30px_100px_rgba(0,0,0,0.22)] backdrop-blur-xl md:block">
             <div className="relative min-h-[360px] overflow-hidden rounded-[1.45rem]">
               <Image
-                src="/vortex-training-collage.png"
-                alt="Science training workshop collage"
+                src="/vortex-science-demo.png"
+                alt="Science demonstration during a training session"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover"
