@@ -8,10 +8,12 @@ import {
   ArrowRight,
   BookOpen,
   Calendar,
+  CheckCircle2,
   ChevronRight,
+  Compass,
   Library,
-  MessageSquareQuote,
-  Newspaper,
+  Layers,
+  ShieldCheck,
   Sparkles,
   Target,
 } from "lucide-react";
@@ -20,11 +22,13 @@ import {
   courses,
   curriculumOptions,
   learningPaths,
+  projectAttribution,
   studentFeedbacks,
   subjects,
 } from "@/lib/vortex-data";
 import { getSupabaseClient, isSupabaseConfigured } from "@/lib/supabase-client";
 import { SectionHeading } from "./section-heading";
+import { StudentFeedbackSlider } from "./student-feedback-slider";
 
 const pathIcons = [Library, BookOpen, Target];
 const defaultHeroBadge = "Vortex Learning - Learning, structured for your path.";
@@ -37,6 +41,29 @@ const defaultFeedbackContent = {
   secondaryHref: "/blog",
   secondaryLabel: "See our blogs",
 };
+
+const whyChooseCards = [
+  {
+    icon: Target,
+    title: "Focused Progress",
+    text: "Learning plans are shaped around weak areas, exam goals, and clear next steps.",
+  },
+  {
+    icon: Compass,
+    title: "Guided Routes",
+    text: "Students can start by curriculum, subject, course type, or academic goal.",
+  },
+  {
+    icon: Layers,
+    title: "Structured Learning",
+    text: "Courses connect previews, notes, resources, assignments, quizzes, and support.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Visible Support",
+    text: "Parents, teachers, and admins can work from approved role-based portals.",
+  },
+];
 
 type SiteContentBlockRow = {
   block_key: string;
@@ -240,6 +267,74 @@ export function HomeLanding() {
         </div>
       </section>
 
+      <Reveal className="bg-vortex-navy px-4 py-14 text-white sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="text-sm font-semibold uppercase text-[#47C8F2]">Who we are</p>
+          <h2 className="mt-4 font-heading text-4xl font-semibold leading-tight sm:text-5xl">
+            A structured online learning partner for serious academic growth
+          </h2>
+          <p className="mx-auto mt-6 max-w-4xl text-base font-semibold leading-8 text-white/88 sm:text-lg sm:leading-9">
+            Vortex Learning connects dedicated educators with students and families
+            through organized courses, live learning, practical resources, parent
+            visibility, and clear support pathways.
+          </p>
+        </div>
+      </Reveal>
+
+      <Reveal className="bg-white px-4 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Why choose us?"
+            title="Learning support that feels clear, guided, and accountable"
+            description="The platform is designed for students who need structure, families who need visibility, and teachers who need an organized way to support progress."
+            align="center"
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {whyChooseCards.map(({ icon: Icon, title, text }) => (
+              <div key={title} className="rounded-[1.25rem] border border-vortex-border bg-white p-6 shadow-[0_14px_45px_rgba(9,29,83,0.06)]">
+                <span className="grid size-14 place-items-center rounded-2xl bg-vortex-soft text-vortex-blue">
+                  <Icon className="size-6" />
+                </span>
+                <h3 className="mt-6 text-xl font-semibold leading-7 text-vortex-navy">{title}</h3>
+                <p className="mt-4 text-sm font-medium leading-7 text-vortex-muted">{text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal className="section-wrap pt-0">
+        <div id="phonics-club" className="grid overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_22px_80px_rgba(9,29,83,0.1)] lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="p-6 sm:p-8 lg:p-10">
+            <p className="text-sm font-semibold uppercase text-vortex-blue">Phonics Club initiative</p>
+            <h2 className="mt-4 font-heading text-4xl font-semibold leading-tight text-vortex-navy sm:text-5xl">
+              {projectAttribution.title}
+            </h2>
+            <p className="mt-5 text-base leading-8 text-vortex-muted">
+              {projectAttribution.description}
+            </p>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {projectAttribution.points.map((point) => (
+                <div key={point} className="flex items-center gap-3 rounded-2xl bg-vortex-soft px-4 py-3 text-sm font-semibold text-vortex-slate">
+                  <CheckCircle2 className="size-4 shrink-0 text-vortex-blue" />
+                  {point}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="relative min-h-72 bg-vortex-navy lg:min-h-full">
+            <Image
+              src="/phonics-club-project.png"
+              alt="Phonics Club educators working in a library learning session"
+              fill
+              sizes="(min-width: 1024px) 52vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.34),rgba(9,29,83,0.04))]" />
+          </div>
+        </div>
+      </Reveal>
+
       <Reveal className="section-wrap pt-14 sm:pt-20">
         <SectionHeading
           eyebrow="Find your path"
@@ -297,29 +392,37 @@ export function HomeLanding() {
       </Reveal>
 
       <Reveal className="section-wrap pt-0">
-        <div className="grid gap-6 rounded-[2rem] border border-vortex-border bg-white p-6 shadow-[0_18px_70px_rgba(9,29,83,0.08)] lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <div className="grid gap-6 overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_18px_70px_rgba(9,29,83,0.08)] lg:grid-cols-[0.72fr_1.28fr] lg:items-stretch">
           <div>
-            <p className="text-sm font-semibold uppercase text-vortex-blue">Course catalog</p>
-            <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight text-vortex-navy">
-              Browse the full catalog on a dedicated page
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-vortex-muted">
-              The homepage stays light. The course catalog now carries filtering,
-              subject exploration, curriculum options, and all linked course pages.
-            </p>
-            <Link href="/courses" className="btn-primary mt-6 h-11 px-5">
-              Open Course Catalog
-              <ArrowRight className="size-4" />
-            </Link>
+            <div className="h-full bg-[linear-gradient(135deg,#091D53,#143A84_58%,#1E8ACB)] p-6 text-white sm:p-8">
+              <p className="text-sm font-semibold uppercase text-cyan-100">Course catalog</p>
+              <h2 className="mt-4 font-heading text-4xl font-semibold leading-tight">
+                Browse the full catalog on a dedicated page
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-blue-50">
+                The homepage stays light while the course page handles filtering,
+                subjects, curriculum routes, previews, and resources.
+              </p>
+              <Link href="/courses" className="btn-white mt-6 h-11 px-5">
+                Open Course Catalog
+                <ArrowRight className="size-4" />
+              </Link>
+            </div>
           </div>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {courses.slice(0, 3).map((course) => (
+          <div className="grid gap-3 p-6 sm:grid-cols-3 sm:p-8">
+            {courses.slice(0, 3).map((course, index) => (
               <Link
                 key={course.slug}
                 href={`/courses/${course.slug}`}
-                className="rounded-2xl border border-vortex-border bg-vortex-soft p-4 transition hover:border-vortex-cyan hover:bg-white"
+                className="group rounded-2xl border border-vortex-border bg-vortex-soft p-4 transition hover:border-vortex-cyan hover:bg-white"
               >
-                <p className="text-xs font-semibold uppercase text-vortex-blue">{course.board}</p>
+                <div className="flex items-center justify-between">
+                  <span className="grid size-10 place-items-center rounded-xl bg-white text-sm font-semibold text-vortex-blue">
+                    {index + 1}
+                  </span>
+                  <ArrowRight className="size-4 text-vortex-cyan transition group-hover:translate-x-1" />
+                </div>
+                <p className="mt-5 text-xs font-semibold uppercase text-vortex-blue">{course.board}</p>
                 <h3 className="mt-3 line-clamp-2 text-sm font-semibold leading-6 text-vortex-navy">
                   {course.title}
                 </h3>
@@ -330,56 +433,8 @@ export function HomeLanding() {
         </div>
       </Reveal>
 
-      <Reveal className="relative isolate overflow-hidden bg-vortex-navy py-14 text-white sm:py-20">
-        <Image
-          src="/vortex-audience-session.jpeg"
-          alt="Vortex Learning students and families in a guided session"
-          fill
-          sizes="100vw"
-          className="object-cover object-[50%_46%] opacity-55"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(9,29,83,0.96)_0%,rgba(9,29,83,0.86)_48%,rgba(30,138,203,0.62)_100%)]" />
-        <div className="relative mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div>
-            <p className="text-sm font-semibold uppercase text-[#47C8F2]">{feedbackContent.eyebrow}</p>
-            <h2 className="mt-4 max-w-3xl font-heading text-4xl font-semibold leading-tight sm:text-5xl">
-              {feedbackContent.title}
-            </h2>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-cyan-50 sm:text-base sm:leading-8">
-              {feedbackContent.body}
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href={feedbackContent.href} className="btn-white h-11 px-5">
-                Support and community
-                <ArrowRight className="size-4" />
-              </Link>
-              <Link href={feedbackContent.secondaryHref} className="btn-glass h-11 px-5">
-                <Newspaper className="size-4" />
-                {feedbackContent.secondaryLabel}
-              </Link>
-            </div>
-          </div>
-
-          <div className="grid gap-4">
-            <div className="grid gap-4 md:grid-cols-2">
-              {feedbackItems.map((feedback) => (
-                <motion.article
-                  key={feedback.name}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.2 }}
-                  className="rounded-2xl border border-white/18 bg-white/12 p-5 shadow-[0_18px_70px_rgba(0,0,0,0.16)] backdrop-blur-md"
-                >
-                  <MessageSquareQuote className="size-5 text-[#47C8F2]" />
-                  <p className="mt-5 text-sm leading-7 text-blue-50">{feedback.quote}</p>
-                  <div className="mt-5 border-t border-white/14 pt-4">
-                    <p className="text-sm font-semibold text-white">{feedback.name}</p>
-                    <p className="mt-1 text-xs text-cyan-100">{feedback.role}</p>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </div>
+      <Reveal className="section-wrap">
+        <StudentFeedbackSlider content={feedbackContent} items={feedbackItems} />
       </Reveal>
     </>
   );

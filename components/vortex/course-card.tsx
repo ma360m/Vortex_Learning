@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Calendar, Clock, GraduationCap, Star } from "lucide-react";
+import { ArrowRight, BookOpen, Calendar, Clock, GraduationCap, Star } from "lucide-react";
 
 import type { Course } from "@/lib/vortex-data";
 
@@ -7,26 +7,21 @@ export function CourseCard({ course, featured = false }: { course: Course; featu
   return (
     <Link
       href={`/courses/${course.slug}`}
-      className={`group flex h-full flex-col overflow-hidden rounded-[1.35rem] border border-vortex-border bg-white shadow-[0_14px_45px_rgba(9,29,83,0.07)] transition duration-300 hover:-translate-y-1 hover:border-vortex-cyan/60 hover:shadow-[0_24px_80px_rgba(9,29,83,0.12)] ${
+      className={`group flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-vortex-border bg-white shadow-[0_12px_36px_rgba(9,29,83,0.06)] transition duration-300 hover:-translate-y-1 hover:border-vortex-cyan/60 hover:shadow-[0_22px_65px_rgba(9,29,83,0.1)] ${
         featured ? "lg:grid lg:grid-cols-[0.9fr_1.1fr]" : ""
       }`}
     >
-      <div className="relative min-h-36 overflow-hidden bg-vortex-gradient sm:min-h-40">
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.24),rgba(255,255,255,0)_54%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-white/35" />
-        <span className="absolute right-4 top-4 rounded-full border border-white/18 bg-white/12 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-          {course.subject}
-        </span>
-        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-          <p className="text-xs font-semibold uppercase opacity-80">{course.eyebrow}</p>
-          <div className="mt-4 flex items-center gap-2 text-sm">
-            <span className="inline-flex items-center rounded-full bg-white/15 px-3 py-1 backdrop-blur">
-              {course.mode}
-            </span>
-          </div>
-        </div>
-      </div>
+      <div className="h-1 bg-vortex-gradient" />
       <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-start justify-between gap-3">
+          <span className="grid size-11 place-items-center rounded-2xl bg-vortex-soft text-vortex-blue">
+            <GraduationCap className="size-5" />
+          </span>
+          <span className="rounded-full border border-vortex-border bg-white px-3 py-1 text-xs font-semibold text-vortex-blue">
+            {course.mode}
+          </span>
+        </div>
+        <p className="mt-5 text-xs font-semibold uppercase text-vortex-blue">{course.eyebrow}</p>
         <div className="flex flex-wrap gap-2">
           {course.tags.slice(0, 2).map((tag) => (
             <span
@@ -45,8 +40,8 @@ export function CourseCard({ course, featured = false }: { course: Course; featu
         </p>
         <div className="mt-5 grid gap-3 text-sm text-vortex-slate sm:grid-cols-2">
           <span className="inline-flex items-center gap-2">
-            <GraduationCap className="size-4 text-vortex-blue" />
-            {course.level}
+            <BookOpen className="size-4 text-vortex-blue" />
+            {course.subject}
           </span>
           <span className="inline-flex items-center gap-2">
             <Clock className="size-4 text-vortex-blue" />
@@ -58,7 +53,7 @@ export function CourseCard({ course, featured = false }: { course: Course; featu
           </span>
           <span className="inline-flex items-center gap-2">
             <Star className="size-4 text-vortex-blue" />
-            {course.rating}
+            {course.level}
           </span>
         </div>
         <div className="mt-auto flex flex-col gap-3 pt-6 sm:flex-row sm:items-center sm:justify-between">

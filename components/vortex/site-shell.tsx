@@ -130,6 +130,7 @@ export function SiteFooter() {
       title: "Support",
       links: [
         ["Support and community", "/support#community"],
+        ["Contact us", "/contact"],
         ["Book consultation", "/consultation"],
         ["Policies", "/policies"],
       ],

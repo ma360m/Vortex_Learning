@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, BookOpen, ShieldCheck, Users, type LucideIcon } from "lucide-react";
 
 import { SectionHeading } from "@/components/vortex/section-heading";
@@ -34,21 +35,31 @@ export default function AboutPage() {
       </section>
 
       <section id="phonics-club" className="section-wrap scroll-mt-28">
-        <div className="grid gap-8 rounded-[2rem] bg-vortex-gradient p-7 text-white shadow-[0_26px_90px_rgba(9,29,83,0.22)] lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-          <div>
+        <div className="grid overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_26px_90px_rgba(9,29,83,0.12)] lg:grid-cols-[0.94fr_1.06fr]">
+          <div className="bg-vortex-gradient p-7 text-white sm:p-9 lg:p-10">
             <p className="text-sm font-semibold text-cyan-100">Project ownership</p>
-            <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight">
+            <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight sm:text-5xl">
               {projectAttribution.title}
             </h2>
-            <p className="mt-4 text-sm leading-7 text-blue-50">{projectAttribution.description}</p>
+            <p className="mt-4 text-sm leading-7 text-blue-50 sm:text-base sm:leading-8">{projectAttribution.description}</p>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {projectAttribution.points.map((point) => (
+                <div key={point} className="flex items-center gap-3 rounded-2xl bg-white/12 px-4 py-3 text-sm font-semibold">
+                  <ShieldCheck className="size-4 text-[#47C8F2]" />
+                  {point}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {projectAttribution.points.map((point) => (
-              <div key={point} className="flex items-center gap-3 rounded-2xl bg-white/12 px-4 py-3 text-sm font-semibold">
-                <ShieldCheck className="size-4 text-[#47C8F2]" />
-                {point}
-              </div>
-            ))}
+          <div className="relative min-h-80 bg-vortex-navy">
+            <Image
+              src="/phonics-club-project.png"
+              alt="Phonics Club educators working in a library learning session"
+              fill
+              sizes="(min-width: 1024px) 52vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.16),rgba(9,29,83,0))]" />
           </div>
         </div>
       </section>

@@ -77,61 +77,57 @@ export default async function CoursesPage({
   return (
     <SiteShell>
       <section className="page-hero page-hero-courses px-5 py-16 text-white sm:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Course catalog</p>
-            <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight sm:text-6xl">
-              Find the right course without searching through noise
+            <h1 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight sm:text-7xl">
+              Course Catalog
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
-              Browse Vortex Learning by curriculum, subject, course type, and academic goal. Every course page connects preview modules, locked resources, instructor help, payment verification, and certificates.
+              Browse by curriculum, subject, course type, and academic goal. Every course connects previews, resources, instructor help, payment verification, and certificates.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link href="#catalog" className="btn-white h-12 px-5">
                 Explore catalog
                 <ArrowRight className="size-4" />
               </Link>
-              <Link href="/consultation" className="btn-glass h-12 px-5">
-                Book guidance
+              <Link href="/contact" className="btn-glass h-12 px-5">
+                Contact us
               </Link>
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-white/18 bg-white/12 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:p-6">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase text-cyan-100">Catalog map</p>
-                <h2 className="mt-2 font-heading text-3xl font-semibold">Choose by route, not by noise</h2>
-              </div>
-              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/18 bg-white/12 px-3 py-1.5 text-xs font-semibold text-cyan-50">
-                <CheckCircle2 className="size-3.5 text-[#47C8F2]" />
-                Live catalog
+          <div className="rounded-[2rem] border border-white/18 bg-white/10 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.16)] backdrop-blur-xl sm:p-6">
+            <div className="flex items-center gap-3">
+              <span className="grid size-11 place-items-center rounded-2xl bg-white text-vortex-blue">
+                <CheckCircle2 className="size-5" />
               </span>
+              <div>
+                <p className="text-xs font-semibold uppercase text-cyan-100">Fast routes</p>
+                <h2 className="font-heading text-3xl font-semibold">Choose a starting point</h2>
+              </div>
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="mt-6 grid gap-3 sm:grid-cols-4">
               {catalogStats.map(([Icon, value, label]) => (
-                <div key={label} className="rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+                <div key={label} className="rounded-2xl border border-white/15 bg-white/10 p-4">
                   <Icon className="size-4 text-[#47C8F2]" />
-                  <p className="mt-3 font-heading text-3xl font-semibold">{value}</p>
+                  <p className="mt-3 text-sm font-semibold text-white">{value}</p>
                   <p className="mt-1 text-[0.7rem] leading-4 text-cyan-100">{label}</p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-5 rounded-2xl border border-white/14 bg-[#071847]/35 p-4">
-              <p className="text-xs font-semibold uppercase text-cyan-100">Fast routes</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {catalogRoutes.map(([route, href]) => (
-                  <Link
-                    key={route}
-                    href={href}
-                    className="rounded-full border border-white/14 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white transition hover:border-[#47C8F2]/70 hover:bg-white/16"
-                  >
-                    {route}
-                  </Link>
-                ))}
-              </div>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {catalogRoutes.map(([route, href]) => (
+                <Link
+                  key={route}
+                  href={href}
+                  className="rounded-full border border-white/14 bg-white/10 px-3 py-1.5 text-xs font-semibold text-white transition hover:border-[#47C8F2]/70 hover:bg-white/16"
+                >
+                  {route}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
