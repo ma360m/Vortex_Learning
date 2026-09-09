@@ -49,16 +49,14 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
   { label: "Trainings", href: "/trainings" },
-  { label: "Team", href: "/team" },
   { label: "FAQs", href: "/faqs" },
-  { label: "Support", href: "/support" },
 ];
 
 export const projectAttribution = {
   title: "Vortex Learning is a project of Phonics Club",
   description:
     "Built as a structured digital learning initiative by Phonics Club for students, families, tutors, and academic teams who need organized learning pathways.",
-  points: ["Academic structure", "Parent visibility", "Tutor guidance", "Student support"],
+  points: ["Academic structure", "Trainings and consultancy", "Tutor guidance", "Student support"],
 };
 
 export const curriculumOptions = [
@@ -465,7 +463,7 @@ export const searchIndex = [
     type: "Tutor",
     title: instructor.name,
     description: `${instructor.role} with ${instructor.experience} of experience.`,
-    href: "/team#instructors",
+    href: "/consultation",
     tags: instructor.subjects,
   })),
   ...blogPosts.map((post) => ({

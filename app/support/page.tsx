@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import {
   ArrowRight,
   Bot,
@@ -32,6 +33,8 @@ export const metadata = {
 };
 
 export default function SupportPage() {
+  redirect("/");
+
   return (
     <SiteShell>
       <section className="page-hero page-hero-support px-5 py-16 text-white sm:px-8">

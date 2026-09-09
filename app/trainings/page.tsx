@@ -1,16 +1,10 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { ArrowRight, Building2, FlaskConical, GraduationCap, Send, Users } from "lucide-react";
+import { ArrowRight, Send } from "lucide-react";
 
 import { ActionBanner } from "@/components/vortex/action-banner";
 import { SectionHeading } from "@/components/vortex/section-heading";
 import { SiteShell } from "@/components/vortex/site-shell";
-
-const trainingTracks = [
-  ["Science workshops", "Hands-on science training, demonstrations, classroom routines, and practical teaching support."],
-  ["Teacher development", "Training plans for schools, colleges, and institutes that need structured faculty support."],
-  ["Institutional consultancy", "Program design, curriculum planning, staff training, parent orientation, and learning operations."],
-];
 
 export const metadata = {
   title: "Trainings",
@@ -23,10 +17,10 @@ export default function TrainingsPage() {
     <SiteShell>
       <section className="relative isolate overflow-hidden bg-[linear-gradient(112deg,#091D53_0%,#143A84_58%,#1E8ACB_100%)] px-5 py-16 text-white sm:px-8">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,29,83,0.28)_0%,rgba(9,29,83,0)_100%)]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div>
+        <div className="relative mx-auto max-w-7xl">
+          <div className="max-w-4xl">
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Training Consultancy</p>
-            <h1 className="mt-4 max-w-4xl font-heading text-4xl font-semibold leading-tight sm:text-6xl">
+            <h1 className="mt-4 font-heading text-4xl font-semibold leading-tight sm:text-6xl">
               Professional training for schools, teachers, and learning teams
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
@@ -37,64 +31,15 @@ export default function TrainingsPage() {
                 Request Training
                 <ArrowRight className="size-4" />
               </Link>
-              <a
-                href="https://phonicsclub.com"
-                target="_blank"
-                rel="noreferrer"
-                className="btn-glass h-12 px-5"
-              >
+              <a href="https://phonicsclub.com" target="_blank" rel="noreferrer" className="btn-glass h-12 px-5">
                 Visit Phonics Club
               </a>
             </div>
           </div>
-          <div className="grid gap-3 rounded-[2rem] border border-white/18 bg-white/10 p-5 shadow-[0_30px_100px_rgba(0,0,0,0.16)] backdrop-blur-xl">
-            {trainingTracks.map(([title, text], index) => {
-              const Icon = [FlaskConical, GraduationCap, Building2][index] ?? Users;
-
-              return (
-                <div key={title} className="grid gap-3 rounded-2xl bg-white/10 p-4 sm:grid-cols-[auto_1fr]">
-                  <span className="grid size-11 place-items-center rounded-2xl bg-white text-vortex-blue">
-                    <Icon className="size-5" />
-                  </span>
-                  <div>
-                    <h2 className="text-sm font-semibold text-white">{title}</h2>
-                    <p className="mt-1 text-xs leading-6 text-cyan-50">{text}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
 
-      <section className="section-wrap">
-        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-          <SectionHeading
-            eyebrow="Training tracks"
-            title="Focused programs without a crowded sales page"
-            description="Each request can be shaped around science learning, teacher preparation, academic operations, or product-supported classroom needs."
-          />
-          <div className="grid gap-4">
-            {trainingTracks.map(([title, text], index) => {
-              const Icon = [FlaskConical, GraduationCap, Building2][index] ?? Users;
-
-              return (
-                <div key={title} className="grid gap-4 rounded-[1.5rem] border border-vortex-border bg-white p-5 shadow-[0_14px_50px_rgba(9,29,83,0.06)] sm:grid-cols-[auto_1fr]">
-                  <span className="grid size-12 place-items-center rounded-2xl bg-vortex-soft text-vortex-blue">
-                    <Icon className="size-5" />
-                  </span>
-                  <div>
-                    <h2 className="font-heading text-3xl font-semibold text-vortex-navy">{title}</h2>
-                    <p className="mt-2 text-sm leading-7 text-vortex-muted">{text}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section id="request-training" className="bg-white py-20">
+      <section id="request-training" className="bg-white py-20 scroll-mt-28">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <SectionHeading

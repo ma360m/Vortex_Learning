@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function InstructorsPage() {
-  redirect("/team#instructors");
+  redirect("/");
 }

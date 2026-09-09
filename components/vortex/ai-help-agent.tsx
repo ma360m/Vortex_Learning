@@ -4,6 +4,8 @@ import { FormEvent, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Bot, BookOpen, MessageCircle, Send, Sparkles, X } from "lucide-react";
 
+const whatsappHref = "https://wa.me/923244270697";
+
 type ChatMessage = {
   id: number;
   role: "agent" | "customer";
@@ -164,7 +166,7 @@ export function AIHelpAgent() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-50 w-[calc(100vw-2.5rem)] max-w-[390px]">
+    <div className="fixed bottom-3 right-3 z-50 w-[calc(100vw-1.5rem)] max-w-[450px] sm:bottom-5 sm:right-5 sm:w-[calc(100vw-2.5rem)]">
       {open && (
         <section className="mb-3 overflow-hidden rounded-[1.6rem] border border-white/70 bg-white shadow-[0_26px_90px_rgba(9,29,83,0.22)]">
           <div className="bg-vortex-gradient p-4 text-white">
@@ -246,24 +248,36 @@ export function AIHelpAgent() {
         </section>
       )}
 
-      <button
-        type="button"
-        onClick={() => setOpen((value) => !value)}
-        className="ml-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-3 rounded-full border border-white/70 bg-white/92 p-2 pr-4 text-left shadow-[0_20px_70px_rgba(9,29,83,0.22)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-vortex-cyan/70 sm:w-[390px]"
-        aria-expanded={open}
-      >
-        <span className="grid size-12 place-items-center rounded-full bg-vortex-gradient text-white">
-          <MessageCircle className="size-5" />
-        </span>
-        <span className="min-w-0">
-          <span className="block text-sm font-semibold text-vortex-navy">Ask Vortex AI</span>
-          <span className="block truncate text-xs text-vortex-muted">{preview}</span>
-        </span>
-        <span className="hidden items-center gap-1 rounded-full bg-vortex-soft px-3 py-1 text-xs font-semibold text-vortex-blue sm:inline-flex">
-          <BookOpen className="size-3.5" />
-          Help
-        </span>
-      </button>
+      <div className="ml-auto grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2 sm:w-[450px]">
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noreferrer"
+          className="grid size-14 place-items-center rounded-full border border-white/70 bg-[#25D366] text-white shadow-[0_18px_55px_rgba(9,29,83,0.2)] transition hover:-translate-y-0.5 hover:bg-[#1ebe5d]"
+          aria-label="Contact Vortex Learning on WhatsApp"
+          title="Contact us on WhatsApp"
+        >
+          <MessageCircle className="size-6" />
+        </a>
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="grid w-full min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 rounded-full border border-white/70 bg-white/92 p-2 pr-3 text-left shadow-[0_20px_70px_rgba(9,29,83,0.22)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-vortex-cyan/70 sm:gap-3 sm:pr-4"
+          aria-expanded={open}
+        >
+          <span className="grid size-12 place-items-center rounded-full bg-vortex-gradient text-white">
+            <MessageCircle className="size-5" />
+          </span>
+          <span className="min-w-0">
+            <span className="block text-sm font-semibold text-vortex-navy">Ask Vortex AI</span>
+            <span className="block truncate text-xs text-vortex-muted">{preview}</span>
+          </span>
+          <span className="hidden items-center gap-1 rounded-full bg-vortex-soft px-3 py-1 text-xs font-semibold text-vortex-blue sm:inline-flex">
+            <BookOpen className="size-3.5" />
+            Help
+          </span>
+        </button>
+      </div>
     </div>
   );
 }

@@ -122,15 +122,12 @@ export function SiteFooter() {
       title: "Company",
       links: [
         ["About", "/about"],
-        ["Our team", "/team"],
         ["Blog", "/blog"],
       ],
     },
     {
-      title: "Support",
+      title: "Connect",
       links: [
-        ["Support and community", "/support#community"],
-        ["Contact us", "/contact"],
         ["Book consultation", "/consultation"],
         ["Policies", "/policies"],
       ],

@@ -313,6 +313,15 @@ export function HomeLanding() {
             <p className="mt-5 text-base leading-8 text-vortex-muted">
               {projectAttribution.description}
             </p>
+            <a
+              href="https://phonicsclub.com"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-vortex-blue transition hover:text-vortex-cyan"
+            >
+              Visit phonicsclub.com
+              <ArrowRight className="size-4" />
+            </a>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {projectAttribution.points.map((point) => (
                 <div key={point} className="flex items-center gap-3 rounded-2xl bg-vortex-soft px-4 py-3 text-sm font-semibold text-vortex-slate">

@@ -88,11 +88,11 @@ export default function AboutPage() {
           <div>
             <p className="text-sm font-semibold text-vortex-blue">Meet the people</p>
             <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
-              Our team and instructors are now together
+              Talk through your learning needs with our team
             </h2>
           </div>
-          <Link href="/team" className="btn-primary h-11 px-5">
-            Our Team
+          <Link href="/consultation" className="btn-primary h-11 px-5">
+            Talk to our team
             <ArrowRight className="size-4" />
           </Link>
         </div>

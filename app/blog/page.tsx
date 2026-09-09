@@ -88,7 +88,7 @@ export default function BlogPage() {
                 {post.title}
               </h2>
               <p className="mt-4 text-sm leading-7 text-vortex-muted">{post.excerpt}</p>
-              <Link href="/support" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-vortex-blue">
+              <Link href="/consultation" className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-vortex-blue">
                 Ask Vortex
                 <ArrowRight className="size-4" />
               </Link>

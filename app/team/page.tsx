@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
 import { SectionHeading } from "@/components/vortex/section-heading";
@@ -21,6 +22,8 @@ export const metadata = {
 };
 
 export default function TeamPage() {
+  redirect("/");
+
   return (
     <SiteShell>
       <section className="page-hero page-hero-team px-5 py-16 text-white sm:px-8">

@@ -55,8 +55,8 @@ export default function FAQsPage() {
               </a>
             </div>
           </div>
-          <Link href="/support" className="btn-secondary h-11 px-5">
-            Open Support
+          <Link href="/consultation" className="btn-secondary h-11 px-5">
+            Book a consultation
             <ArrowRight className="size-4" />
           </Link>
         </div>

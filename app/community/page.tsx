@@ -7,5 +7,5 @@ export const metadata = {
 };
 
 export default function CommunityPage() {
-  redirect("/support#community");
+  redirect("/faqs");
 }

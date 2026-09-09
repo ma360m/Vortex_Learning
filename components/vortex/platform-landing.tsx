@@ -396,7 +396,7 @@ export function PlatformLanding() {
             {instructors.map((instructor) => (
               <Link
                 key={instructor.name}
-                href="/team#instructors"
+                href="/consultation"
                 className="group grid grid-cols-[auto_1fr] items-center gap-4 rounded-3xl border border-vortex-border bg-white p-4 transition hover:-translate-y-1 hover:border-vortex-cyan/60 hover:shadow-[0_18px_70px_rgba(9,29,83,0.1)] sm:grid-cols-[auto_1fr_auto]"
               >
                 <span className="grid size-16 place-items-center rounded-2xl bg-[linear-gradient(135deg,#091D53,#1E8ACB)] text-sm font-semibold text-white shadow-sm">
