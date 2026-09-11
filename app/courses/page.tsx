@@ -5,8 +5,10 @@ import {
   MessageCircle,
 } from "lucide-react";
 
+import { CourseCatalog } from "@/components/vortex/course-catalog";
 import { CourseExplorer, type CourseCategory } from "@/components/vortex/course-explorer";
 import { SiteShell } from "@/components/vortex/site-shell";
+import { courses } from "@/lib/vortex-data";
 
 const whatsappHref = "https://wa.me/923244270697";
 
@@ -125,7 +127,10 @@ const courseCategories: CourseCategory[] = [
 export const metadata = {
   title: "Courses",
   description:
-    "Explore Vortex Learning courses across O Level, A Level, IGCSE, FSc, Matric, SAT, IELTS, AI, programming, business, science, and more.",
+    "Explore Vortex Learning's current online courses for FSc, O Level, Cambridge, medical and engineering entry tests, English, and more.",
+  alternates: {
+    canonical: "/courses",
+  },
 };
 
 export default function CoursesPage() {
@@ -136,20 +141,14 @@ export default function CoursesPage() {
           <div>
             <p className="text-sm font-semibold uppercase text-[#47C8F2]">Online classes worldwide</p>
             <h1 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight sm:text-7xl">
-              Personalized Learning, Wherever You Are
+              Online courses, tutoring, and exam preparation
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-8 text-cyan-50">
-              Looking for the right learning support? We offer online classes for students worldwide, covering a wide range of subjects, academic levels, and international curricula.
-            </p>
-            <p className="mt-4 max-w-2xl text-base leading-8 text-cyan-50">
-              From school subjects and exam preparation to specialized courses and one-to-one tutoring, our learning plans are tailored to each student&apos;s goals, level, and schedule.
-            </p>
-            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.14em] text-cyan-100">
-              All Subjects | All Levels | Global Access | Personalized Support
+              Browse current courses for FSc, Cambridge O Level, medical and engineering entry tests, language learning, and academic support. Choose a free preview or contact our team for a tailored learning plan.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Link href="#learning-categories" className="btn-white h-12 px-5">
-                Explore Learning
+              <Link href="#catalog" className="btn-white h-12 px-5">
+                Browse Assigned Courses
                 <ArrowRight className="size-4" />
               </Link>
               <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-glass h-12 px-5">
@@ -160,10 +159,10 @@ export default function CoursesPage() {
           </div>
 
           <div className="rounded-[2rem] border border-white/18 bg-white/10 p-6 shadow-[0_30px_100px_rgba(0,0,0,0.16)] backdrop-blur-xl">
-            <p className="text-sm font-semibold uppercase text-cyan-100">Accelerated routes</p>
-            <h2 className="mt-3 font-heading text-4xl font-semibold">Try our accelerated plans and receive certification</h2>
+            <p className="text-sm font-semibold uppercase text-cyan-100">Current course list</p>
+            <h2 className="mt-3 font-heading text-4xl font-semibold">{courses.length} published courses</h2>
             <p className="mt-4 text-sm leading-7 text-cyan-50">
-              Contact us to explore ongoing classes, create a personalized learning plan, or ask about accelerated courses with completion certificates.
+              Preview the assigned courses below, then unlock full lessons and resources after payment approval.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn-white h-11 px-5">
@@ -178,14 +177,16 @@ export default function CoursesPage() {
         </div>
       </section>
 
+      <CourseCatalog courses={courses} />
+
       <section id="learning-categories" className="section-wrap">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase text-vortex-blue">Learning Without Boundaries</p>
+          <p className="text-sm font-semibold uppercase text-vortex-blue">More learning routes</p>
           <h2 className="mt-3 font-heading text-4xl font-semibold text-vortex-navy">
-            From Playgroup to University and Professional Development
+            Browse by curriculum, level, or goal
           </h2>
           <p className="mt-4 text-sm leading-7 text-vortex-muted">
-            Vortex Learning connects learners with personalized academic support across subjects, curricula, qualifications, exam preparation, and career pathways. Select a category to view offered subjects and support options.
+            Explore additional tutoring and training routes when you need support beyond the currently published courses.
           </p>
         </div>
 

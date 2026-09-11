@@ -53,9 +53,9 @@ export const navLinks = [
 ];
 
 export const projectAttribution = {
-  title: "Vortex Learning is a project of Phonics Club",
+  title: "Partnership with Phonics Club",
   description:
-    "Built as a structured digital learning initiative by Phonics Club for students, families, tutors, and academic teams who need organized learning pathways.",
+    "Vortex Learning works in partnership with Phonics Club to give students, families, tutors, and academic teams a more organized way to learn and grow.",
   points: ["Academic structure", "Trainings and consultancy", "Tutor guidance", "Student support"],
 };
 
@@ -94,6 +94,20 @@ export const learningPaths = [
 ];
 
 export const courses: Course[] = generatedCourses;
+
+export const featuredCourseSlugs = [
+  "physics",
+  "chemistry",
+  "biology",
+  "ecat",
+  "olevels",
+  "mdcat",
+  "law-admission-test-lat",
+] as const;
+
+export const featuredCourses = featuredCourseSlugs
+  .map((slug) => courses.find((course) => course.slug === slug))
+  .filter((course): course is Course => Boolean(course));
 
 export const studentFeedbacks = [
   {
@@ -286,14 +300,12 @@ export const subjects = [
   { title: "Mathematics", cluster: "Core", description: "Algebra, calculus, statistics, mechanics, and past papers.", count: courseCountLabel("Mathematics") },
   { title: "English", cluster: "Language", description: "Academic writing, IELTS, grammar, literature, and speaking.", count: courseCountLabel("English") },
   { title: "Computer Science", cluster: "Technology", description: "Theory, programming, databases, algorithms, and projects.", count: courseCountLabel("Computer Science") },
-  { title: "Economics", cluster: "Commerce", description: "Micro, macro, policy analysis, diagrams, and essays.", count: courseCountLabel("Economics") },
-  { title: "Accounting", cluster: "Commerce", description: "Ledgers, financial statements, ratios, and exam drills.", count: courseCountLabel("Accounting") },
-  { title: "Business", cluster: "Commerce", description: "Strategy, operations, marketing, finance, and case writing.", count: courseCountLabel("Business") },
-  { title: "Psychology", cluster: "Humanities", description: "Research methods, case studies, and structured responses.", count: courseCountLabel("Psychology") },
-  { title: "Statistics", cluster: "Core", description: "Probability, distributions, interpretation, and data tasks.", count: courseCountLabel("Statistics") },
-  { title: "AI", cluster: "Technology", description: "AI literacy, prompt systems, projects, and responsible use.", count: courseCountLabel("AI") },
-  { title: "Programming", cluster: "Technology", description: "Python, web, problem solving, and portfolio projects.", count: courseCountLabel("Programming") },
-  { title: "Languages", cluster: "Language", description: "English fluency, exam speaking, and academic communication.", count: courseCountLabel("Languages") },
+  { title: "MDCAT", cluster: "Medical entry", description: "Biology, chemistry, physics, English, reasoning, and timed MCQs.", count: courseCountLabel("MDCAT") },
+  { title: "Engineering Entry", cluster: "University entry", description: "Mathematics, physics, chemistry, English, and timed practice.", count: courseCountLabel("Engineering Entry") },
+  { title: "Urdu", cluster: "Languages", description: "Prose, poetry, grammar, writing, translation, and board preparation.", count: courseCountLabel("Urdu") },
+  { title: "Pakistan Studies", cluster: "Humanities", description: "History, ideology, geography, society, and board-focused revision.", count: courseCountLabel("Pakistan Studies") },
+  { title: "Islamiat", cluster: "Humanities", description: "Quranic studies, Hadith, beliefs, ethics, history, and exam preparation.", count: courseCountLabel("Islamiat") },
+  { title: "Law Admission Test", cluster: "University entry", description: "English, essay writing, general knowledge, reasoning, and LAT practice.", count: courseCountLabel("Law Admission Test") },
 ];
 
 export const instructors = [
@@ -445,6 +457,20 @@ export const blogPosts = [
 ];
 
 export const searchIndex = [
+  {
+    type: "Official Site",
+    title: "Vortex Learning Official Website",
+    description: "Open the connected official domain for Vortex Learning.",
+    href: "https://vortexelearning.com",
+    tags: ["Official", "Google Search", "Domain", "Website", "vortexelearning.com", "Vortex eLearning"],
+  },
+  {
+    type: "Official Site",
+    title: "Phonics Club Official Website",
+    description: "Visit the parent Phonics Club website for related programs and products.",
+    href: "https://phonicsclub.com",
+    tags: ["Official", "Google Search", "Domain", "Website", "Phonics Club"],
+  },
   ...courses.map((course) => ({
     type: "Course",
     title: course.title,

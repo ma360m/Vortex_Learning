@@ -116,14 +116,14 @@ export function PlatformLanding() {
               <span className="truncate">Vortex Learning</span>
             </div>
             <h1 className="font-heading text-4xl font-semibold leading-[1.04] sm:text-6xl lg:text-[4.9rem]">
-              Learn without limits
+              Structured learning
               <span className="block text-cyan-100">Every subject</span>
               <span className="block text-white">Every goal</span>
             </h1>
             <p className="mt-5 max-w-[640px] text-base leading-7 text-blue-50 sm:mt-7 sm:text-lg sm:leading-8">
               Vortex Learning brings courses, live classes, tutors, past papers,
               AI study support, parent visibility, and academic operations into
-              one premium education ecosystem.
+              one focused learning platform.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/courses" className="btn-primary h-[3.25rem] px-6 text-base">
@@ -531,7 +531,7 @@ export function PlatformLanding() {
         <div className="mx-auto overflow-hidden rounded-[2rem] bg-vortex-gradient p-5 text-white shadow-[0_30px_100px_rgba(9,29,83,0.25)] sm:p-8 lg:p-12">
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-sm font-semibold text-cyan-100">Learn Without Limits.</p>
+              <p className="text-sm font-semibold text-cyan-100">Choose your learning path.</p>
               <h2 className="mt-4 max-w-4xl font-heading text-5xl font-semibold leading-tight sm:text-6xl">
                 Build a serious learning journey with Vortex Learning
               </h2>

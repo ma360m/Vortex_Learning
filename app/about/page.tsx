@@ -16,7 +16,10 @@ const aboutCards: Array<[LucideIcon, string, string]> = [
 export const metadata = {
   title: "About",
   description:
-    "Learn about Vortex Learning, a project of Phonics Club, and its structured approach to courses, tutors, parent visibility, and learning support.",
+    "Learn how Vortex Learning works in partnership with Phonics Club to deliver structured online courses, tutoring, exam preparation, and learning support.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {
@@ -37,7 +40,7 @@ export default function AboutPage() {
       <section id="phonics-club" className="section-wrap scroll-mt-28">
         <div className="grid overflow-hidden rounded-[2rem] border border-vortex-border bg-white shadow-[0_26px_90px_rgba(9,29,83,0.12)] lg:grid-cols-[0.94fr_1.06fr]">
           <div className="bg-vortex-gradient p-7 text-white sm:p-9 lg:p-10">
-            <p className="text-sm font-semibold text-cyan-100">Project ownership</p>
+            <p className="text-sm font-semibold text-cyan-100">Partnership</p>
             <h2 className="mt-3 font-heading text-4xl font-semibold leading-tight sm:text-5xl">
               {projectAttribution.title}
             </h2>

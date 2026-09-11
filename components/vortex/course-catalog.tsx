@@ -1,16 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import {
-  ArrowRight,
   BookOpen,
   GraduationCap,
   Library,
   RotateCcw,
   Search,
   SlidersHorizontal,
-  Sparkles,
   Video,
   type LucideIcon,
 } from "lucide-react";
@@ -32,8 +29,10 @@ function unique(values: string[]) {
   return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b));
 }
 
-function includesText(value: string, query: string) {
-  return value.toLowerCase().includes(query.toLowerCase());
+function includesAllTerms(values: string[], query: string) {
+  const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const searchableText = values.join(" ").toLowerCase();
+  return terms.every((term) => searchableText.includes(term));
 }
 
 function hasAcceleratedSignal(course: Course) {
@@ -59,10 +58,6 @@ export function CourseCatalog({
   const subjects = useMemo(() => unique(courses.map((course) => course.subject)), [courses]);
   const boards = useMemo(() => unique(courses.map((course) => course.board)), [courses]);
   const categories = useMemo(() => unique(courses.map((course) => course.category)), [courses]);
-  const acceleratedCourses = useMemo(
-    () => courses.filter(hasAcceleratedSignal).slice(0, 3),
-    [courses],
-  );
   const filterGroups: Array<[string, string, (next: string) => void, string[]]> = [
     ["Course type", mode, setMode, modes],
     ["Subject", subject, setSubject, subjects],
@@ -81,7 +76,7 @@ export function CourseCatalog({
     const result = courses.filter((course) => {
       const matchesQuery =
         !normalizedQuery ||
-        [
+        includesAllTerms([
           course.title,
           course.description,
           course.subject,
@@ -90,7 +85,10 @@ export function CourseCatalog({
           course.level,
           course.instructor,
           ...course.tags,
-        ].some((value) => includesText(value, normalizedQuery));
+          ...(course.helpLinks ?? []),
+          ...(course.resourceFiles ?? []).flatMap((resource) => [resource.title, resource.fileName]),
+          ...course.modules.flatMap((module) => [module.title, ...module.lessons]),
+        ], normalizedQuery);
 
       return (
         matchesQuery &&
@@ -125,9 +123,9 @@ export function CourseCatalog({
         <div className="absolute inset-x-0 top-0 h-1 bg-vortex-gradient" />
         <div className="grid gap-6 xl:grid-cols-[0.75fr_1.25fr] xl:items-end">
           <div>
-            <p className="text-xs font-semibold uppercase text-vortex-blue">Explore courses</p>
+            <p className="text-xs font-semibold uppercase text-vortex-blue">Assigned courses</p>
             <h2 className="mt-2 font-heading text-4xl font-semibold text-vortex-navy">
-              {filteredCourses.length} course{filteredCourses.length === 1 ? "" : "s"} found
+              {filteredCourses.length} published course{filteredCourses.length === 1 ? "" : "s"}
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-7 text-vortex-muted">
               Search and filter by course type, subject, curriculum, and learning goal.
@@ -141,7 +139,8 @@ export function CourseCatalog({
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 className="min-w-0 flex-1 bg-transparent text-sm font-semibold outline-none placeholder:text-vortex-muted"
-                placeholder="Search subject, exam, tutor, resource"
+                aria-label="Search published courses"
+                placeholder="Search courses, subjects, exams, tutors, or resources"
               />
             </label>
             <button
@@ -187,7 +186,7 @@ export function CourseCatalog({
         </div>
 
         <div className="mt-5 flex gap-2 overflow-x-auto pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
-          {["All", "Live", "Self paced", "Hybrid", "Bootcamp"].map((item) => (
+          {["All", ...modes].map((item) => (
             <button
               key={item}
               type="button"
@@ -213,45 +212,6 @@ export function CourseCatalog({
           </div>
         ) : null}
       </div>
-
-      {acceleratedCourses.length > 0 ? (
-        <div className="mt-6 rounded-[1.75rem] border border-vortex-border bg-vortex-soft p-4 sm:p-5">
-          <div className="grid gap-5 lg:grid-cols-[0.55fr_1.45fr] lg:items-center">
-            <div>
-              <div className="flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-2xl bg-vortex-gradient text-white">
-                  <Sparkles className="size-5" />
-                </span>
-                <div>
-                  <p className="text-xs font-semibold uppercase text-vortex-blue">Catalog focus</p>
-                  <h3 className="font-heading text-3xl font-semibold text-vortex-navy">
-                    Accelerated Learning
-                  </h3>
-                </div>
-              </div>
-              <p className="mt-3 max-w-xl text-sm leading-7 text-vortex-muted">
-                Short guided programs for crash revision, entry tests, exam rescue, and focused skill sprints.
-              </p>
-            </div>
-            <div className="grid gap-3 md:grid-cols-3">
-              {acceleratedCourses.map((course) => (
-                <Link
-                  key={course.slug}
-                  href={`/courses/${course.slug}`}
-                  className="group grid min-h-28 rounded-2xl bg-white p-4 transition hover:-translate-y-0.5 hover:shadow-[0_14px_45px_rgba(9,29,83,0.08)]"
-                >
-                  <span className="text-sm font-semibold leading-5 text-vortex-navy">{course.title}</span>
-                  <span className="mt-2 text-xs text-vortex-muted">{course.mode} - {course.duration}</span>
-                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-vortex-blue">
-                    View program
-                    <ArrowRight className="size-3.5 transition group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : null}
 
       <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {filteredCourses.map((course) => (

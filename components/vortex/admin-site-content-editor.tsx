@@ -256,7 +256,7 @@ export function AdminSiteContentEditor({
             },
             {
               block_key: "project_attribution",
-              eyebrow: "Phonics Club initiative",
+              eyebrow: "Partnership",
               title: projectDraft.title,
               body: projectDraft.description,
               href: "/about#phonics-club",

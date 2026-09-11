@@ -12,6 +12,9 @@ export const metadata = {
   title: "Explore",
   description:
     "Search Vortex Learning courses, subjects, tutors, articles, past papers, notes, and FAQs by curriculum, subject, or learning goal.",
+  alternates: {
+    canonical: "/explore",
+  },
 };
 
 export default function ExplorePage() {
@@ -36,7 +39,7 @@ export default function ExplorePage() {
         <SectionHeading
           eyebrow="Find your path"
           title="Explore by curriculum, subject, or learning goal"
-          description="The homepage now stays lighter, while this page carries the deeper browsing and search experience."
+          description="Search the current course list, then browse by curriculum, subject, or learning goal."
         />
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {learningPaths.map((path, index) => {

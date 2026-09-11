@@ -140,8 +140,7 @@ export function SiteFooter() {
         <div className="max-w-xl">
           <VortexLogo />
           <p className="mt-5 text-sm leading-7 text-vortex-muted">
-            A premium education operating system for serious students, families,
-            teachers, and academic organizations.
+            A focused learning platform for students, families, tutors, and academic teams.
           </p>
           <div className="mt-6 grid gap-2 text-sm text-vortex-muted">
             <a href="mailto:support@vortexelearning.com" className="font-semibold text-vortex-blue">
@@ -174,7 +173,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-vortex-border px-5 py-5">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs text-vortex-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>(c) 2026 Vortex Learning- learn without limits.</p>
+          <p>Copyright 2026 Vortex Learning. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/policies/privacy" className="hover:text-vortex-blue">Privacy</Link>
             <Link href="/policies/terms" className="hover:text-vortex-blue">Terms</Link>

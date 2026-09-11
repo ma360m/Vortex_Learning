@@ -22,7 +22,6 @@ export const generatedCourses = [
       "Past papers"
     ],
     "outcomes": [
-      "To build a strong conceptual understanding of foundational physics - from measurements and mechanics to thermodynamics and electrostatics - equipping first-year students with analytical and problem-solving skills for board examinations.",
       "To develop advanced understanding of electricity, magnetism, solid-state physics, electronics, and modern physics, along with strong numerical problem-solving skills.",
       "Prepare with past papers, notes, and revision resources",
       "Track progress through free preview and paid modules"
@@ -1548,7 +1547,6 @@ export const generatedCourses = [
       "Board exams"
     ],
     "outcomes": [
-      "To build a strong conceptual and problem-solving foundation in intermediate mathematics, covering algebra, trigonometry, and introductory calculus, preparing first-year students for board examinations and higher-level mathematical study.",
       "To develop advanced proficiency in calculus, analytic geometry, and applied mathematics, equipping second-year students with the problem-solving skills required for board examinations and further academic pursuits.",
       "Prepare with past papers, notes, and revision resources",
       "Track progress through free preview and paid modules"
@@ -2475,7 +2473,6 @@ export const generatedCourses = [
       "Past papers"
     ],
     "outcomes": [
-      "To build a strong foundation in English grammar, prose, poetry, and writing skills, enabling first-year students to comprehend, analyze, and respond confidently to academic English content, while preparing them thoroughly for board examinations.",
       "To develop advanced reading comprehension, literary analysis, and writing proficiency in second-year students through structured study of prescribed prose, the novel Good-Bye, Mr. Chips, grammar mastery, and intensive exam preparation.",
       "Prepare with past papers, notes, and revision resources",
       "Track progress through free preview and paid modules"

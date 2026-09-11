@@ -58,6 +58,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: course.title,
     description: course.description,
+    alternates: {
+      canonical: `/courses/${course.slug}`,
+    },
+    openGraph: {
+      title: course.title,
+      description: course.description,
+      url: `/courses/${course.slug}`,
+      type: "website",
+    },
   };
 }
 
@@ -72,10 +81,38 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
   const instructor = instructors.find((item) => item.name === course.instructor) ?? instructors[0];
   const freeModuleCount = course.freeModuleCount ?? 3;
   const resourceFiles = course.resourceFiles ?? [];
-  const helpLinks = course.helpLinks ?? [];
+  const helpLinks = (course.helpLinks ?? []).filter(
+    (link) => !link.toLowerCase().includes("no reference links provided"),
+  );
+  const courseJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: course.title,
+    description: course.description,
+    url: `https://vortexelearning.com/courses/${course.slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "Vortex Learning",
+      url: "https://vortexelearning.com",
+    },
+    educationalLevel: course.level,
+    about: course.subject,
+    courseMode: course.mode,
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: course.mode,
+      courseWorkload: course.duration,
+    },
+  };
 
   return (
     <SiteShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(courseJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <section className="page-hero page-hero-course-detail px-5 py-16 text-white sm:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_420px] lg:items-end">
           <div>

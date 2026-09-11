@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Bot, FileText, Library, Search, UserRound } from "lucide-react";
+import { ArrowRight, Bot, FileText, Globe2, Library, Search, UserRound } from "lucide-react";
 
 import { searchIndex } from "@/lib/vortex-data";
 
@@ -14,22 +14,29 @@ const typeIcons = {
   "Past Paper": FileText,
   FAQ: Bot,
   "Study Notes": FileText,
+  "Official Site": Globe2,
 };
+
+function normalizeSearchValue(value: string) {
+  return value.toLowerCase().replace(/https?:\/\//g, "").replace(/^www\./, "");
+}
 
 export function SearchConsole({ compact = false }: { compact?: boolean }) {
   const [query, setQuery] = useState("");
 
   const results = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
+    const normalized = normalizeSearchValue(query.trim());
 
     if (!normalized) {
       return searchIndex.slice(0, compact ? 4 : 6);
     }
 
+    const queryTerms = normalized.split(/\s+/).filter(Boolean);
+
     return searchIndex
       .filter((item) => {
-        const text = `${item.type} ${item.title} ${item.description} ${item.tags.join(" ")}`.toLowerCase();
-        return text.includes(normalized);
+        const text = normalizeSearchValue(`${item.type} ${item.title} ${item.description} ${item.href} ${item.tags.join(" ")}`);
+        return queryTerms.every((term) => text.includes(term));
       })
       .slice(0, compact ? 4 : 7);
   }, [compact, query]);

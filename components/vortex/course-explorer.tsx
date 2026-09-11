@@ -169,7 +169,7 @@ const courseCategories: CourseCategory[] = [
   },
 ];
 
-const filterLabels = ["All Courses", "School", "Cambridge", "Edexcel", "Admissions", "Languages", "Professional"];
+const filterLabels = ["All Routes", "School", "Cambridge", "Edexcel", "Admissions", "Languages", "Professional"];
 const tabs = ["Overview", "Programs & Levels", "Subjects", "Exam Prep"] as const;
 type Tab = (typeof tabs)[number];
 
@@ -178,7 +178,7 @@ function searchableText(category: CourseCategory) {
 }
 
 function matchesFilter(category: CourseCategory, filter: string) {
-  if (filter === "All Courses") return true;
+  if (filter === "All Routes") return true;
   if (filter === "School") return ["Early Years & Primary", "Middle & Secondary", "Matric & Intermediate", "IB & International Curricula"].includes(category.title);
   if (filter === "Cambridge") return category.title.includes("Cambridge") || searchableText(category).includes("cambridge");
   if (filter === "Edexcel") return category.title.includes("Edexcel") || searchableText(category).includes("edexcel");
@@ -189,7 +189,7 @@ function matchesFilter(category: CourseCategory, filter: string) {
 
 export function CourseExplorer({ categories = courseCategories }: { categories?: CourseCategory[] }) {
   const [query, setQuery] = useState("");
-  const [activeFilter, setActiveFilter] = useState("All Courses");
+  const [activeFilter, setActiveFilter] = useState("All Routes");
   const [showAll, setShowAll] = useState(false);
   const [activeCategory, setActiveCategory] = useState<CourseCategory | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>("Overview");
@@ -203,7 +203,7 @@ export function CourseExplorer({ categories = courseCategories }: { categories?:
     });
   }, [activeFilter, categories, query]);
 
-  const shouldShowAll = showAll || query.trim().length > 0 || activeFilter !== "All Courses";
+  const shouldShowAll = showAll || query.trim().length > 0 || activeFilter !== "All Routes";
   const visibleCategories = shouldShowAll ? filteredCategories : filteredCategories.slice(0, 8);
 
   useEffect(() => {
@@ -264,7 +264,7 @@ export function CourseExplorer({ categories = courseCategories }: { categories?:
           </div>
         </div>
 
-        <div className="mt-4 flex gap-2 overflow-x-auto pb-1" aria-label="Course filters">
+        <div className="mt-4 flex gap-2 overflow-x-auto pb-1" aria-label="Learning route filters">
           {filterLabels.map((filter) => (
             <button
               key={filter}
@@ -315,7 +315,7 @@ export function CourseExplorer({ categories = courseCategories }: { categories?:
                 ) : null}
               </span>
               <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-vortex-blue">
-                Explore Courses
+                Explore route
                 <ArrowRight className="size-4 transition group-hover:translate-x-1" />
               </span>
             </button>
@@ -337,7 +337,7 @@ export function CourseExplorer({ categories = courseCategories }: { categories?:
       {!shouldShowAll && filteredCategories.length > visibleCategories.length ? (
         <div className="mt-6 flex justify-center">
           <button type="button" onClick={() => setShowAll(true)} className="btn-secondary h-11 px-5">
-            View All Courses
+            View All Routes
             <ArrowRight className="size-4" />
           </button>
         </div>
@@ -366,7 +366,7 @@ export function CourseExplorer({ categories = courseCategories }: { categories?:
                   })()}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase text-vortex-blue">Course category</p>
+                  <p className="text-xs font-semibold uppercase text-vortex-blue">Learning route</p>
                   <h2 id="course-panel-title" className="mt-2 font-heading text-3xl font-semibold leading-tight text-vortex-navy">{activeCategory.title}</h2>
                   <p className="mt-2 text-sm leading-6 text-vortex-muted">{activeCategory.summary}</p>
                 </div>
@@ -377,7 +377,7 @@ export function CourseExplorer({ categories = courseCategories }: { categories?:
             </div>
 
             <div className="flex-1 overflow-y-auto p-5 sm:p-7">
-              <div role="tablist" aria-label="Course details" className="grid grid-cols-2 gap-2 rounded-2xl bg-vortex-soft p-1 sm:grid-cols-4">
+            <div role="tablist" aria-label="Learning route details" className="grid grid-cols-2 gap-2 rounded-2xl bg-vortex-soft p-1 sm:grid-cols-4">
                 {tabs.map((tab) => (
                   <button
                     key={tab}
